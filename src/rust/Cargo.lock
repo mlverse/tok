@@ -36,8 +36,8 @@ dependencies = [
 ]
 
 [[package]]
-name = "helloextendr"
-version = "0.1.0"
+name = "tok"
+version = "0.3.0"
 dependencies = [
  "extendr-api",
 ]

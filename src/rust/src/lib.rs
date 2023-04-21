@@ -1,16 +1,9 @@
-use extendr_api::prelude::*;
+use extendr_api::*;
+mod models;
+mod tokenizer;
 
-/// Return string `"Hello world!"` to R.
-/// @export
-#[extendr]
-fn hello_world() -> &'static str {
-    "Hello world!"
-}
-
-// Macro to generate exports.
-// This ensures exported functions are registered with R.
-// See corresponding C code in `entrypoint.c`.
 extendr_module! {
-    mod helloextendr;
-    fn hello_world;
+    mod tok;
+    use models;
+    use tokenizer;
 }

@@ -1,6 +1,6 @@
 # Minimal Example of Calling Rust from R
 
-[![R build status](https://github.com/extendr/helloextendr/workflows/R-CMD-check/badge.svg)](https://github.com/extendr/helloextendr/actions)
+[![R build status](https://github.com/extendr/tok/workflows/R-CMD-check/badge.svg)](https://github.com/extendr/tok/actions)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 This is a template package to demonstrate how to call Rust from R using the [extendr-api](https://crates.io/crates/extendr-api) crate.
@@ -18,12 +18,12 @@ rustup target add i686-pc-windows-gnu
 
 Once Rust is working, you can install this package via:
 ```r
-remotes::install_github("extendr/helloextendr")
+remotes::install_github("extendr/tok")
 ```
 
 After installation, the following should work:
 ```r
-library(helloextendr)
+library(tok)
 
 hello_world()
 #> [1] "Hello world!"

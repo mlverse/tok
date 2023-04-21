@@ -1,11 +1,13 @@
 [package]
-name = 'helloextendr'
+name = 'tok'
 version = '0.3.0'
 edition = '2021'
 
 [lib]
 crate-type = [ 'staticlib' ]
-name = 'helloextendr'
+name = 'tok'
 
 [dependencies]
-extendr-api = '*'
+extendr-api = {git = "https://github.com/extendr/extendr.git", features = ["serde"]}
+tokenizers = '0.13.3'
+serde = "*"
