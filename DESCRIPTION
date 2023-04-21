@@ -2,9 +2,7 @@ Package: tok
 Title: Minimal Example of Calling Rust from R
 Version: 0.1.0
 Authors@R: c(
-    person("Andy", "Thomason", , "andy@andythomason.com", c("aut")),
-    person("Claus O.", "Wilke", , "wilke@austin.utexas.edu", c("aut", "cre"),
-      comment = c(ORCID = "0000-0002-7470-9261"))
+    person("Daniel", "Falbel", , "daniel@posit.co", c("aut", "cre"))
   )
 Description:
   This is a template package to demonstrate how to call
@@ -17,5 +15,6 @@ Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.2.3
 Suggests:
     rmarkdown,
+    R6,
     testthat (>= 3.0.0)
 Config/testthat/edition: 3
