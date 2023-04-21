@@ -3,4 +3,5 @@
 ^LICENSE\.md$
 ^tests/testthat/_snaps$
 ^\.github$
+^target/debug$
 
