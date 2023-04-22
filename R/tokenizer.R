@@ -91,5 +91,10 @@ tokenizer$from_file <- function(path) {
 }
 
 tokenizer$from_pretrained <- function(identifier, revision = "main", auth_token = NULL) {
-  tokenizer$new(RTokenizer$from_pretrained(identifier, revision, auth_token))
+  if (!is.null(auth_token))
+    cli::cli_abort("{.var auth_token} is currently unsupported.")
+  tmp <- tempfile()
+  url_to_download <- sprintf("https://huggingface.co/%s/resolve/%s/tokenizer.json", identifier, revision)
+  download.file(url_to_download, destfile = tmp, quiet = TRUE)
+  tokenizer$new(RTokenizer$from_file(tmp))
 }

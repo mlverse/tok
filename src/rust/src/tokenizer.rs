@@ -16,24 +16,6 @@ impl RTokenizer {
     pub fn from_file (path: &str) -> RTokenizer {
         RTokenizer(tk::Tokenizer::from_file(path).unwrap())
     }
-    pub fn from_pretrained (identifier: &str, revision: String, auth_token: Robj) -> RTokenizer {
-
-        let auth_token = if auth_token.is_null() {
-            None
-        } else {
-            Some(auth_token.as_str().unwrap().to_string())
-        };
-
-        let params = tk::FromPretrainedParameters {
-            revision,
-            auth_token,
-            user_agent: [("bindings", "R"), ("version", crate::VERSION)]
-                .iter()
-                .map(|(k, v)| (k.to_string(), v.to_string()))
-                .collect(),
-        };
-        RTokenizer(tk::Tokenizer::from_pretrained(identifier, Some(params)).unwrap())
-    }
     pub fn encode (&self, sequence: Robj, pair: Robj, is_pretokenized: bool, add_special_tokens: bool) -> R6REncoding {
         let sequence: tk::InputSequence = if is_pretokenized {
             panic!("Pretokenized input is not supported yet")

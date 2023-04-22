@@ -56,8 +56,6 @@ RTokenizer$new <- function(tokenizer) .Call(wrap__RTokenizer__new, tokenizer)
 
 RTokenizer$from_file <- function(path) .Call(wrap__RTokenizer__from_file, path)
 
-RTokenizer$from_pretrained <- function(identifier, revision, auth_token) .Call(wrap__RTokenizer__from_pretrained, identifier, revision, auth_token)
-
 RTokenizer$encode <- function(sequence, pair, is_pretokenized, add_special_tokens) .Call(wrap__RTokenizer__encode, self, sequence, pair, is_pretokenized, add_special_tokens)
 
 RTokenizer$decode <- function(ids, skip_special_tokens) .Call(wrap__RTokenizer__decode, self, ids, skip_special_tokens)
