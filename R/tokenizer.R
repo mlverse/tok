@@ -66,7 +66,18 @@ tokenizer <- R6::R6Class(
     #' the tokenizer.
     #' @param path Path to tokenizer.json file
     from_file = function(path) {
-      cli::cli_abort("This is a static method. Not available for tokenizers instances.2")
+      cli::cli_abort("This is a static method. Not available for tokenizers instances.")
+    },
+    
+    #' @description 
+    #' Instantiate a new Tokenizer from an existing file on the Hugging Face Hub.
+    #' @param identifier The identifier of a Model on the Hugging Face Hub, that 
+    #'    contains a tokenizer.json file
+    #' @param revision  A branch or commit id
+    #' @param auth_token An optional auth token used to access private repositories 
+    #'    on the Hugging Face Hub
+    from_pretrained = function(identifier, revision = "main", auth_token = NULL) {
+      cli::cli_abort("This is a static method. Not available for tokenizers instances.")
     }
   )
 )
@@ -74,4 +85,8 @@ tokenizer <- R6::R6Class(
 tokenizer$from_file <- function(path) {
   path <- path.expand(path)
   tokenizer$new(RTokenizer$from_file(path))
+}
+
+tokenizer$from_pretrained <- function(identifier, revision = "main", auth_token = NULL) {
+  tokenizer$new(RTokenizer$from_pretrained(identifier, revision, auth_token))
 }

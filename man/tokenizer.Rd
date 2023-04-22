@@ -23,6 +23,7 @@ an \link{encoding}.
 \item \href{#method-tok_tokenizer-encode_batch}{\code{tokenizer$encode_batch()}}
 \item \href{#method-tok_tokenizer-decode_batch}{\code{tokenizer$decode_batch()}}
 \item \href{#method-tok_tokenizer-from_file}{\code{tokenizer$from_file()}}
+\item \href{#method-tok_tokenizer-from_pretrained}{\code{tokenizer$from_pretrained()}}
 \item \href{#method-tok_tokenizer-clone}{\code{tokenizer$clone()}}
 }
 }
@@ -154,6 +155,29 @@ the tokenizer.
 \if{html}{\out{<div class="arguments">}}
 \describe{
 \item{\code{path}}{Path to tokenizer.json file}
+}
+\if{html}{\out{</div>}}
+}
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-tok_tokenizer-from_pretrained"></a>}}
+\if{latex}{\out{\hypertarget{method-tok_tokenizer-from_pretrained}{}}}
+\subsection{Method \code{from_pretrained()}}{
+Instantiate a new Tokenizer from an existing file on the Hugging Face Hub.
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{tokenizer$from_pretrained(identifier, revision = "main", auth_token = NULL)}\if{html}{\out{</div>}}
+}
+
+\subsection{Arguments}{
+\if{html}{\out{<div class="arguments">}}
+\describe{
+\item{\code{identifier}}{The identifier of a Model on the Hugging Face Hub, that
+contains a tokenizer.json file}
+
+\item{\code{revision}}{A branch or commit id}
+
+\item{\code{auth_token}}{An optional auth token used to access private repositories
+on the Hugging Face Hub}
 }
 \if{html}{\out{</div>}}
 }

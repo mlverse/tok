@@ -25,3 +25,11 @@ test_that("batch encoder/decoder", {
   
   expect_equal(tok$decode_batch(sequences), input)
 })
+
+test_that("from_pretrained", {
+  tok <- tokenizer$from_pretrained("gpt2")
+  input <- "hello world"
+  enc <- tok$encode(input)
+  
+  expect_equal(tok$decode(enc$ids), input)
+})
