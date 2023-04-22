@@ -3,6 +3,8 @@
 #' A Tokenizer works as a pipeline. It processes some raw text as input and outputs 
 #' an [encoding].
 #' 
+#' @importFrom openssl md5
+#' 
 #' @export
 tokenizer <- R6::R6Class(
   classname = "tok_tokenizer",
@@ -77,6 +79,7 @@ tokenizer <- R6::R6Class(
     #' @param auth_token An optional auth token used to access private repositories 
     #'    on the Hugging Face Hub
     from_pretrained = function(identifier, revision = "main", auth_token = NULL) {
+      md5(auth_token)
       cli::cli_abort("This is a static method. Not available for tokenizers instances.")
     }
   )
