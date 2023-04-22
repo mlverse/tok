@@ -16,7 +16,7 @@ knitr::opts_chunk$set(
 # tok
 
 <!-- badges: start -->
-[![R build status](https://github.com/extendr/tok/workflows/R-CMD-check/badge.svg)](https://github.com/extendr/tok/actions)
+[![R build status](https://github.com/dfalbel/tok/workflows/R-CMD-check/badge.svg)](https://github.com/extendr/tok/actions)
 <!-- badges: end -->
 
 tok provides bindings to the [🤗tokenizers](https://huggingface.co/docs/tokenizers/v0.13.3/en/index) library. It uses the same Rust libraries that powers the Python implementation.
