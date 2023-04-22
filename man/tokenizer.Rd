@@ -98,7 +98,7 @@ Decode the given list of ids back to a string
 \if{html}{\out{<a id="method-tok_tokenizer-encode_batch"></a>}}
 \if{latex}{\out{\hypertarget{method-tok_tokenizer-encode_batch}{}}}
 \subsection{Method \code{encode_batch()}}{
-Encodes a batch of sequences. Returns a list of \link{enconding}s.
+Encodes a batch of sequences. Returns a list of \link{encoding}s.
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{tokenizer$encode_batch(
   input,

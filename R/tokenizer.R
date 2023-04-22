@@ -42,7 +42,7 @@ tokenizer <- R6::R6Class(
     },
     
     #' @description 
-    #' Encodes a batch of sequences. Returns a list of [enconding]s.
+    #' Encodes a batch of sequences. Returns a list of [encoding]s.
     #' @param input A list of single sequences or pair sequences to encode. Each 
     #'  sequence can be either raw text or pre-tokenized, according to the is_pretokenized 
     #'  argument.
