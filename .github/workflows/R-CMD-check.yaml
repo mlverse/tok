@@ -18,8 +18,7 @@ jobs:
       fail-fast: false
       matrix:
         config:
-          - {os: windows-latest, r: 'release', rust-version: 'stable-msvc', rtools-version: '42'}
-          - {os: windows-latest, r: '4.1',     rust-version: 'stable-msvc'}
+          - {os: windows-latest, r: 'release', rust-version: 'stable-msvc'}
           - {os: macOS-latest,   r: 'release', rust-version: 'stable'}
           - {os: ubuntu-latest,  r: 'release', rust-version: 'stable'}
 

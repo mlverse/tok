@@ -4,5 +4,8 @@
 ^tests/testthat/_snaps$
 ^\.github$
 ^target/debug$
-
+^target.*$
+^src/rust/target.*$
+^Cargo\.lock
+^Cargo\.toml
 ^README\.Rmd$

@@ -12,9 +12,10 @@ Description:
 License: MIT + file LICENSE
 SystemRequirements: Rust tool chain w/ cargo, libclang/llvm-config
 Encoding: UTF-8
-LazyData: true
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.2.3
+Depends:
+    R (>= 4.2.0)
 Imports:
     R6,
     cli

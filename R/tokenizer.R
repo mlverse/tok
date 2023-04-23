@@ -3,6 +3,9 @@
 #' A Tokenizer works as a pipeline. It processes some raw text as input and outputs 
 #' an [encoding].
 #' 
+#' @importFrom R6 R6Class
+#' @importFrom cli cli_abort
+#' 
 #' @export
 tokenizer <- R6::R6Class(
   classname = "tok_tokenizer",
