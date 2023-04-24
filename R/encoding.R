@@ -25,6 +25,11 @@ encoding <- R6::R6Class(
       if (missing(x)) {
         self$.encoding$get_ids()
       }
+    },
+    attention_mask = function(x) {
+      if (missing(x)) {
+        self$.encoding$get_attention_mask()
+      }
     }
   )
 )
