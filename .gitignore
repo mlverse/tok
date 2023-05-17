@@ -27,3 +27,5 @@ vignettes/*.pdf
 # R Environment Variables
 .Renviron
 target
+Cargo.lock
+Cargo.toml
