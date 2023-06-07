@@ -21,5 +21,8 @@ Imports:
     cli
 Suggests:
     rmarkdown,
-    testthat (>= 3.0.0)
+    testthat (>= 3.0.0),
+    hfhub
 Config/testthat/edition: 3
+Remotes:
+    mlverse/hfhub
