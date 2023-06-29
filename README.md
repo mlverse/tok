@@ -6,7 +6,7 @@
 <!-- badges: start -->
 
 [![R build
-status](https://github.com/dfalbel/tok/workflows/R-CMD-check/badge.svg)](https://github.com/dfalbel/tok/actions)
+status](https://github.com/mlverse/tok/workflows/R-CMD-check/badge.svg)](https://github.com/mlverse/tok/actions)
 <!-- badges: end -->
 
 tok provides bindings to the
