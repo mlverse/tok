@@ -3,8 +3,21 @@
 \name{encoding}
 \alias{encoding}
 \title{Encoding}
+\value{
+An encoding object containing encoding information such as attention masks
+and token ids.
+}
 \description{
 Represents the output of a \link{tokenizer}.
+}
+\examples{
+withr::with_envvar(c(HUGGINGFACE_HUB_CACHE = tempdir()), {
+try({
+tok <- tokenizer$from_pretrained("gpt2")
+encoding <- tok$encode("Hello world")
+encoding
+})
+})
 }
 \section{Public fields}{
 \if{html}{\out{<div class="r6-fields">}}
@@ -18,6 +31,8 @@ Represents the output of a \link{tokenizer}.
 \describe{
 \item{\code{ids}}{The IDs are the main input to a Language Model. They are the
 token indices, the numerical representations that a LM understands.}
+
+\item{\code{attention_mask}}{The attention mask used as input for transformers models.}
 }
 \if{html}{\out{</div>}}
 }

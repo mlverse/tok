@@ -3,9 +3,22 @@
 \name{tokenizer}
 \alias{tokenizer}
 \title{Tokenizer}
+\value{
+A tokenizer that can be used for encoding character strings or decoding
+integers.
+}
 \description{
 A Tokenizer works as a pipeline. It processes some raw text as input and outputs
 an \link{encoding}.
+}
+\examples{
+withr::with_envvar(c(HUGGINGFACE_HUB_CACHE = tempdir()), {
+try({
+tok <- tokenizer$from_pretrained("gpt2")
+tok$encode("Hello world")$ids
+})
+})
+
 }
 \section{Public fields}{
 \if{html}{\out{<div class="r6-fields">}}

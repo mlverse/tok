@@ -6,6 +6,18 @@
 #' @importFrom R6 R6Class
 #' @importFrom cli cli_abort
 #' 
+#' @examples
+#' withr::with_envvar(c(HUGGINGFACE_HUB_CACHE = tempdir()), {
+#' try({
+#' tok <- tokenizer$from_pretrained("gpt2")
+#' tok$encode("Hello world")$ids
+#' })
+#' })
+#' 
+#' @returns
+#' A tokenizer that can be used for encoding character strings or decoding
+#' integers.
+#' 
 #' @export
 tokenizer <- R6::R6Class(
   classname = "tok_tokenizer",

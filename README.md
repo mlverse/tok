@@ -19,8 +19,12 @@ if there’s a feature you are missing.
 
 ## Installation
 
-Before you can install this package, you need to install a working Rust
-toolchain. We recommend using [rustup.](https://rustup.rs/)
+You can install tok from CRAN using:
+
+    install.packages("tok")
+
+Installing tok from source requires working Rust toolchain. We recommend
+using [rustup.](https://rustup.rs/)
 
 On Windows, you’ll also have to add the `i686-pc-windows-gnu` and
 `x86_64-pc-windows-gnu` targets:
