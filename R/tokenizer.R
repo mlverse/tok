@@ -106,14 +106,8 @@ tokenizer$from_pretrained <- function(identifier, revision = "main", auth_token 
   if (!is.null(auth_token))
     cli::cli_abort("{.var auth_token} is currently unsupported.")
   
-  if (rlang::is_installed("hfhub")) {
-    path <- hfhub::hub_download(identifier, revision = revision, "tokenizer.json")
-  } else {
-    tmp <- tempfile()
-    url_to_download <- sprintf("https://huggingface.co/%s/resolve/%s/tokenizer.json", identifier, revision)
-    download.file(url_to_download, destfile = tmp, quiet = TRUE)
-    path <- tmp
-  }
+  rlang::check_installed("hfhub")
+  path <- hfhub::hub_download(identifier, revision = revision, "tokenizer.json")
   
   tokenizer$new(RTokenizer$from_file(path))
 }
