@@ -27,6 +27,7 @@ test_that("batch encoder/decoder", {
 })
 
 test_that("from_pretrained", {
+  skip_on_cran()
   tok <- tokenizer$from_pretrained("gpt2")
   input <- "hello world"
   enc <- tok$encode(input)

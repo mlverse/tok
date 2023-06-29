@@ -10,3 +10,4 @@
 ^Cargo\.toml
 ^README\.Rmd$
 ^cran-comments\.md$
+^CRAN-SUBMISSION$
