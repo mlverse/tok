@@ -20,7 +20,7 @@ jobs:
         config:
           - {os: windows-latest, r: 'release', rust-version: 'stable-msvc'}
           - {os: macOS-latest,   r: 'release', rust-version: 'stable'}
-          - {os: ubuntu-latest,  r: 'release', rust-version: 'stable'}
+          - {os: ubuntu-latest,  r: 'release', rust-version: '1.63.0'}
 
     env:
       R_REMOTES_NO_ERRORS_FROM_WARNINGS: true
