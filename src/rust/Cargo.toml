@@ -9,6 +9,5 @@ name = 'tok'
 
 [dependencies]
 extendr-api = {git = "https://github.com/extendr/extendr.git", features = ["serde"]}
-tokenizers = '0.13.3'
-anstyle = '0.3.5'
+tokenizers = {version = '0.13.3', features = ["onig", "esaxx_fast", "progressbar"], default-features = false}
 serde = "*"
