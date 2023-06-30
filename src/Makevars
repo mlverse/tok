@@ -3,8 +3,8 @@ LIBDIR = $(TARGET_DIR)/release
 STATLIB = $(LIBDIR)/libtok.a
 PKG_LIBS = -L$(LIBDIR) -ltok
 
-all: C_clean
-
+.PHONY: patch
+all: C_clean patch
 $(SHLIB): $(STATLIB)
 
 $(STATLIB):
@@ -13,9 +13,14 @@ $(STATLIB):
 	# therefore is only used if cargo is absent from the user's PATH.
 	export PATH="$(PATH):$(HOME)/.cargo/bin" && \
 		cargo build --lib --release --manifest-path=./rust/Cargo.toml --target-dir $(TARGET_DIR)
-
+		
 C_clean:
 	rm -Rf $(SHLIB) $(STATLIB) $(OBJECTS)
 
 clean:
 	rm -Rf $(SHLIB) $(STATLIB) $(OBJECTS) rust/target
+
+patch: $(STATLIB)
+	@echo "*** Cleaning headers"
+	"${R_HOME}/bin${R_ARCH_BIN}/Rscript" "../tools/patch.R"
+	
