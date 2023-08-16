@@ -1,3 +1,4 @@
+VENDORING = yes
 TARGET_DIR = ./rust/target
 LIBDIR = $(TARGET_DIR)/release
 STATLIB = $(LIBDIR)/libtok.a
@@ -13,11 +14,16 @@ $(STATLIB):
 	# to set it here to ensure cargo can be invoked. It is appended to PATH and
 	# therefore is only used if cargo is absent from the user's PATH.
 	
+	if [ "$(VENDORING)" = "yes" ]; then \
+		$(TAR) --extract --xz -f ./rust/vendor.tar.xz -C ./rust && \
+	    mkdir -p ./rust/.cargo; \
+	fi
+	
 	export PATH="$(PATH):$(HOME)/.cargo/bin" && \
 		if [ "$(NOT_CRAN)" != "true" ]; then \
  			export CARGO_HOME=$(CARGOTMP); \
 		fi && \
-		cargo build --lib --release --manifest-path=./rust/Cargo.toml --target-dir $(TARGET_DIR)
+		cargo build --lib --release --offline --config rust/config/cargo-config.toml --manifest-path=./rust/Cargo.toml --target-dir $(TARGET_DIR)
 		
 	if [ "$(NOT_CRAN)" != "true" ]; then \
 		rm -Rf $(CARGOTMP) && \

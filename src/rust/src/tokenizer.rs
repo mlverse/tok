@@ -1,5 +1,3 @@
-use std::thread::panicking;
-
 use tokenizers as tk;
 use std::borrow::Cow;
 use tk::{InputSequence, EncodeInput};
@@ -39,7 +37,8 @@ impl RTokenizer {
         R6REncoding(REncoding(self.0.encode_char_offsets(input, add_special_tokens).unwrap()))
     }
     pub fn decode (&self, ids: Vec<i32>, skip_special_tokens: bool) -> String {
-        self.0.decode(ids.into_iter().map(|x| x as u32).collect(), skip_special_tokens).unwrap()
+        let ids_cast: Vec<u32> = ids.into_iter().map(|x| x as u32).collect(); 
+        self.0.decode(&ids_cast, skip_special_tokens).unwrap()
     }
     pub fn encode_batch (&self, input: Robj, is_pretokenized: bool, add_special_tokens: bool) -> Vec<Robj> {
         
@@ -102,9 +101,11 @@ impl RTokenizer {
         } else {
             panic!("Input must be a list of integer vectors")
         };
+
+        let slices = u32_ids.iter().map(|v| &v[..]).collect::<Vec<&[u32]>>();
         
         self.0
-            .decode_batch(u32_ids, skip_special_tokens)
+            .decode_batch(&slices, skip_special_tokens)
             .unwrap()
     }
 }

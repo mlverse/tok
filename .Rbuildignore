@@ -12,3 +12,5 @@
 ^cran-comments\.md$
 ^CRAN-SUBMISSION$
 ^src/\.cargo.*
+^src/rust/vendor/.*
+^src/rust/\.cargo.*
