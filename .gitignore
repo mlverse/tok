@@ -29,3 +29,5 @@ vignettes/*.pdf
 target
 Cargo.lock
 Cargo.toml
+src/rust/vendor/*
+src/rust/.cargo
