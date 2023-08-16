@@ -1,4 +1,4 @@
-# tok (development version)
+# tok 0.1.1
 
 - Dependencies are now vendored to avoid versioning problems on CRAN (#5)
 
