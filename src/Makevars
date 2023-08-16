@@ -23,7 +23,7 @@ $(STATLIB):
 		if [ "$(NOT_CRAN)" != "true" ]; then \
  			export CARGO_HOME=$(CARGOTMP); \
 		fi && \
-		cargo build --lib --release --offline --config rust/config/cargo-config.toml --manifest-path=./rust/Cargo.toml --target-dir $(TARGET_DIR)
+		cargo build --lib --release --offline --config rust/config/cargo-config.toml --manifest-path=./rust/Cargo.toml --target-dir $(TARGET_DIR) -j 2
 		
 	if [ "$(NOT_CRAN)" != "true" ]; then \
 		rm -Rf $(CARGOTMP) && \
