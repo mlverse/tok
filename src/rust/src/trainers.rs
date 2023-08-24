@@ -1,17 +1,88 @@
-use std::sync::{Arc, RwLock};
 
-use serde::{Deserialize, Serialize};
+use tk::AddedToken;
 use tk::models::TrainerWrapper;
-use tk::Trainer;
+use tk::models::bpe::BpeTrainer;
+use extendr_api::prelude::*;
 use tokenizers as tk;
 
-struct RTrainer {
-    pub trainer: Arc<RwLock<TrainerWrapper>>,
+pub struct RTrainer {
+    pub trainer: TrainerWrapper,
 }
 
+#[extendr]
 impl RTrainer {
-    pub fn new(trainer: Arc<RwLock<TrainerWrapper>>) -> Self {
-        RTrainer { trainer }
+    pub fn new(trainer: Robj) -> Result<Self> {
+        if trainer.inherits("RTrainerBPE") {
+            unsafe{
+                let ptr = trainer.external_ptr_addr() as *mut RTrainerBPE;
+                Ok(RTrainer {
+                    trainer: (*ptr).trainer.clone().into()
+                })
+            }
+        } else {
+            Err(Error::EvalError("Model not supported".into()))
+        }
     }
+}
+
+pub struct RTrainerBPE {
+    pub trainer: BpeTrainer,
+}
+
+#[extendr]
+impl RTrainerBPE {
+    pub fn new (vocab_size: Nullable<i32>, min_frequency: Nullable<u32>, show_progress: Nullable<bool>, 
+        special_tokens: Nullable<Vec<String>>, limit_alphabet: Nullable<i32>, initial_alphabet: Nullable<Vec<String>>,
+        continuing_subword_prefix: Nullable<String>, end_of_word_suffix: Nullable<String>,
+        max_token_length: Nullable<i32>) -> Self {
+        let mut trainer = BpeTrainer::builder();
+        if let NotNull(vocab_size) = vocab_size {
+            trainer = trainer.vocab_size(vocab_size as usize);
+        }
+        if let NotNull(min_frequency) = min_frequency {
+            trainer = trainer.min_frequency(min_frequency);
+        }
+        if let NotNull(show_progress) = show_progress {
+            trainer = trainer.show_progress(show_progress);
+        }
+        if let NotNull(special_tokens) = special_tokens {
+            trainer = trainer.special_tokens(
+                special_tokens.iter().map(
+                    |x| AddedToken{
+                        content: x.into(),
+                        single_word: false,
+                        lstrip: false,
+                        rstrip: false,
+                        normalized: true,
+                        special: true
+                    }).collect());
+        }
+        if let NotNull(limit_alphabet) = limit_alphabet {
+            trainer = trainer.limit_alphabet(limit_alphabet as usize);
+        }
+        if let NotNull(initial_alphabet) = initial_alphabet {
+            panic!("Cant'");
+            //trainer = trainer.initial_alphabet(initial_alphabet);
+        }
+        if let NotNull(continuing_subword_prefix) = continuing_subword_prefix {
+            trainer = trainer.continuing_subword_prefix(continuing_subword_prefix);
+        }
+        if let NotNull(end_of_word_suffix) = end_of_word_suffix {
+            trainer = trainer.end_of_word_suffix(end_of_word_suffix);
+        }
+        if let NotNull(max_token_length) = max_token_length {
+            trainer = trainer.max_token_length(Some(max_token_length as usize));
+        }
+
+        RTrainerBPE {
+            trainer: trainer.build()
+        }
+    }
+}
+
+extendr_module! {
+    mod trainers;
+    impl RTrainer;
+    impl RTrainerBPE;
 }
 

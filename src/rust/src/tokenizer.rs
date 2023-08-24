@@ -2,6 +2,9 @@ use tokenizers as tk;
 use std::borrow::Cow;
 use tk::{InputSequence, EncodeInput};
 use extendr_api::prelude::*;
+use crate::models::RModel;
+use crate::pre_tokenizers::RPreTokenizer;
+use crate::trainers::RTrainer;
 
 #[derive(Clone)]
 pub struct RTokenizer(tk::Tokenizer);
@@ -13,6 +16,9 @@ impl RTokenizer {
     }
     pub fn from_file (path: &str) -> RTokenizer {
         RTokenizer(tk::Tokenizer::from_file(path).unwrap())
+    }
+    pub fn from_model (model: &RModel) -> RTokenizer {
+        RTokenizer(tk::Tokenizer::new(model.model.clone()))
     }
     pub fn encode (&self, sequence: Robj, pair: Robj, is_pretokenized: bool, add_special_tokens: bool) -> R6REncoding {
         let sequence: tk::InputSequence = if is_pretokenized {
@@ -108,6 +114,20 @@ impl RTokenizer {
             .decode_batch(&slices, skip_special_tokens)
             .unwrap()
     }
+    pub fn set_pre_tokenizer (&mut self, pre_tokenizer: &RPreTokenizer) {
+        self.0.with_pre_tokenizer(pre_tokenizer.0.clone());
+    }
+    pub fn get_pre_tokenizer (&self) -> Nullable<R6PreTokenizer> {
+        if let Some(pre_tokenizer) = self.0.get_pre_tokenizer() {
+            let clone = pre_tokenizer.clone();
+            NotNull(R6PreTokenizer(RPreTokenizer(clone)))
+        } else {
+            Null
+        }    
+    }
+    pub fn train_from_files (&mut self, trainer: &mut RTrainer, files: Vec<String>) {
+        self.0.train_from_files(&mut trainer.trainer, files).unwrap();
+    }
 }
 
 pub struct REncoding(tk::Encoding);
@@ -141,6 +161,13 @@ pub struct R6REncoding(REncoding);
 impl From<R6REncoding> for Robj {
     fn from (val: R6REncoding) -> Self{
         call!("tok::encoding$new", val.0).unwrap()
+    } 
+}
+
+pub struct R6PreTokenizer(RPreTokenizer);
+impl From<R6PreTokenizer> for Robj {
+    fn from (val: R6PreTokenizer) -> Self{
+        call!("tok::pre_tokenizer$new", val.0).unwrap()
     } 
 }
 

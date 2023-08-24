@@ -37,6 +37,7 @@ tok$encode("Hello world")$ids
 \item \href{#method-tok_tokenizer-decode_batch}{\code{tokenizer$decode_batch()}}
 \item \href{#method-tok_tokenizer-from_file}{\code{tokenizer$from_file()}}
 \item \href{#method-tok_tokenizer-from_pretrained}{\code{tokenizer$from_pretrained()}}
+\item \href{#method-tok_tokenizer-train}{\code{tokenizer$train()}}
 \item \href{#method-tok_tokenizer-clone}{\code{tokenizer$clone()}}
 }
 }
@@ -191,6 +192,26 @@ contains a tokenizer.json file}
 
 \item{\code{auth_token}}{An optional auth token used to access private repositories
 on the Hugging Face Hub}
+}
+\if{html}{\out{</div>}}
+}
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-tok_tokenizer-train"></a>}}
+\if{latex}{\out{\hypertarget{method-tok_tokenizer-train}{}}}
+\subsection{Method \code{train()}}{
+Train the Tokenizer using the given files.
+Reads the files line by line, while keeping all the whitespace, even new lines.
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{tokenizer$train(files, trainer)}\if{html}{\out{</div>}}
+}
+
+\subsection{Arguments}{
+\if{html}{\out{<div class="arguments">}}
+\describe{
+\item{\code{files}}{character vector of file paths.}
+
+\item{\code{trainer}}{an instance of a trainer object, specific to that tokenizer type.}
 }
 \if{html}{\out{</div>}}
 }

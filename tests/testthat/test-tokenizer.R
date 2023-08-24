@@ -34,3 +34,17 @@ test_that("from_pretrained", {
   
   expect_equal(tok$decode(enc$ids), input)
 })
+
+test_that("train a tokenizer on files", {
+  
+  tmp <- tempfile()
+  writeLines(c("hello world", "bye bye"), tmp)
+  
+  tok <- tokenizer$new(model_bpe$new())
+  tok$pre_tokenizer <- pre_tokenizer_whitespace$new()
+  tok$train(tmp, trainer_bpe$new())
+  
+  expect_equal(tok$encode("hello")$ids, 17)
+  expect_equal(tok$encode("world")$ids, 18)
+  expect_equal(tok$encode("bye bye")$ids, c(10, 10))
+})

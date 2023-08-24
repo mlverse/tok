@@ -30,6 +30,8 @@ tokenizer <- R6::R6Class(
     initialize = function(tokenizer) {
       if (inherits(tokenizer, "RTokenizer")) {
         self$.tokenizer <- tokenizer
+      } else if (inherits(tokenizer, "tok_model")) {
+        self$.tokenizer <- RTokenizer$from_model(tokenizer$.model)
       } else {
         self$.tokenizer <- RTokenizer$new(tokenizer$.tokenizer)
       }
@@ -93,6 +95,28 @@ tokenizer <- R6::R6Class(
     #'    on the Hugging Face Hub
     from_pretrained = function(identifier, revision = "main", auth_token = NULL) {
       cli::cli_abort("This is a static method. Not available for tokenizers instances.")
+    },
+    
+    #' @description
+    #' Train the Tokenizer using the given files.
+    #' Reads the files line by line, while keeping all the whitespace, even new lines. 
+    #' @param trainer an instance of a trainer object, specific to that tokenizer type.
+    #' @param files character vector of file paths.
+    train = function(files, trainer) {
+      if (!inherits(trainer, "tok_trainer"))
+        cli::cli_abort("{.arg trainer} must inherit from {.cls tok_trainer}.")
+      
+      self$.tokenizer$train_from_files(trainer$.trainer, files)
+    }
+  ),
+  active = list(
+    pre_tokenizer = function(x) {
+      if (missing(x)) {
+        return(self$.tokenizer$get_pre_tokenizer())
+      } 
+      
+      self$.tokenizer$set_pre_tokenizer(x$.pre_tokenizer)
+      invisible(self$pre_tokenizer)
     }
   )
 )

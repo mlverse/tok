@@ -1,12 +1,11 @@
-use extendr_api::{prelude::*};
-use std::sync::{Arc, RwLock};
 use tokenizers as tk;
-use tk::models::{ModelWrapper};
+use tk::models::ModelWrapper;
 use tk::models::bpe::BPE;
 use extendr_api::Error;
+use extendr_api::prelude::*;
 
-struct RModel {
-    pub model: Arc<RwLock<ModelWrapper>>,
+pub struct RModel {
+    pub model: ModelWrapper,
 }
 
 #[extendr]
@@ -16,7 +15,7 @@ impl RModel {
             unsafe{
                 let ptr = model.external_ptr_addr() as *mut RModelBPE;
                 Ok(RModel {
-                    model: Arc::new(RwLock::new((*ptr).model.clone().into())),
+                    model: (*ptr).model.clone().into()
                 })
             }
         } else {
@@ -31,9 +30,45 @@ struct RModelBPE {
 
 #[extendr]
 impl RModelBPE {
-    pub fn new(vocab: RVocab, merges: RMerges) -> Self {
+    pub fn new(vocab: Nullable<RVocab>, merges: Nullable<RMerges>, cache_capacity: Nullable<i32>, dropout: Nullable<f32>, unk_token: Nullable<String>, continuing_subword_prefix: Nullable<String>, end_of_word_suffix: Nullable<String>, 
+        fuse_unk: Nullable<bool>, byte_fallback: Nullable<bool>) -> Self {
+
+        let mut bpe = tk::models::bpe::BPE::builder();
+
+        if let (NotNull(vocab), NotNull(merges)) = (vocab, merges) {
+            bpe = bpe.vocab_and_merges(vocab.0, merges.0);
+        }
+
+        if let NotNull(cache_capacity) = cache_capacity {
+            bpe = bpe.cache_capacity(cache_capacity as usize);
+        }
+
+        if let NotNull(dropout) = dropout {
+            bpe = bpe.dropout(dropout);
+        }
+
+        if let NotNull(unk_token) = unk_token {
+            bpe = bpe.unk_token(unk_token);
+        }
+
+        if let NotNull(continuing_subword_prefix) = continuing_subword_prefix {
+            bpe = bpe.continuing_subword_prefix(continuing_subword_prefix);
+        }
+
+        if let NotNull(end_of_word_suffix) = end_of_word_suffix {
+            bpe = bpe.end_of_word_suffix(end_of_word_suffix);
+        }
+
+        if let NotNull(fuse_unk) = fuse_unk {
+            bpe = bpe.fuse_unk(fuse_unk);
+        }
+
+        if let NotNull(byte_fallback) = byte_fallback {
+            bpe = bpe.byte_fallback(byte_fallback);
+        }
+   
         RModelBPE {
-            model: BPE::new(vocab.0, merges.0),
+            model: bpe.build().unwrap()
         }
     }
 }
