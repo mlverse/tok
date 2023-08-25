@@ -46,6 +46,7 @@ tok$encode("Hello world")$ids
 \item \href{#method-tok_tokenizer-from_pretrained}{\code{tokenizer$from_pretrained()}}
 \item \href{#method-tok_tokenizer-train}{\code{tokenizer$train()}}
 \item \href{#method-tok_tokenizer-train_from_memory}{\code{tokenizer$train_from_memory()}}
+\item \href{#method-tok_tokenizer-save}{\code{tokenizer$save()}}
 \item \href{#method-tok_tokenizer-clone}{\code{tokenizer$clone()}}
 }
 }
@@ -239,6 +240,25 @@ Train the tokenizer on a chracter vector of texts
 \item{\code{texts}}{a character vector of texts.}
 
 \item{\code{trainer}}{an instance of a trainer object, specific to that tokenizer type.}
+}
+\if{html}{\out{</div>}}
+}
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-tok_tokenizer-save"></a>}}
+\if{latex}{\out{\hypertarget{method-tok_tokenizer-save}{}}}
+\subsection{Method \code{save()}}{
+Saves the tokenizer to a json file
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{tokenizer$save(path, pretty = TRUE)}\if{html}{\out{</div>}}
+}
+
+\subsection{Arguments}{
+\if{html}{\out{<div class="arguments">}}
+\describe{
+\item{\code{path}}{A path to a file in which to save the serialized tokenizer.}
+
+\item{\code{pretty}}{Whether the JSON file should be pretty formatted.}
 }
 \if{html}{\out{</div>}}
 }

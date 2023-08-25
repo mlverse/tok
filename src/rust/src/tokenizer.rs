@@ -141,6 +141,9 @@ impl RTokenizer {
     pub fn train_from_sequences(&mut self, trainer: &mut RTrainer, sequences: Vec<String>) {
         self.0.train(&mut trainer.trainer, sequences.iter()).unwrap();
     }
+    pub fn save(&mut self, path: &str, pretty: bool) {
+        self.0.save(path, pretty).unwrap();
+    }
 }
 
 pub struct REncoding(tk::Encoding);

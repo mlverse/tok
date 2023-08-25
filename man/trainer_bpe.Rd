@@ -16,7 +16,7 @@ Other trainer:
 }
 \concept{trainer}
 \section{Super class}{
-\code{tok::tok_trainer} -> \code{tok_trainer_bpe}
+\code{\link[tok:tok_trainer]{tok::tok_trainer}} -> \code{tok_trainer_bpe}
 }
 \section{Methods}{
 \subsection{Public methods}{

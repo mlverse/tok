@@ -106,7 +106,7 @@ tokenizer <- R6::R6Class(
       if (!inherits(trainer, "tok_trainer"))
         cli::cli_abort("{.arg trainer} must inherit from {.cls tok_trainer}.")
       
-      self$.tokenizer$train_from_files(trainer$.trainer, files)
+      self$.tokenizer$train_from_files(trainer$.trainer, normalizePath(files))
     },
     
     #' @description 
@@ -115,6 +115,14 @@ tokenizer <- R6::R6Class(
     #' @param trainer an instance of a trainer object, specific to that tokenizer type.
     train_from_memory = function(texts, trainer) {
       self$.tokenizer$train_from_sequences(trainer$.trainer, texts)
+    },
+    
+    #' @description
+    #' Saves the tokenizer to a json file
+    #' @param path  A path to a file in which to save the serialized tokenizer.
+    #' @param pretty Whether the JSON file should be pretty formatted.
+    save = function(path, pretty = TRUE) {
+      self$.tokenizer$save(normalizePath(path, mustWork = FALSE), pretty)
     }
   ),
   active = list(

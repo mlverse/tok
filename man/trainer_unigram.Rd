@@ -16,7 +16,7 @@ Other trainer:
 }
 \concept{trainer}
 \section{Super class}{
-\code{tok::tok_trainer} -> \code{tok_trainer_unigram}
+\code{\link[tok:tok_trainer]{tok::tok_trainer}} -> \code{tok_trainer_unigram}
 }
 \section{Methods}{
 \subsection{Public methods}{

@@ -59,3 +59,18 @@ test_that("can train a tokenizer from memory", {
   expect_equal(tok$encode("world")$ids, 18)
   expect_equal(tok$encode("bye bye")$ids, c(10, 10))
 })
+
+test_that("can serialize a tokenizer and load back", {
+  
+  tok <- tokenizer$from_file(test_path("assets/tokenizer.json"))
+  input <- "hello world"
+  enc <- tok$encode(input)
+  
+  tmp <- tempfile(fileext = ".json")
+  tok$save(tmp)
+  
+  tok2 <- tokenizer$from_file(tmp)
+  enc2 <- tok$encode(input)
+  
+  expect_equal(enc$ids, enc2$ids)
+})

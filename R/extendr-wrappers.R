@@ -97,6 +97,8 @@ RTokenizer$train_from_files <- function(trainer, files) invisible(.Call(wrap__RT
 
 RTokenizer$train_from_sequences <- function(trainer, sequences) invisible(.Call(wrap__RTokenizer__train_from_sequences, self, trainer, sequences))
 
+RTokenizer$save <- function(path, pretty) invisible(.Call(wrap__RTokenizer__save, self, path, pretty))
+
 #' @export
 `$.RTokenizer` <- function (self, name) { func <- RTokenizer[[name]]; environment(func) <- environment(); func }
 
