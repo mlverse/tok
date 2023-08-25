@@ -64,3 +64,30 @@ trainer_wordpiece <- R6::R6Class(
     }
   )
 )
+
+trainer_unigram <- R6::R6Class(
+  "tok_trainer_unigram",
+  inherit = tok_trainer,
+  public = list(
+    initialize = function(
+    vocab_size = 8000,
+    show_progress = TRUE,
+    special_tokens = NULL,
+    shrinking_factor = 0.75,
+    unk_token = NULL,
+    max_piece_length = 16,
+    n_sub_iterations = 2
+    ) {
+      super$initialize(RTrainerUnigram$new(
+        vocab_size = vocab_size,
+        show_progress = show_progress,
+        special_tokens = special_tokens,
+        shrinking_factor = shrinking_factor,
+        unk_token = unk_token,
+        max_piece_length = max_piece_length,
+        n_sub_iterations = n_sub_iterations,
+        initial_alphabet = NULL
+      ))
+    }
+  )
+)

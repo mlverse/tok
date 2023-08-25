@@ -25,6 +25,13 @@ impl RTrainer {
                     trainer: (*ptr).trainer.clone().into(),
                 })
             }
+        } else if trainer.inherits("RTrainerUnigram") {
+            unsafe {
+                let ptr = trainer.external_ptr_addr() as *mut RTrainerUnigram;
+                Ok(RTrainer {
+                    trainer: (*ptr).trainer.clone().into(),
+                })
+            }
         } else {
             Err(Error::EvalError("Model not supported".into()))
         }
@@ -157,7 +164,9 @@ impl RTrainerWordPiece {
     }
 }
 
-struct RTrainerUnigram(tokenizers::models::unigram::UnigramTrainer);
+struct RTrainerUnigram {
+    trainer: tokenizers::models::unigram::UnigramTrainer,
+}
 
 #[extendr]
 impl RTrainerUnigram {
@@ -205,7 +214,9 @@ impl RTrainerUnigram {
         trainer.max_piece_length(max_piece_length as usize);
         trainer.n_sub_iterations(n_sub_iterations as u32);
 
-        RTrainerUnigram (trainer.build().unwrap())
+        RTrainerUnigram {
+            trainer: trainer.build().unwrap(),
+        }
     }
 }
 
