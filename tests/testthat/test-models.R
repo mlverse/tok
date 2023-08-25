@@ -1,3 +1,12 @@
-test_that("Can initialize a tokenizer from a bpe model", {
-  tok <- tokenizer$new(model_bpe$new())
+test_that("Can initialize a tokenizer different models", {
+  models <- list(
+    model_bpe$new(),
+    model_wordpiece$new()
+  )
+  
+  for (model in models) {
+    tok <- tokenizer$new(model)
+    expect_true(inherits(tok, "tok_tokenizer"))
+  }
+  
 })

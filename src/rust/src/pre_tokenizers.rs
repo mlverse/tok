@@ -1,5 +1,5 @@
-use tokenizers as tk;
 use extendr_api::prelude::*;
+use tokenizers as tk;
 
 pub struct RPreTokenizer(pub tk::PreTokenizerWrapper);
 
@@ -7,7 +7,7 @@ pub struct RPreTokenizer(pub tk::PreTokenizerWrapper);
 impl RPreTokenizer {
     pub fn new(pre_tokenizer: Robj) -> extendr_api::Result<Self> {
         if pre_tokenizer.inherits("RPreTokenizerWhitespace") {
-            unsafe{
+            unsafe {
                 let ptr = pre_tokenizer.external_ptr_addr() as *mut RPreTokenizerWhitespace;
                 Ok(RPreTokenizer((*ptr).0.clone().into()))
             }

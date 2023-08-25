@@ -31,6 +31,16 @@ RModelBPE$new <- function(vocab, merges, cache_capacity, dropout, unk_token, con
 #' @export
 `[[.RModelBPE` <- `$.RModelBPE`
 
+RModelWordPiece <- new.env(parent = emptyenv())
+
+RModelWordPiece$new <- function(vocab, unk_token, max_input_chars_per_word) .Call(wrap__RModelWordPiece__new, vocab, unk_token, max_input_chars_per_word)
+
+#' @export
+`$.RModelWordPiece` <- function (self, name) { func <- RModelWordPiece[[name]]; environment(func) <- environment(); func }
+
+#' @export
+`[[.RModelWordPiece` <- `$.RModelWordPiece`
+
 REncoding <- new.env(parent = emptyenv())
 
 REncoding$len <- function() .Call(wrap__REncoding__len, self)
@@ -100,6 +110,16 @@ RTrainerBPE$new <- function(vocab_size, min_frequency, show_progress, special_to
 
 #' @export
 `[[.RTrainerBPE` <- `$.RTrainerBPE`
+
+RTrainerWordPiece <- new.env(parent = emptyenv())
+
+RTrainerWordPiece$new <- function(vocab_size, min_frequency, show_progress, special_tokens, limit_alphabet, initial_alphabet, continuing_subword_prefix, end_of_word_suffix) .Call(wrap__RTrainerWordPiece__new, vocab_size, min_frequency, show_progress, special_tokens, limit_alphabet, initial_alphabet, continuing_subword_prefix, end_of_word_suffix)
+
+#' @export
+`$.RTrainerWordPiece` <- function (self, name) { func <- RTrainerWordPiece[[name]]; environment(func) <- environment(); func }
+
+#' @export
+`[[.RTrainerWordPiece` <- `$.RTrainerWordPiece`
 
 RPreTokenizer <- new.env(parent = emptyenv())
 

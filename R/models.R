@@ -31,3 +31,17 @@ model_bpe <- R6::R6Class(
     }
   )
 )
+
+model_wordpiece <- R6::R6Class(
+  "tok_model_wordpiece",
+  inherit = tok_model,
+  public = list(
+    initialize = function(vocab = NULL, unk_token = NULL, max_input_chars_per_word = NULL) {
+      super$initialize(RModelWordPiece$new(
+        vocab = vocab,
+        unk_token = unk_token,
+        max_input_chars_per_word = max_input_chars_per_word
+      ))
+    }
+  )
+)

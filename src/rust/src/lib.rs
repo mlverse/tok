@@ -1,8 +1,8 @@
 use extendr_api::*;
 mod models;
+mod pre_tokenizers;
 mod tokenizer;
 mod trainers;
-mod pre_tokenizers;
 
 pub const VERSION: &str = env!("CARGO_PKG_VERSION");
 
