@@ -34,3 +34,43 @@ test_that("from_pretrained", {
   
   expect_equal(tok$decode(enc$ids), input)
 })
+
+test_that("train a tokenizer on files", {
+  
+  tmp <- tempfile()
+  writeLines(c("hello world", "bye bye"), tmp)
+  
+  tok <- tokenizer$new(model_bpe$new())
+  tok$pre_tokenizer <- pre_tokenizer_whitespace$new()
+  tok$train(tmp, trainer_bpe$new())
+  
+  expect_equal(tok$encode("hello")$ids, 17)
+  expect_equal(tok$encode("world")$ids, 18)
+  expect_equal(tok$encode("bye bye")$ids, c(10, 10))
+})
+
+test_that("can train a tokenizer from memory", {
+  
+  tok <- tokenizer$new(model_bpe$new())
+  tok$pre_tokenizer <- pre_tokenizer_whitespace$new()
+  tok$train_from_memory(c("hello world", "bye bye"), trainer_bpe$new())
+  
+  expect_equal(tok$encode("hello")$ids, 17)
+  expect_equal(tok$encode("world")$ids, 18)
+  expect_equal(tok$encode("bye bye")$ids, c(10, 10))
+})
+
+test_that("can serialize a tokenizer and load back", {
+  
+  tok <- tokenizer$from_file(test_path("assets/tokenizer.json"))
+  input <- "hello world"
+  enc <- tok$encode(input)
+  
+  tmp <- tempfile(fileext = ".json")
+  tok$save(tmp)
+  
+  tok2 <- tokenizer$from_file(tmp)
+  enc2 <- tok$encode(input)
+  
+  expect_equal(enc$ids, enc2$ids)
+})

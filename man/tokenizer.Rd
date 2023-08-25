@@ -27,6 +27,13 @@ tok$encode("Hello world")$ids
 }
 \if{html}{\out{</div>}}
 }
+\section{Active bindings}{
+\if{html}{\out{<div class="r6-active-bindings">}}
+\describe{
+\item{\code{pre_tokenizer}}{instance of the pre-tokenizer}
+}
+\if{html}{\out{</div>}}
+}
 \section{Methods}{
 \subsection{Public methods}{
 \itemize{
@@ -37,6 +44,9 @@ tok$encode("Hello world")$ids
 \item \href{#method-tok_tokenizer-decode_batch}{\code{tokenizer$decode_batch()}}
 \item \href{#method-tok_tokenizer-from_file}{\code{tokenizer$from_file()}}
 \item \href{#method-tok_tokenizer-from_pretrained}{\code{tokenizer$from_pretrained()}}
+\item \href{#method-tok_tokenizer-train}{\code{tokenizer$train()}}
+\item \href{#method-tok_tokenizer-train_from_memory}{\code{tokenizer$train_from_memory()}}
+\item \href{#method-tok_tokenizer-save}{\code{tokenizer$save()}}
 \item \href{#method-tok_tokenizer-clone}{\code{tokenizer$clone()}}
 }
 }
@@ -191,6 +201,64 @@ contains a tokenizer.json file}
 
 \item{\code{auth_token}}{An optional auth token used to access private repositories
 on the Hugging Face Hub}
+}
+\if{html}{\out{</div>}}
+}
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-tok_tokenizer-train"></a>}}
+\if{latex}{\out{\hypertarget{method-tok_tokenizer-train}{}}}
+\subsection{Method \code{train()}}{
+Train the Tokenizer using the given files.
+Reads the files line by line, while keeping all the whitespace, even new lines.
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{tokenizer$train(files, trainer)}\if{html}{\out{</div>}}
+}
+
+\subsection{Arguments}{
+\if{html}{\out{<div class="arguments">}}
+\describe{
+\item{\code{files}}{character vector of file paths.}
+
+\item{\code{trainer}}{an instance of a trainer object, specific to that tokenizer type.}
+}
+\if{html}{\out{</div>}}
+}
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-tok_tokenizer-train_from_memory"></a>}}
+\if{latex}{\out{\hypertarget{method-tok_tokenizer-train_from_memory}{}}}
+\subsection{Method \code{train_from_memory()}}{
+Train the tokenizer on a chracter vector of texts
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{tokenizer$train_from_memory(texts, trainer)}\if{html}{\out{</div>}}
+}
+
+\subsection{Arguments}{
+\if{html}{\out{<div class="arguments">}}
+\describe{
+\item{\code{texts}}{a character vector of texts.}
+
+\item{\code{trainer}}{an instance of a trainer object, specific to that tokenizer type.}
+}
+\if{html}{\out{</div>}}
+}
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-tok_tokenizer-save"></a>}}
+\if{latex}{\out{\hypertarget{method-tok_tokenizer-save}{}}}
+\subsection{Method \code{save()}}{
+Saves the tokenizer to a json file
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{tokenizer$save(path, pretty = TRUE)}\if{html}{\out{</div>}}
+}
+
+\subsection{Arguments}{
+\if{html}{\out{<div class="arguments">}}
+\describe{
+\item{\code{path}}{A path to a file in which to save the serialized tokenizer.}
+
+\item{\code{pretty}}{Whether the JSON file should be pretty formatted.}
 }
 \if{html}{\out{</div>}}
 }
