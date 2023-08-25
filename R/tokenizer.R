@@ -107,6 +107,14 @@ tokenizer <- R6::R6Class(
         cli::cli_abort("{.arg trainer} must inherit from {.cls tok_trainer}.")
       
       self$.tokenizer$train_from_files(trainer$.trainer, files)
+    },
+    
+    #' @description 
+    #' Train the tokenizer on a chracter vector of texts
+    #' @param texts a character vector of texts.
+    #' @param trainer an instance of a trainer object, specific to that tokenizer type.
+    train_from_memory = function(texts, trainer) {
+      self$.tokenizer$train_from_sequences(trainer$.trainer, texts)
     }
   ),
   active = list(

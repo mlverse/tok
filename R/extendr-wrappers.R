@@ -95,6 +95,8 @@ RTokenizer$get_pre_tokenizer <- function() .Call(wrap__RTokenizer__get_pre_token
 
 RTokenizer$train_from_files <- function(trainer, files) invisible(.Call(wrap__RTokenizer__train_from_files, self, trainer, files))
 
+RTokenizer$train_from_sequences <- function(trainer, sequences) invisible(.Call(wrap__RTokenizer__train_from_sequences, self, trainer, sequences))
+
 #' @export
 `$.RTokenizer` <- function (self, name) { func <- RTokenizer[[name]]; environment(func) <- environment(); func }
 

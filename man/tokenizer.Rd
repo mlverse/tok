@@ -38,6 +38,7 @@ tok$encode("Hello world")$ids
 \item \href{#method-tok_tokenizer-from_file}{\code{tokenizer$from_file()}}
 \item \href{#method-tok_tokenizer-from_pretrained}{\code{tokenizer$from_pretrained()}}
 \item \href{#method-tok_tokenizer-train}{\code{tokenizer$train()}}
+\item \href{#method-tok_tokenizer-train_from_memory}{\code{tokenizer$train_from_memory()}}
 \item \href{#method-tok_tokenizer-clone}{\code{tokenizer$clone()}}
 }
 }
@@ -212,6 +213,23 @@ Reads the files line by line, while keeping all the whitespace, even new lines.
 \item{\code{files}}{character vector of file paths.}
 
 \item{\code{trainer}}{an instance of a trainer object, specific to that tokenizer type.}
+}
+\if{html}{\out{</div>}}
+}
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-tok_tokenizer-train_from_memory"></a>}}
+\if{latex}{\out{\hypertarget{method-tok_tokenizer-train_from_memory}{}}}
+\subsection{Method \code{train_from_memory()}}{
+Train the tokenizer on a chracter vector of texts
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{tokenizer$train_from_memory(texts, trainer)}\if{html}{\out{</div>}}
+}
+
+\subsection{Arguments}{
+\if{html}{\out{<div class="arguments">}}
+\describe{
+\item{\code{texts}}{a character vector of texts.}
 }
 \if{html}{\out{</div>}}
 }

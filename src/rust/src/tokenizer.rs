@@ -138,6 +138,9 @@ impl RTokenizer {
             .train_from_files(&mut trainer.trainer, files)
             .unwrap();
     }
+    pub fn train_from_sequences(&mut self, trainer: &mut RTrainer, sequences: Vec<String>) {
+        self.0.train(&mut trainer.trainer, sequences.iter()).unwrap();
+    }
 }
 
 pub struct REncoding(tk::Encoding);
