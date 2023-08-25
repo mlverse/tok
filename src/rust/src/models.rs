@@ -25,6 +25,13 @@ impl RModel {
                     model: (*ptr).model.clone().into(),
                 })
             }
+        } else if model.inherits("RModelUnigram") {
+            unsafe {
+                let ptr = model.external_ptr_addr() as *mut RModelUnigram;
+                Ok(RModel {
+                    model: (*ptr).model.clone().into(),
+                })
+            }
         } else {
             Err(Error::EvalError("Model not supported".into()))
         }
@@ -119,6 +126,47 @@ impl RModelWordPiece {
     }
 }
 
+struct RModelUnigram {
+    pub model: tk::models::unigram::Unigram,
+}
+
+#[extendr]
+impl RModelUnigram {
+    pub fn new(vocab: RUnigramVocab, unk_id: i32, byte_fallback: bool) -> Self {
+        let model =
+            tk::models::unigram::Unigram::from(vocab.0, Some(unk_id as usize), byte_fallback);
+        RModelUnigram {
+            model: model.unwrap(),
+        }
+    }
+}
+
+struct RUnigramVocab(Vec<(String, f64)>);
+impl<'a> FromRobj<'a> for RUnigramVocab {
+    fn from_robj(robj: &Robj) -> std::result::Result<Self, &'static str> {
+        if let Some(val) = robj.as_list() {
+            let mut vocab = Vec::new();
+            for (key, value) in val {
+                let key = String::from(key);
+                let value = value.as_real().ok_or("List items must be numeric values")? as f64;
+                vocab.push((key, value));
+            }
+            Ok(RUnigramVocab(vocab))
+        } else if let Some(val) = robj.as_real_vector() {
+            let mut vocab = Vec::new();
+            let names = robj.names().unwrap();
+            
+            for (key, value) in names.zip(val) {
+                let key = String::from(key);
+                vocab.push((key, value));
+            }
+            Ok(RUnigramVocab(vocab))
+        } else {
+            Err("Expected a named list.".into())
+        }
+    }
+}
+
 struct RVocab(tk::models::bpe::Vocab);
 
 impl<'a> FromRobj<'a> for RVocab {
@@ -170,4 +218,5 @@ extendr_module! {
     impl RModel;
     impl RModelBPE;
     impl RModelWordPiece;
+    impl RModelUnigram;
 }

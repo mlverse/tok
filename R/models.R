@@ -45,3 +45,17 @@ model_wordpiece <- R6::R6Class(
     }
   )
 )
+
+model_unigram <- R6::R6Class(
+  "tok_model_unigram",
+  inherit = tok_model,
+  public = list(
+    initialize = function(vocab, unk_id, byte_fallback = FALSE) {
+      super$initialize(RModelUnigram$new(
+        vocab = vocab,
+        unk_id = unk_id,
+        byte_fallback = byte_fallback
+      ))
+    }
+  )
+)

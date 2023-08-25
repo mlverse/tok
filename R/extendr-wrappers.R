@@ -41,6 +41,16 @@ RModelWordPiece$new <- function(vocab, unk_token, max_input_chars_per_word) .Cal
 #' @export
 `[[.RModelWordPiece` <- `$.RModelWordPiece`
 
+RModelUnigram <- new.env(parent = emptyenv())
+
+RModelUnigram$new <- function(vocab, unk_id, byte_fallback) .Call(wrap__RModelUnigram__new, vocab, unk_id, byte_fallback)
+
+#' @export
+`$.RModelUnigram` <- function (self, name) { func <- RModelUnigram[[name]]; environment(func) <- environment(); func }
+
+#' @export
+`[[.RModelUnigram` <- `$.RModelUnigram`
+
 REncoding <- new.env(parent = emptyenv())
 
 REncoding$len <- function() .Call(wrap__REncoding__len, self)
