@@ -131,6 +131,16 @@ RTrainerWordPiece$new <- function(vocab_size, min_frequency, show_progress, spec
 #' @export
 `[[.RTrainerWordPiece` <- `$.RTrainerWordPiece`
 
+RTrainerUnigram <- new.env(parent = emptyenv())
+
+RTrainerUnigram$new <- function(vocab_size, show_progress, special_tokens, initial_alphabet, shrinking_factor, unk_token, max_piece_length, n_sub_iterations) .Call(wrap__RTrainerUnigram__new, vocab_size, show_progress, special_tokens, initial_alphabet, shrinking_factor, unk_token, max_piece_length, n_sub_iterations)
+
+#' @export
+`$.RTrainerUnigram` <- function (self, name) { func <- RTrainerUnigram[[name]]; environment(func) <- environment(); func }
+
+#' @export
+`[[.RTrainerUnigram` <- `$.RTrainerUnigram`
+
 RPreTokenizer <- new.env(parent = emptyenv())
 
 RPreTokenizer$new <- function(pre_tokenizer) .Call(wrap__RPreTokenizer__new, pre_tokenizer)

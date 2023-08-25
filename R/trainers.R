@@ -36,3 +36,31 @@ trainer_bpe <- R6::R6Class(
     }
   )
 )
+
+trainer_wordpiece <- R6::R6Class(
+  "tok_trainer_wordpiece",
+  inherit = tok_trainer,
+  public = list(
+    initialize = function(
+    vocab_size = 30000,
+    min_frequency = 0,
+    show_progress = FALSE,
+    special_tokens = NULL,
+    limit_alphabet = NULL,
+    initial_alphabet = NULL,
+    continuing_subword_prefix = "##",
+    end_of_word_suffix = NULL
+    ) {
+      super$initialize(RTrainerWordPiece$new(
+        vocab_size = vocab_size,
+        min_frequency = min_frequency,
+        show_progress = show_progress,
+        special_tokens = special_tokens,
+        limit_alphabet = limit_alphabet,
+        initial_alphabet = initial_alphabet,
+        continuing_subword_prefix = continuing_subword_prefix,
+        end_of_word_suffix = end_of_word_suffix
+      ))
+    }
+  )
+)

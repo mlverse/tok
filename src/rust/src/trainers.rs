@@ -157,9 +157,62 @@ impl RTrainerWordPiece {
     }
 }
 
+struct RTrainerUnigram(tokenizers::models::unigram::UnigramTrainer);
+
+#[extendr]
+impl RTrainerUnigram {
+    pub fn new(
+        vocab_size: Nullable<i32>,
+        show_progress: Nullable<bool>,
+        special_tokens: Nullable<Vec<String>>,
+        initial_alphabet: Nullable<Vec<String>>,
+        shrinking_factor: f64,
+        unk_token: Nullable<String>,
+        max_piece_length: i32,
+        n_sub_iterations: i32,
+    ) -> Self {
+        let mut trainer = tk::models::unigram::UnigramTrainer::builder();
+
+        if let NotNull(vocab_size) = vocab_size {
+            trainer.vocab_size(vocab_size as u32);
+        }
+        if let NotNull(show_progress) = show_progress {
+            trainer.show_progress(show_progress);
+        }
+        if let NotNull(special_tokens) = special_tokens {
+            trainer.special_tokens(
+                special_tokens
+                    .iter()
+                    .map(|x| AddedToken {
+                        content: x.into(),
+                        single_word: false,
+                        lstrip: false,
+                        rstrip: false,
+                        normalized: true,
+                        special: true,
+                    })
+                    .collect(),
+            );
+        }
+        if let NotNull(initial_alphabet) = initial_alphabet {
+            panic!("Cant'");
+            //trainer = trainer.initial_alphabet(initial_alphabet);
+        }
+        trainer.shrinking_factor(shrinking_factor);
+        if let NotNull(unk_token) = unk_token {
+            trainer.unk_token(Some(unk_token));
+        }
+        trainer.max_piece_length(max_piece_length as usize);
+        trainer.n_sub_iterations(n_sub_iterations as u32);
+
+        RTrainerUnigram (trainer.build().unwrap())
+    }
+}
+
 extendr_module! {
     mod trainers;
     impl RTrainer;
     impl RTrainerBPE;
     impl RTrainerWordPiece;
+    impl RTrainerUnigram;
 }

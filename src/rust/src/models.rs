@@ -132,12 +132,19 @@ struct RModelUnigram {
 
 #[extendr]
 impl RModelUnigram {
-    pub fn new(vocab: RUnigramVocab, unk_id: i32, byte_fallback: bool) -> Self {
-        let model =
-            tk::models::unigram::Unigram::from(vocab.0, Some(unk_id as usize), byte_fallback);
-        RModelUnigram {
-            model: model.unwrap(),
-        }
+    pub fn new(vocab: Nullable<RUnigramVocab>, unk_id: Nullable<i32>, byte_fallback: bool) -> Self {
+        let model = match (vocab, unk_id) {
+            (NotNull(vocab), NotNull(unk_id)) => {
+                tk::models::unigram::Unigram::from(vocab.0, Some(unk_id as usize), byte_fallback)
+                    .unwrap()
+            }
+            (Null, Null) => tk::models::unigram::Unigram::default(),
+            _ => {
+                panic!("Must provide both vocab and unk_id or neither");
+            }
+        };
+
+        RModelUnigram { model: model }
     }
 }
 
@@ -155,7 +162,7 @@ impl<'a> FromRobj<'a> for RUnigramVocab {
         } else if let Some(val) = robj.as_real_vector() {
             let mut vocab = Vec::new();
             let names = robj.names().unwrap();
-            
+
             for (key, value) in names.zip(val) {
                 let key = String::from(key);
                 vocab.push((key, value));
