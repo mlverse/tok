@@ -27,6 +27,13 @@ tok$encode("Hello world")$ids
 }
 \if{html}{\out{</div>}}
 }
+\section{Active bindings}{
+\if{html}{\out{<div class="r6-active-bindings">}}
+\describe{
+\item{\code{pre_tokenizer}}{instance of the pre-tokenizer}
+}
+\if{html}{\out{</div>}}
+}
 \section{Methods}{
 \subsection{Public methods}{
 \itemize{
@@ -230,6 +237,8 @@ Train the tokenizer on a chracter vector of texts
 \if{html}{\out{<div class="arguments">}}
 \describe{
 \item{\code{texts}}{a character vector of texts.}
+
+\item{\code{trainer}}{an instance of a trainer object, specific to that tokenizer type.}
 }
 \if{html}{\out{</div>}}
 }

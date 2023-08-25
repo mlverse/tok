@@ -118,6 +118,7 @@ tokenizer <- R6::R6Class(
     }
   ),
   active = list(
+    #' @field pre_tokenizer instance of the pre-tokenizer
     pre_tokenizer = function(x) {
       if (missing(x)) {
         return(self$.tokenizer$get_pre_tokenizer())
