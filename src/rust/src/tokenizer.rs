@@ -144,6 +144,24 @@ impl RTokenizer {
     pub fn save(&mut self, path: &str, pretty: bool) {
         self.0.save(path, pretty).unwrap();
     }
+    pub fn enable_padding (&mut self, padding: Nullable<RPaddingParams>) {
+        if let NotNull(padding) = padding {
+            self.0.with_padding(Some(padding.0));
+        } else {
+            self.0.with_padding(None);
+        }
+    }
+    pub fn get_padding (&mut self) -> Nullable<RPaddingParams> {
+        if let Some(padding) = self.0.get_padding() {
+            let clone = padding.clone();
+            NotNull(RPaddingParams(clone))
+        } else {
+            Null
+        }
+    }
+    pub fn no_padding (&mut self) {
+        self.0.with_padding(None);
+    }
 }
 
 pub struct REncoding(tk::Encoding);
@@ -184,6 +202,67 @@ pub struct R6PreTokenizer(RPreTokenizer);
 impl From<R6PreTokenizer> for Robj {
     fn from(val: R6PreTokenizer) -> Self {
         call!("tok::pre_tokenizer$new", val.0).unwrap()
+    }
+}
+
+pub struct RPaddingParams(tk::PaddingParams);
+impl<'a> FromRobj<'a> for RPaddingParams {
+    fn from_robj(robj: &'a Robj) -> std::result::Result<Self, &'static str> {
+        if let Some(val) = robj.as_list() {
+            let mut params = tk::PaddingParams::default();
+            for (key, value) in val {
+                match key {
+                    "direction" => {
+                        params.direction = match value.as_str() {
+                            Some("left") => tk::PaddingDirection::Left,
+                            Some("right") => tk::PaddingDirection::Right, 
+                            _ => return Err("Invalid padding direction")
+                        }
+                    }
+                    "pad_to_multiple_of" => {
+                        params.pad_to_multiple_of = Some(value.as_integer().unwrap() as usize);
+                    }
+                    "pad_id" => {
+                        params.pad_id = value.as_integer().unwrap() as u32;
+                    }
+                    "pad_type_id" => {
+                        params.pad_type_id = value.as_integer().unwrap() as u32;
+                    }
+                    "pad_token" => {
+                        params.pad_token = value.as_str().unwrap().to_string();
+                    }
+                    "length" => {
+                        if let Some(l) = value.as_integer() {
+                            params.strategy = tk::PaddingStrategy::Fixed(l as usize);
+                        } else {
+                            params.strategy = tk::PaddingStrategy::BatchLongest;
+                        }
+                    },
+                    _ => return Err("Invalid padding parameter")
+                }
+            }
+            Ok(RPaddingParams(params))
+        } else {
+            return Err("Expected a named list.");
+        }
+    }
+}
+
+
+impl From<RPaddingParams> for Robj {
+    fn from(params: RPaddingParams) -> Self {
+        let object: List = list!(
+            length = match params.0.strategy {
+                tk::PaddingStrategy::BatchLongest => Null,
+                tk::PaddingStrategy::Fixed(size) => NotNull(size),
+            },
+            pad_to_multiple_of = params.0.pad_to_multiple_of,
+            pad_id = params.0.pad_id,
+            pad_token = params.0.pad_token,
+            pad_type_id = params.0.pad_type_id,
+            direction = params.0.direction.as_ref(),
+        );
+        object.into_robj()
     }
 }
 

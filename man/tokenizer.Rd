@@ -31,6 +31,8 @@ tok$encode("Hello world")$ids
 \if{html}{\out{<div class="r6-active-bindings">}}
 \describe{
 \item{\code{pre_tokenizer}}{instance of the pre-tokenizer}
+
+\item{\code{padding}}{Gets padding configuration}
 }
 \if{html}{\out{</div>}}
 }
@@ -47,6 +49,8 @@ tok$encode("Hello world")$ids
 \item \href{#method-tok_tokenizer-train}{\code{tokenizer$train()}}
 \item \href{#method-tok_tokenizer-train_from_memory}{\code{tokenizer$train_from_memory()}}
 \item \href{#method-tok_tokenizer-save}{\code{tokenizer$save()}}
+\item \href{#method-tok_tokenizer-enable_padding}{\code{tokenizer$enable_padding()}}
+\item \href{#method-tok_tokenizer-no_padding}{\code{tokenizer$no_padding()}}
 \item \href{#method-tok_tokenizer-clone}{\code{tokenizer$clone()}}
 }
 }
@@ -262,6 +266,55 @@ Saves the tokenizer to a json file
 }
 \if{html}{\out{</div>}}
 }
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-tok_tokenizer-enable_padding"></a>}}
+\if{latex}{\out{\hypertarget{method-tok_tokenizer-enable_padding}{}}}
+\subsection{Method \code{enable_padding()}}{
+Enables padding for the tokenizer
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{tokenizer$enable_padding(
+  direction = "right",
+  pad_id = 0L,
+  pad_type_id = 0L,
+  pad_token = "[PAD]",
+  length = NULL,
+  pad_to_multiple_of = NULL
+)}\if{html}{\out{</div>}}
+}
+
+\subsection{Arguments}{
+\if{html}{\out{<div class="arguments">}}
+\describe{
+\item{\code{direction}}{(str, optional, defaults to right) — The direction in which
+to pad. Can be either \code{'right'} or \code{'left'}}
+
+\item{\code{pad_id}}{(int, defaults to 0) — The id to be used when padding}
+
+\item{\code{pad_type_id}}{(int, defaults to 0) — The type id to be used when padding}
+
+\item{\code{pad_token}}{(str, defaults to \link{PAD}) — The pad token to be used when padding}
+
+\item{\code{length}}{(int, optional) — If specified, the length at which to pad. If not
+specified we pad using the size of the longest sequence in a batch.}
+
+\item{\code{pad_to_multiple_of}}{(int, optional) — If specified, the padding length should
+always snap to the next multiple of the given value. For example if we were
+going to pad with a length of 250 but \code{pad_to_multiple_of=8} then we will
+pad to 256.}
+}
+\if{html}{\out{</div>}}
+}
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-tok_tokenizer-no_padding"></a>}}
+\if{latex}{\out{\hypertarget{method-tok_tokenizer-no_padding}{}}}
+\subsection{Method \code{no_padding()}}{
+Disables padding
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{tokenizer$no_padding()}\if{html}{\out{</div>}}
+}
+
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-tok_tokenizer-clone"></a>}}
