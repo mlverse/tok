@@ -92,3 +92,23 @@ test_that("enable padding works", {
   tok$no_padding()
   expect_null(tok$padding)
 })
+
+test_that("truncation works", {
+  
+  tok <- tokenizer$from_file(test_path("assets/tokenizer.json"))
+  expect_null(tok$truncation)
+  
+  tok$enable_truncation(3)
+  
+  input <- "hello world I'm a new tokenizer called tok"
+  enc <- tok$encode(input)
+  
+  expect_equal(length(enc$ids), 3)
+  
+  tok$no_truncation()
+  expect_null(tok$padding)
+  
+  enc <- tok$encode(input)
+  expect_true(length(enc$ids) > 3)
+  
+})

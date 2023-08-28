@@ -139,19 +139,21 @@ impl RTokenizer {
             .unwrap();
     }
     pub fn train_from_sequences(&mut self, trainer: &mut RTrainer, sequences: Vec<String>) {
-        self.0.train(&mut trainer.trainer, sequences.iter()).unwrap();
+        self.0
+            .train(&mut trainer.trainer, sequences.iter())
+            .unwrap();
     }
     pub fn save(&mut self, path: &str, pretty: bool) {
         self.0.save(path, pretty).unwrap();
     }
-    pub fn enable_padding (&mut self, padding: Nullable<RPaddingParams>) {
+    pub fn enable_padding(&mut self, padding: Nullable<RPaddingParams>) {
         if let NotNull(padding) = padding {
             self.0.with_padding(Some(padding.0));
         } else {
             self.0.with_padding(None);
         }
     }
-    pub fn get_padding (&mut self) -> Nullable<RPaddingParams> {
+    pub fn get_padding(&mut self) -> Nullable<RPaddingParams> {
         if let Some(padding) = self.0.get_padding() {
             let clone = padding.clone();
             NotNull(RPaddingParams(clone))
@@ -159,8 +161,26 @@ impl RTokenizer {
             Null
         }
     }
-    pub fn no_padding (&mut self) {
+    pub fn no_padding(&mut self) {
         self.0.with_padding(None);
+    }
+    pub fn enable_truncation(&mut self, truncation: Nullable<RTruncationParams>) {
+        if let NotNull(truncation) = truncation {
+            self.0.with_truncation(Some(truncation.0)).unwrap();
+        } else {
+            self.0.with_truncation(None).unwrap();
+        }
+    }
+    pub fn get_truncation(&mut self) -> Nullable<RTruncationParams> {
+        if let Some(truncation) = self.0.get_truncation() {
+            let clone = truncation.clone();
+            NotNull(RTruncationParams(clone))
+        } else {
+            Null
+        }
+    }
+    pub fn no_truncation(&mut self) {
+        self.0.with_truncation(None).unwrap();
     }
 }
 
@@ -215,8 +235,8 @@ impl<'a> FromRobj<'a> for RPaddingParams {
                     "direction" => {
                         params.direction = match value.as_str() {
                             Some("left") => tk::PaddingDirection::Left,
-                            Some("right") => tk::PaddingDirection::Right, 
-                            _ => return Err("Invalid padding direction")
+                            Some("right") => tk::PaddingDirection::Right,
+                            _ => return Err("Invalid padding direction"),
                         }
                     }
                     "pad_to_multiple_of" => {
@@ -237,8 +257,8 @@ impl<'a> FromRobj<'a> for RPaddingParams {
                         } else {
                             params.strategy = tk::PaddingStrategy::BatchLongest;
                         }
-                    },
-                    _ => return Err("Invalid padding parameter")
+                    }
+                    _ => return Err("Invalid padding parameter"),
                 }
             }
             Ok(RPaddingParams(params))
@@ -247,7 +267,6 @@ impl<'a> FromRobj<'a> for RPaddingParams {
         }
     }
 }
-
 
 impl From<RPaddingParams> for Robj {
     fn from(params: RPaddingParams) -> Self {
@@ -260,6 +279,57 @@ impl From<RPaddingParams> for Robj {
             pad_id = params.0.pad_id,
             pad_token = params.0.pad_token,
             pad_type_id = params.0.pad_type_id,
+            direction = params.0.direction.as_ref(),
+        );
+        object.into_robj()
+    }
+}
+
+pub struct RTruncationParams(tk::TruncationParams);
+
+impl<'a> FromRobj<'a> for RTruncationParams {
+    fn from_robj(robj: &'a Robj) -> std::result::Result<Self, &'static str> {
+        if let Some(val) = robj.as_list() {
+            let mut params = tk::TruncationParams::default();
+            for (key, value) in val {
+                match key {
+                    "max_length" => params.max_length = value.as_integer().unwrap() as usize,
+                    "stride" => params.stride = value.as_integer().unwrap() as usize,
+                    "strategy" => {
+                        let value: &str = value.as_str().unwrap();
+                        params.strategy = match value {
+                        "longest_first" => tk::TruncationStrategy::LongestFirst,
+                        "only_first" => tk::TruncationStrategy::OnlyFirst,
+                        "only_second" => tk::TruncationStrategy::OnlySecond,
+                        _ => {
+                            return Err("Unknown strategy. Use one of `longest_first`, `only_first` or `only_second`.")
+                        }
+                    };
+                    }
+                    "direction" => {
+                        let value: &str = value.as_str().unwrap();
+                        params.direction = match value {
+                            "left" => tk::TruncationDirection::Left,
+                            "right" => tk::TruncationDirection::Right,
+                            _ => return Err("Unknown direction"),
+                        };
+                    },
+                    _ => return Err("Invalid truncation parameter"),
+                }
+            }
+            Ok(RTruncationParams(params))
+        } else {
+            return Err("Expected a named list.");
+        }
+    }
+}
+
+impl From<RTruncationParams> for Robj {
+    fn from(params: RTruncationParams) -> Self {
+        let object: List = list!(
+            max_length = params.0.max_length,
+            stride = params.0.stride,
+            strategy = params.0.strategy.as_ref(),
             direction = params.0.direction.as_ref(),
         );
         object.into_robj()

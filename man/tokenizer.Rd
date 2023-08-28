@@ -33,6 +33,8 @@ tok$encode("Hello world")$ids
 \item{\code{pre_tokenizer}}{instance of the pre-tokenizer}
 
 \item{\code{padding}}{Gets padding configuration}
+
+\item{\code{truncation}}{Gets truncation configuration}
 }
 \if{html}{\out{</div>}}
 }
@@ -51,6 +53,8 @@ tok$encode("Hello world")$ids
 \item \href{#method-tok_tokenizer-save}{\code{tokenizer$save()}}
 \item \href{#method-tok_tokenizer-enable_padding}{\code{tokenizer$enable_padding()}}
 \item \href{#method-tok_tokenizer-no_padding}{\code{tokenizer$no_padding()}}
+\item \href{#method-tok_tokenizer-enable_truncation}{\code{tokenizer$enable_truncation()}}
+\item \href{#method-tok_tokenizer-no_truncation}{\code{tokenizer$no_truncation()}}
 \item \href{#method-tok_tokenizer-clone}{\code{tokenizer$clone()}}
 }
 }
@@ -293,7 +297,7 @@ to pad. Can be either \code{'right'} or \code{'left'}}
 
 \item{\code{pad_type_id}}{(int, defaults to 0) — The type id to be used when padding}
 
-\item{\code{pad_token}}{(str, defaults to \link{PAD}) — The pad token to be used when padding}
+\item{\code{pad_token}}{(str, defaults to \code{'[PAD]'}) — The pad token to be used when padding}
 
 \item{\code{length}}{(int, optional) — If specified, the length at which to pad. If not
 specified we pad using the size of the longest sequence in a batch.}
@@ -313,6 +317,46 @@ pad to 256.}
 Disables padding
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{tokenizer$no_padding()}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-tok_tokenizer-enable_truncation"></a>}}
+\if{latex}{\out{\hypertarget{method-tok_tokenizer-enable_truncation}{}}}
+\subsection{Method \code{enable_truncation()}}{
+Enables truncation on the tokenizer
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{tokenizer$enable_truncation(
+  max_length,
+  stride = 0,
+  strategy = "longest_first",
+  direction = "right"
+)}\if{html}{\out{</div>}}
+}
+
+\subsection{Arguments}{
+\if{html}{\out{<div class="arguments">}}
+\describe{
+\item{\code{max_length}}{The maximum length at which to truncate.}
+
+\item{\code{stride}}{The length of the previous first sequence to be included
+in the overflowing sequence. Default: \code{0}.}
+
+\item{\code{strategy}}{The strategy used for truncation. Can be one of:
+"longest_first", "only_first", or "only_second". Default: "longest_first".}
+
+\item{\code{direction}}{The truncation direction. Default: "right".}
+}
+\if{html}{\out{</div>}}
+}
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-tok_tokenizer-no_truncation"></a>}}
+\if{latex}{\out{\hypertarget{method-tok_tokenizer-no_truncation}{}}}
+\subsection{Method \code{no_truncation()}}{
+Disables truncation
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{tokenizer$no_truncation()}\if{html}{\out{</div>}}
 }
 
 }
