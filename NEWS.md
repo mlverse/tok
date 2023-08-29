@@ -1,12 +1,13 @@
 # tok (development version)
 
-- Added support for authentication (#7)
-- Added support for training tokenizers from scratch (#8)
-- Added support for serializing tokenizers (#8)
+- Added support for authentication. (#7)
+- Added support for training tokenizers from scratch. (#8)
+- Added support for serializing tokenizers. (#8)
+- Implemented support for configuring padding and truncation. (#9)
 
 # tok 0.1.1
 
-- Dependencies are now vendored to avoid versioning problems on CRAN (#5)
+- Dependencies are now vendored to avoid versioning problems on CRAN. (#5)
 
 # tok 0.1.0
 
