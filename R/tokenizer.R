@@ -123,6 +123,62 @@ tokenizer <- R6::R6Class(
     #' @param pretty Whether the JSON file should be pretty formatted.
     save = function(path, pretty = TRUE) {
       self$.tokenizer$save(normalizePath(path, mustWork = FALSE), pretty)
+    },
+    
+    #' @description
+    #' Enables padding for the tokenizer
+    #' @param direction (str, optional, defaults to right) — The direction in which
+    #'  to pad. Can be either `'right'` or `'left'`
+    #' @param pad_to_multiple_of  (int, optional) — If specified, the padding length should 
+    #'  always snap to the next multiple of the given value. For example if we were 
+    #'  going to pad with a length of 250 but `pad_to_multiple_of=8` then we will 
+    #'  pad to 256.
+    #' @param pad_id (int, defaults to 0) — The id to be used when padding
+    #' @param pad_type_id (int, defaults to 0) — The type id to be used when padding
+    #' @param pad_token (str, defaults to `'[PAD]'`) — The pad token to be used when padding
+    #' @param length (int, optional) — If specified, the length at which to pad. If not 
+    #'  specified we pad using the size of the longest sequence in a batch.
+    enable_padding = function(direction = "right", pad_id = 0L, pad_type_id = 0L, 
+                             pad_token = "[PAD]", length = NULL, pad_to_multiple_of = NULL) {
+      inputs <- list(
+        direction = direction,
+        pad_id = as.integer(pad_id),
+        pad_token = pad_token,
+        length = as.integer(length),
+        pad_to_multiple_of = pad_to_multiple_of
+      )
+      inputs <- Filter(Negate(is.null), inputs)
+      self$.tokenizer$enable_padding(inputs)
+    },
+    
+    #' @description
+    #' Disables padding
+    no_padding = function() {
+      self$.tokenizer$no_padding()
+    },
+    
+    #' @description
+    #' Enables truncation on the tokenizer
+    #' @param max_length The maximum length at which to truncate.
+    #' @param stride The length of the previous first sequence to be included
+    #'        in the overflowing sequence. Default: `0`.
+    #' @param strategy The strategy used for truncation. Can be one of:
+    #'        "longest_first", "only_first", or "only_second". Default: "longest_first".
+    #' @param direction The truncation direction. Default: "right".
+    enable_truncation = function(max_length, stride = 0, strategy = "longest_first",
+                                 direction = "right") {
+      self$.tokenizer$enable_truncation(list(
+        max_length = as.integer(max_length),
+        stride = as.integer(stride),
+        strategy = strategy,
+        direction = direction
+      ))
+    },
+    
+    #' @description
+    #' Disables truncation
+    no_truncation = function() {
+     self$.tokenizer$no_truncation() 
     }
   ),
   active = list(
@@ -134,6 +190,22 @@ tokenizer <- R6::R6Class(
       
       self$.tokenizer$set_pre_tokenizer(x$.pre_tokenizer)
       invisible(self$pre_tokenizer)
+    },
+    #' @field padding Gets padding configuration
+    padding = function(x) {
+      if (!missing(x)) {
+        cli::cli_abort("Can't be set this way, use {.fn enable_padding}.")
+      }
+      
+      self$.tokenizer$get_padding()
+    },
+    #' @field truncation Gets truncation configuration
+    truncation = function(x) {
+      if (!missing(x)) {
+        cli::cli_abort("Can't be set this way, use {.fn enable_truncation}.")
+      }
+      
+      self$.tokenizer$get_truncation()
     }
   )
 )

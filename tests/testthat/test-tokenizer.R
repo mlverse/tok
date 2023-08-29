@@ -74,3 +74,41 @@ test_that("can serialize a tokenizer and load back", {
   
   expect_equal(enc$ids, enc2$ids)
 })
+
+test_that("enable padding works", {
+  tok <- tokenizer$from_file(test_path("assets/tokenizer.json"))
+  
+  expect_null(tok$padding)
+  
+  tok$enable_padding(length = 20, pad_id = 5)
+  input <- "hello world"
+  enc <- tok$encode(input)
+  
+  expect_equal(length(enc$ids), 20)
+  expect_equal(enc$ids[3], 5)
+  
+  expect_equal(tok$padding$length, 20)
+  
+  tok$no_padding()
+  expect_null(tok$padding)
+})
+
+test_that("truncation works", {
+  
+  tok <- tokenizer$from_file(test_path("assets/tokenizer.json"))
+  expect_null(tok$truncation)
+  
+  tok$enable_truncation(3)
+  
+  input <- "hello world I'm a new tokenizer called tok"
+  enc <- tok$encode(input)
+  
+  expect_equal(length(enc$ids), 3)
+  
+  tok$no_truncation()
+  expect_null(tok$padding)
+  
+  enc <- tok$encode(input)
+  expect_true(length(enc$ids) > 3)
+  
+})

@@ -99,6 +99,18 @@ RTokenizer$train_from_sequences <- function(trainer, sequences) invisible(.Call(
 
 RTokenizer$save <- function(path, pretty) invisible(.Call(wrap__RTokenizer__save, self, path, pretty))
 
+RTokenizer$enable_padding <- function(padding) invisible(.Call(wrap__RTokenizer__enable_padding, self, padding))
+
+RTokenizer$get_padding <- function() .Call(wrap__RTokenizer__get_padding, self)
+
+RTokenizer$no_padding <- function() invisible(.Call(wrap__RTokenizer__no_padding, self))
+
+RTokenizer$enable_truncation <- function(truncation) invisible(.Call(wrap__RTokenizer__enable_truncation, self, truncation))
+
+RTokenizer$get_truncation <- function() .Call(wrap__RTokenizer__get_truncation, self)
+
+RTokenizer$no_truncation <- function() invisible(.Call(wrap__RTokenizer__no_truncation, self))
+
 #' @export
 `$.RTokenizer` <- function (self, name) { func <- RTokenizer[[name]]; environment(func) <- environment(); func }
 
