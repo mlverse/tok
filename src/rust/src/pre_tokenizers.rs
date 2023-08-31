@@ -30,7 +30,7 @@ struct RPreTokenizerByteLevel(tk::pre_tokenizers::byte_level::ByteLevel);
 
 #[extendr]
 impl RPreTokenizerByteLevel {
-    pub fn new(add_prefix_space: bool, use_regex: bool, trim_offsets: bool) -> Self {
+    pub fn new(add_prefix_space: bool, use_regex: bool) -> Self {
         RPreTokenizerByteLevel(
             tk::pre_tokenizers::byte_level::ByteLevel::default()
                 .add_prefix_space(add_prefix_space)
