@@ -26,8 +26,22 @@ impl RPreTokenizerWhitespace {
     }
 }
 
+struct RPreTokenizerByteLevel(tk::pre_tokenizers::byte_level::ByteLevel);
+
+#[extendr]
+impl RPreTokenizerByteLevel {
+    pub fn new(add_prefix_space: bool, use_regex: bool, trim_offsets: bool) -> Self {
+        RPreTokenizerByteLevel(
+            tk::pre_tokenizers::byte_level::ByteLevel::default()
+                .add_prefix_space(add_prefix_space)
+                .use_regex(use_regex),
+        )
+    }
+}
+
 extendr_module! {
     mod pre_tokenizers;
     impl RPreTokenizer;
     impl RPreTokenizerWhitespace;
+    impl RPreTokenizerByteLevel;
 }

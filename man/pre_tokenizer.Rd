@@ -10,6 +10,7 @@ Generic class for tokenizers
 }
 \seealso{
 Other pre_tokenizer: 
+\code{\link{pre_tokenizer_byte_level}},
 \code{\link{pre_tokenizer_whitespace}}
 }
 \concept{pre_tokenizer}

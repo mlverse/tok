@@ -177,5 +177,15 @@ RPreTokenizerWhitespace$new <- function() .Call(wrap__RPreTokenizerWhitespace__n
 #' @export
 `[[.RPreTokenizerWhitespace` <- `$.RPreTokenizerWhitespace`
 
+RPreTokenizerByteLevel <- new.env(parent = emptyenv())
+
+RPreTokenizerByteLevel$new <- function(add_prefix_space, use_regex, trim_offsets) .Call(wrap__RPreTokenizerByteLevel__new, add_prefix_space, use_regex, trim_offsets)
+
+#' @export
+`$.RPreTokenizerByteLevel` <- function (self, name) { func <- RPreTokenizerByteLevel[[name]]; environment(func) <- environment(); func }
+
+#' @export
+`[[.RPreTokenizerByteLevel` <- `$.RPreTokenizerByteLevel`
+
 
 # nolint end

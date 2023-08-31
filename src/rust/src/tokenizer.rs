@@ -138,9 +138,12 @@ impl RTokenizer {
             .train_from_files(&mut trainer.trainer, files)
             .unwrap();
     }
-    pub fn train_from_sequences(&mut self, trainer: &mut RTrainer, sequences: Vec<String>) {
+    pub fn train_from_sequences(&mut self, trainer: &mut RTrainer, sequences: Robj) {
         self.0
-            .train(&mut trainer.trainer, sequences.iter())
+            .train(
+                &mut trainer.trainer,
+                sequences.as_str_vector().unwrap().iter(),
+            )
             .unwrap();
     }
     pub fn save(&mut self, path: &str, pretty: bool) {
@@ -313,7 +316,7 @@ impl<'a> FromRobj<'a> for RTruncationParams {
                             "right" => tk::TruncationDirection::Right,
                             _ => return Err("Unknown direction"),
                         };
-                    },
+                    }
                     _ => return Err("Invalid truncation parameter"),
                 }
             }
