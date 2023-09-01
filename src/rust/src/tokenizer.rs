@@ -1,6 +1,7 @@
 use crate::models::RModel;
 use crate::pre_tokenizers::RPreTokenizer;
 use crate::trainers::RTrainer;
+use crate::normalizers::RNormalizer;
 use extendr_api::prelude::*;
 use std::borrow::Cow;
 use tk::{EncodeInput, InputSequence};
@@ -133,6 +134,18 @@ impl RTokenizer {
             Null
         }
     }
+    pub fn set_normalizer(&mut self, normalizer: &RNormalizer) {
+        self.0.with_normalizer(normalizer.0.clone());
+    }
+    pub fn get_normalizer(&self) -> Nullable<R6Normalizer> {
+        if let Some(normalizer) = self.0.get_normalizer() {
+            let clone = normalizer.clone();
+            NotNull(R6Normalizer(RNormalizer(clone)))
+        } else {
+            Null
+        }
+    }
+
     pub fn train_from_files(&mut self, trainer: &mut RTrainer, files: Vec<String>) {
         self.0
             .train_from_files(&mut trainer.trainer, files)
@@ -228,6 +241,13 @@ impl From<R6PreTokenizer> for Robj {
     }
 }
 
+pub struct R6Normalizer(RNormalizer);
+impl From<R6Normalizer> for Robj {
+    fn from(val: R6Normalizer) -> Self {
+        call!("tok::tok_normalizer$new", val.0).unwrap()
+    }
+}
+
 pub struct RPaddingParams(tk::PaddingParams);
 impl<'a> FromRobj<'a> for RPaddingParams {
     fn from_robj(robj: &'a Robj) -> std::result::Result<Self, &'static str> {
@@ -320,7 +340,7 @@ impl<'a> FromRobj<'a> for RTruncationParams {
                     _ => return Err("Invalid truncation parameter"),
                 }
             }
-            Ok(RTruncationParams(params))
+        Ok(RTruncationParams(params))
         } else {
             return Err("Expected a named list.");
         }

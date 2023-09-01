@@ -93,6 +93,10 @@ RTokenizer$set_pre_tokenizer <- function(pre_tokenizer) invisible(.Call(wrap__RT
 
 RTokenizer$get_pre_tokenizer <- function() .Call(wrap__RTokenizer__get_pre_tokenizer, self)
 
+RTokenizer$set_normalizer <- function(normalizer) invisible(.Call(wrap__RTokenizer__set_normalizer, self, normalizer))
+
+RTokenizer$get_normalizer <- function() .Call(wrap__RTokenizer__get_normalizer, self)
+
 RTokenizer$train_from_files <- function(trainer, files) invisible(.Call(wrap__RTokenizer__train_from_files, self, trainer, files))
 
 RTokenizer$train_from_sequences <- function(trainer, sequences) invisible(.Call(wrap__RTokenizer__train_from_sequences, self, trainer, sequences))
@@ -186,6 +190,36 @@ RPreTokenizerByteLevel$new <- function(add_prefix_space, use_regex) .Call(wrap__
 
 #' @export
 `[[.RPreTokenizerByteLevel` <- `$.RPreTokenizerByteLevel`
+
+RNormalizer <- new.env(parent = emptyenv())
+
+RNormalizer$new <- function(normalizer) .Call(wrap__RNormalizer__new, normalizer)
+
+#' @export
+`$.RNormalizer` <- function (self, name) { func <- RNormalizer[[name]]; environment(func) <- environment(); func }
+
+#' @export
+`[[.RNormalizer` <- `$.RNormalizer`
+
+RNormalizerNFC <- new.env(parent = emptyenv())
+
+RNormalizerNFC$new <- function() .Call(wrap__RNormalizerNFC__new)
+
+#' @export
+`$.RNormalizerNFC` <- function (self, name) { func <- RNormalizerNFC[[name]]; environment(func) <- environment(); func }
+
+#' @export
+`[[.RNormalizerNFC` <- `$.RNormalizerNFC`
+
+RNormalizerNFKC <- new.env(parent = emptyenv())
+
+RNormalizerNFKC$new <- function() .Call(wrap__RNormalizerNFKC__new)
+
+#' @export
+`$.RNormalizerNFKC` <- function (self, name) { func <- RNormalizerNFKC[[name]]; environment(func) <- environment(); func }
+
+#' @export
+`[[.RNormalizerNFKC` <- `$.RNormalizerNFKC`
 
 
 # nolint end

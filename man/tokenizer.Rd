@@ -32,6 +32,8 @@ tok$encode("Hello world")$ids
 \describe{
 \item{\code{pre_tokenizer}}{instance of the pre-tokenizer}
 
+\item{\code{normalizer}}{Gets the normalizer instance}
+
 \item{\code{padding}}{Gets padding configuration}
 
 \item{\code{truncation}}{Gets truncation configuration}
