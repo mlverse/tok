@@ -101,6 +101,10 @@ RTokenizer$set_normalizer <- function(normalizer) invisible(.Call(wrap__RTokeniz
 
 RTokenizer$get_normalizer <- function() .Call(wrap__RTokenizer__get_normalizer, self)
 
+RTokenizer$set_decoder <- function(decoder) invisible(.Call(wrap__RTokenizer__set_decoder, self, decoder))
+
+RTokenizer$get_decoder <- function() .Call(wrap__RTokenizer__get_decoder, self)
+
 RTokenizer$train_from_files <- function(trainer, files) invisible(.Call(wrap__RTokenizer__train_from_files, self, trainer, files))
 
 RTokenizer$train_from_sequences <- function(trainer, sequences) invisible(.Call(wrap__RTokenizer__train_from_sequences, self, trainer, sequences))
@@ -244,6 +248,26 @@ RPostProcessorByteLevel$new <- function(trim_offsets) .Call(wrap__RPostProcessor
 
 #' @export
 `[[.RPostProcessorByteLevel` <- `$.RPostProcessorByteLevel`
+
+RDecoder <- new.env(parent = emptyenv())
+
+RDecoder$new <- function(decoder) .Call(wrap__RDecoder__new, decoder)
+
+#' @export
+`$.RDecoder` <- function (self, name) { func <- RDecoder[[name]]; environment(func) <- environment(); func }
+
+#' @export
+`[[.RDecoder` <- `$.RDecoder`
+
+RDecoderByteLevel <- new.env(parent = emptyenv())
+
+RDecoderByteLevel$new <- function() .Call(wrap__RDecoderByteLevel__new)
+
+#' @export
+`$.RDecoderByteLevel` <- function (self, name) { func <- RDecoderByteLevel[[name]]; environment(func) <- environment(); func }
+
+#' @export
+`[[.RDecoderByteLevel` <- `$.RDecoderByteLevel`
 
 
 # nolint end

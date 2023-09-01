@@ -5,6 +5,7 @@ mod tokenizer;
 mod trainers;
 mod normalizers;
 mod post_processors;
+mod decoders;
 
 pub const VERSION: &str = env!("CARGO_PKG_VERSION");
 
@@ -16,4 +17,5 @@ extendr_module! {
     use pre_tokenizers;
     use normalizers;
     use post_processors;
+    use decoders;
 }

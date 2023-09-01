@@ -209,6 +209,15 @@ tokenizer <- R6::R6Class(
       self$.tokenizer$set_post_processor(x$.processor)
       invisible(self$post_processor)
     },
+    #' @field decoder Gets and sets the decoder
+    decoder = function(x) {
+      if (missing(x)) {
+        return(self$.tokenizer$get_decoder())
+      }
+      
+      self$.tokenizer$set_decoder(x$.decoder)
+      invisible(self$decoder)
+    },
     #' @field padding Gets padding configuration
     padding = function(x) {
       if (!missing(x)) {

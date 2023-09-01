@@ -3,6 +3,7 @@ use crate::pre_tokenizers::RPreTokenizer;
 use crate::trainers::RTrainer;
 use crate::normalizers::RNormalizer;
 use crate::post_processors::RPostProcessor;
+use crate::decoders::RDecoder;
 use extendr_api::prelude::*;
 use std::borrow::Cow;
 use tk::{EncodeInput, InputSequence};
@@ -157,7 +158,17 @@ impl RTokenizer {
             Null
         }
     }
-
+    pub fn set_decoder (&mut self, decoder: &RDecoder) {
+        self.0.with_decoder(decoder.0.clone());
+    }
+    pub fn get_decoder(&self) -> Nullable<R6Decoder> {
+        if let Some(decoder) = self.0.get_decoder() {
+            let clone = decoder.clone();
+            NotNull(R6Decoder(RDecoder(clone)))
+        } else {
+            Null
+        }
+    }
     pub fn train_from_files(&mut self, trainer: &mut RTrainer, files: Vec<String>) {
         self.0
             .train_from_files(&mut trainer.trainer, files)
@@ -264,6 +275,13 @@ pub struct R6PostProcessor(RPostProcessor);
 impl From<R6PostProcessor> for Robj {
     fn from(val: R6PostProcessor) -> Self {
         call!("tok::tok_processor$new", val.0).unwrap()
+    }
+}
+
+pub struct R6Decoder(RDecoder);
+impl From<R6Decoder> for Robj {
+    fn from(val: R6Decoder) -> Self {
+        call!("tok::tok_decoder$new", val.0).unwrap()
     }
 }
 
