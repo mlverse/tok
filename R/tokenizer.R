@@ -179,6 +179,12 @@ tokenizer <- R6::R6Class(
     #' Disables truncation
     no_truncation = function() {
      self$.tokenizer$no_truncation() 
+    },
+    #' @description
+    #' Gets the vocabulary size
+    #' @param with_added_tokens Wether to count added tokens
+    get_vocab_size = function(with_added_tokens = TRUE) {
+     self$.tokenizer$get_vocab_size(with_added_tokens) 
     }
   ),
   active = list(

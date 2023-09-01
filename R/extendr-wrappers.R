@@ -123,6 +123,8 @@ RTokenizer$get_truncation <- function() .Call(wrap__RTokenizer__get_truncation, 
 
 RTokenizer$no_truncation <- function() invisible(.Call(wrap__RTokenizer__no_truncation, self))
 
+RTokenizer$get_vocab_size <- function(with_added_tokens) .Call(wrap__RTokenizer__get_vocab_size, self, with_added_tokens)
+
 #' @export
 `$.RTokenizer` <- function (self, name) { func <- RTokenizer[[name]]; environment(func) <- environment(); func }
 

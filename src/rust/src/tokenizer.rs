@@ -221,6 +221,9 @@ impl RTokenizer {
     pub fn no_truncation(&mut self) {
         self.0.with_truncation(None).unwrap();
     }
+    pub fn get_vocab_size(&self, with_added_tokens: bool) -> usize {
+        self.0.get_vocab_size(with_added_tokens)
+    }
 }
 
 pub struct REncoding(tk::Encoding);

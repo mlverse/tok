@@ -61,6 +61,7 @@ tok$encode("Hello world")$ids
 \item \href{#method-tok_tokenizer-no_padding}{\code{tokenizer$no_padding()}}
 \item \href{#method-tok_tokenizer-enable_truncation}{\code{tokenizer$enable_truncation()}}
 \item \href{#method-tok_tokenizer-no_truncation}{\code{tokenizer$no_truncation()}}
+\item \href{#method-tok_tokenizer-get_vocab_size}{\code{tokenizer$get_vocab_size()}}
 \item \href{#method-tok_tokenizer-clone}{\code{tokenizer$clone()}}
 }
 }
@@ -365,6 +366,23 @@ Disables truncation
 \if{html}{\out{<div class="r">}}\preformatted{tokenizer$no_truncation()}\if{html}{\out{</div>}}
 }
 
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-tok_tokenizer-get_vocab_size"></a>}}
+\if{latex}{\out{\hypertarget{method-tok_tokenizer-get_vocab_size}{}}}
+\subsection{Method \code{get_vocab_size()}}{
+Gets the vocabulary size
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{tokenizer$get_vocab_size(with_added_tokens = TRUE)}\if{html}{\out{</div>}}
+}
+
+\subsection{Arguments}{
+\if{html}{\out{<div class="arguments">}}
+\describe{
+\item{\code{with_added_tokens}}{Wether to count added tokens}
+}
+\if{html}{\out{</div>}}
+}
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-tok_tokenizer-clone"></a>}}

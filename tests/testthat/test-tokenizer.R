@@ -54,6 +54,7 @@ test_that("can train a tokenizer from memory", {
   tok <- tokenizer$new(model_bpe$new())
   tok$pre_tokenizer <- pre_tokenizer_whitespace$new()
   tok$train_from_memory(c("hello world", "bye bye"), trainer_bpe$new())
+  expect_equal(tok$get_vocab_size(), 19)
   
   expect_equal(tok$encode("hello")$ids, 17)
   expect_equal(tok$encode("world")$ids, 18)
