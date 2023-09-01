@@ -2,6 +2,7 @@ use crate::models::RModel;
 use crate::pre_tokenizers::RPreTokenizer;
 use crate::trainers::RTrainer;
 use crate::normalizers::RNormalizer;
+use crate::post_processors::RPostProcessor;
 use extendr_api::prelude::*;
 use std::borrow::Cow;
 use tk::{EncodeInput, InputSequence};
@@ -134,6 +135,17 @@ impl RTokenizer {
             Null
         }
     }
+    pub fn set_post_processor(&mut self, post_processors: &RPostProcessor) {
+        self.0.with_post_processor(post_processors.0.clone());
+    }
+    pub fn get_post_processor(&self) -> Nullable<R6PostProcessor> {
+        if let Some(post_processor) = self.0.get_post_processor() {
+            let clone = post_processor.clone();
+            NotNull(R6PostProcessor(RPostProcessor(clone)))
+        } else {
+            Null
+        }
+    }
     pub fn set_normalizer(&mut self, normalizer: &RNormalizer) {
         self.0.with_normalizer(normalizer.0.clone());
     }
@@ -245,6 +257,13 @@ pub struct R6Normalizer(RNormalizer);
 impl From<R6Normalizer> for Robj {
     fn from(val: R6Normalizer) -> Self {
         call!("tok::tok_normalizer$new", val.0).unwrap()
+    }
+}
+
+pub struct R6PostProcessor(RPostProcessor);
+impl From<R6PostProcessor> for Robj {
+    fn from(val: R6PostProcessor) -> Self {
+        call!("tok::tok_processor$new", val.0).unwrap()
     }
 }
 

@@ -93,6 +93,10 @@ RTokenizer$set_pre_tokenizer <- function(pre_tokenizer) invisible(.Call(wrap__RT
 
 RTokenizer$get_pre_tokenizer <- function() .Call(wrap__RTokenizer__get_pre_tokenizer, self)
 
+RTokenizer$set_post_processor <- function(post_processors) invisible(.Call(wrap__RTokenizer__set_post_processor, self, post_processors))
+
+RTokenizer$get_post_processor <- function() .Call(wrap__RTokenizer__get_post_processor, self)
+
 RTokenizer$set_normalizer <- function(normalizer) invisible(.Call(wrap__RTokenizer__set_normalizer, self, normalizer))
 
 RTokenizer$get_normalizer <- function() .Call(wrap__RTokenizer__get_normalizer, self)
@@ -220,6 +224,26 @@ RNormalizerNFKC$new <- function() .Call(wrap__RNormalizerNFKC__new)
 
 #' @export
 `[[.RNormalizerNFKC` <- `$.RNormalizerNFKC`
+
+RPostProcessor <- new.env(parent = emptyenv())
+
+RPostProcessor$new <- function(post_processor) .Call(wrap__RPostProcessor__new, post_processor)
+
+#' @export
+`$.RPostProcessor` <- function (self, name) { func <- RPostProcessor[[name]]; environment(func) <- environment(); func }
+
+#' @export
+`[[.RPostProcessor` <- `$.RPostProcessor`
+
+RPostProcessorByteLevel <- new.env(parent = emptyenv())
+
+RPostProcessorByteLevel$new <- function(trim_offsets) .Call(wrap__RPostProcessorByteLevel__new, trim_offsets)
+
+#' @export
+`$.RPostProcessorByteLevel` <- function (self, name) { func <- RPostProcessorByteLevel[[name]]; environment(func) <- environment(); func }
+
+#' @export
+`[[.RPostProcessorByteLevel` <- `$.RPostProcessorByteLevel`
 
 
 # nolint end

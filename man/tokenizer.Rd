@@ -34,6 +34,8 @@ tok$encode("Hello world")$ids
 
 \item{\code{normalizer}}{Gets the normalizer instance}
 
+\item{\code{post_processor}}{Gets the post processor used by tokenizer}
+
 \item{\code{padding}}{Gets padding configuration}
 
 \item{\code{truncation}}{Gets truncation configuration}

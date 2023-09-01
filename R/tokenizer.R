@@ -200,6 +200,15 @@ tokenizer <- R6::R6Class(
       self$.tokenizer$set_normalizer(x$.normalizer)
       invisible(self$normalizer)
     },
+    #' @field post_processor Gets the post processor used by tokenizer
+    post_processor = function(x) {
+      if (missing(x)) {
+        return(self$.tokenizer$get_post_processor())
+      } 
+      
+      self$.tokenizer$set_post_processor(x$.processor)
+      invisible(self$post_processor)
+    },
     #' @field padding Gets padding configuration
     padding = function(x) {
       if (!missing(x)) {

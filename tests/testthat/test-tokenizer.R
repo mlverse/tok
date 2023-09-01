@@ -68,6 +68,8 @@ test_that("can train a tokenizer from memory", {
   )
 })
 
+
+
 test_that("can serialize a tokenizer and load back", {
   
   tok <- tokenizer$from_file(test_path("assets/tokenizer.json"))
