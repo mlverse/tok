@@ -11,8 +11,13 @@ impl RPreTokenizer {
                 let ptr = pre_tokenizer.external_ptr_addr() as *mut RPreTokenizerWhitespace;
                 Ok(RPreTokenizer((*ptr).0.clone().into()))
             }
+        } else if pre_tokenizer.inherits("RPreTokenizerByteLevel") {
+            unsafe {
+                let ptr = pre_tokenizer.external_ptr_addr() as *mut RPreTokenizerByteLevel;
+                Ok(RPreTokenizer((*ptr).0.clone().into()))
+            }
         } else {
-            Err(Error::EvalError("Tokenizer not supported".into()))
+            Err(Error::EvalError("PreTokenizer not supported".into()))
         }
     }
 }

@@ -1,6 +1,9 @@
 use crate::models::RModel;
 use crate::pre_tokenizers::RPreTokenizer;
 use crate::trainers::RTrainer;
+use crate::normalizers::RNormalizer;
+use crate::post_processors::RPostProcessor;
+use crate::decoders::RDecoder;
 use extendr_api::prelude::*;
 use std::borrow::Cow;
 use tk::{EncodeInput, InputSequence};
@@ -133,6 +136,39 @@ impl RTokenizer {
             Null
         }
     }
+    pub fn set_post_processor(&mut self, post_processors: &RPostProcessor) {
+        self.0.with_post_processor(post_processors.0.clone());
+    }
+    pub fn get_post_processor(&self) -> Nullable<R6PostProcessor> {
+        if let Some(post_processor) = self.0.get_post_processor() {
+            let clone = post_processor.clone();
+            NotNull(R6PostProcessor(RPostProcessor(clone)))
+        } else {
+            Null
+        }
+    }
+    pub fn set_normalizer(&mut self, normalizer: &RNormalizer) {
+        self.0.with_normalizer(normalizer.0.clone());
+    }
+    pub fn get_normalizer(&self) -> Nullable<R6Normalizer> {
+        if let Some(normalizer) = self.0.get_normalizer() {
+            let clone = normalizer.clone();
+            NotNull(R6Normalizer(RNormalizer(clone)))
+        } else {
+            Null
+        }
+    }
+    pub fn set_decoder (&mut self, decoder: &RDecoder) {
+        self.0.with_decoder(decoder.0.clone());
+    }
+    pub fn get_decoder(&self) -> Nullable<R6Decoder> {
+        if let Some(decoder) = self.0.get_decoder() {
+            let clone = decoder.clone();
+            NotNull(R6Decoder(RDecoder(clone)))
+        } else {
+            Null
+        }
+    }
     pub fn train_from_files(&mut self, trainer: &mut RTrainer, files: Vec<String>) {
         self.0
             .train_from_files(&mut trainer.trainer, files)
@@ -185,6 +221,9 @@ impl RTokenizer {
     pub fn no_truncation(&mut self) {
         self.0.with_truncation(None).unwrap();
     }
+    pub fn get_vocab_size(&self, with_added_tokens: bool) -> usize {
+        self.0.get_vocab_size(with_added_tokens)
+    }
 }
 
 pub struct REncoding(tk::Encoding);
@@ -225,6 +264,27 @@ pub struct R6PreTokenizer(RPreTokenizer);
 impl From<R6PreTokenizer> for Robj {
     fn from(val: R6PreTokenizer) -> Self {
         call!("tok::pre_tokenizer$new", val.0).unwrap()
+    }
+}
+
+pub struct R6Normalizer(RNormalizer);
+impl From<R6Normalizer> for Robj {
+    fn from(val: R6Normalizer) -> Self {
+        call!("tok::tok_normalizer$new", val.0).unwrap()
+    }
+}
+
+pub struct R6PostProcessor(RPostProcessor);
+impl From<R6PostProcessor> for Robj {
+    fn from(val: R6PostProcessor) -> Self {
+        call!("tok::tok_processor$new", val.0).unwrap()
+    }
+}
+
+pub struct R6Decoder(RDecoder);
+impl From<R6Decoder> for Robj {
+    fn from(val: R6Decoder) -> Self {
+        call!("tok::tok_decoder$new", val.0).unwrap()
     }
 }
 
@@ -320,7 +380,7 @@ impl<'a> FromRobj<'a> for RTruncationParams {
                     _ => return Err("Invalid truncation parameter"),
                 }
             }
-            Ok(RTruncationParams(params))
+        Ok(RTruncationParams(params))
         } else {
             return Err("Expected a named list.");
         }

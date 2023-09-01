@@ -93,6 +93,18 @@ RTokenizer$set_pre_tokenizer <- function(pre_tokenizer) invisible(.Call(wrap__RT
 
 RTokenizer$get_pre_tokenizer <- function() .Call(wrap__RTokenizer__get_pre_tokenizer, self)
 
+RTokenizer$set_post_processor <- function(post_processors) invisible(.Call(wrap__RTokenizer__set_post_processor, self, post_processors))
+
+RTokenizer$get_post_processor <- function() .Call(wrap__RTokenizer__get_post_processor, self)
+
+RTokenizer$set_normalizer <- function(normalizer) invisible(.Call(wrap__RTokenizer__set_normalizer, self, normalizer))
+
+RTokenizer$get_normalizer <- function() .Call(wrap__RTokenizer__get_normalizer, self)
+
+RTokenizer$set_decoder <- function(decoder) invisible(.Call(wrap__RTokenizer__set_decoder, self, decoder))
+
+RTokenizer$get_decoder <- function() .Call(wrap__RTokenizer__get_decoder, self)
+
 RTokenizer$train_from_files <- function(trainer, files) invisible(.Call(wrap__RTokenizer__train_from_files, self, trainer, files))
 
 RTokenizer$train_from_sequences <- function(trainer, sequences) invisible(.Call(wrap__RTokenizer__train_from_sequences, self, trainer, sequences))
@@ -110,6 +122,8 @@ RTokenizer$enable_truncation <- function(truncation) invisible(.Call(wrap__RToke
 RTokenizer$get_truncation <- function() .Call(wrap__RTokenizer__get_truncation, self)
 
 RTokenizer$no_truncation <- function() invisible(.Call(wrap__RTokenizer__no_truncation, self))
+
+RTokenizer$get_vocab_size <- function(with_added_tokens) .Call(wrap__RTokenizer__get_vocab_size, self, with_added_tokens)
 
 #' @export
 `$.RTokenizer` <- function (self, name) { func <- RTokenizer[[name]]; environment(func) <- environment(); func }
@@ -186,6 +200,76 @@ RPreTokenizerByteLevel$new <- function(add_prefix_space, use_regex) .Call(wrap__
 
 #' @export
 `[[.RPreTokenizerByteLevel` <- `$.RPreTokenizerByteLevel`
+
+RNormalizer <- new.env(parent = emptyenv())
+
+RNormalizer$new <- function(normalizer) .Call(wrap__RNormalizer__new, normalizer)
+
+#' @export
+`$.RNormalizer` <- function (self, name) { func <- RNormalizer[[name]]; environment(func) <- environment(); func }
+
+#' @export
+`[[.RNormalizer` <- `$.RNormalizer`
+
+RNormalizerNFC <- new.env(parent = emptyenv())
+
+RNormalizerNFC$new <- function() .Call(wrap__RNormalizerNFC__new)
+
+#' @export
+`$.RNormalizerNFC` <- function (self, name) { func <- RNormalizerNFC[[name]]; environment(func) <- environment(); func }
+
+#' @export
+`[[.RNormalizerNFC` <- `$.RNormalizerNFC`
+
+RNormalizerNFKC <- new.env(parent = emptyenv())
+
+RNormalizerNFKC$new <- function() .Call(wrap__RNormalizerNFKC__new)
+
+#' @export
+`$.RNormalizerNFKC` <- function (self, name) { func <- RNormalizerNFKC[[name]]; environment(func) <- environment(); func }
+
+#' @export
+`[[.RNormalizerNFKC` <- `$.RNormalizerNFKC`
+
+RPostProcessor <- new.env(parent = emptyenv())
+
+RPostProcessor$new <- function(post_processor) .Call(wrap__RPostProcessor__new, post_processor)
+
+#' @export
+`$.RPostProcessor` <- function (self, name) { func <- RPostProcessor[[name]]; environment(func) <- environment(); func }
+
+#' @export
+`[[.RPostProcessor` <- `$.RPostProcessor`
+
+RPostProcessorByteLevel <- new.env(parent = emptyenv())
+
+RPostProcessorByteLevel$new <- function(trim_offsets) .Call(wrap__RPostProcessorByteLevel__new, trim_offsets)
+
+#' @export
+`$.RPostProcessorByteLevel` <- function (self, name) { func <- RPostProcessorByteLevel[[name]]; environment(func) <- environment(); func }
+
+#' @export
+`[[.RPostProcessorByteLevel` <- `$.RPostProcessorByteLevel`
+
+RDecoder <- new.env(parent = emptyenv())
+
+RDecoder$new <- function(decoder) .Call(wrap__RDecoder__new, decoder)
+
+#' @export
+`$.RDecoder` <- function (self, name) { func <- RDecoder[[name]]; environment(func) <- environment(); func }
+
+#' @export
+`[[.RDecoder` <- `$.RDecoder`
+
+RDecoderByteLevel <- new.env(parent = emptyenv())
+
+RDecoderByteLevel$new <- function() .Call(wrap__RDecoderByteLevel__new)
+
+#' @export
+`$.RDecoderByteLevel` <- function (self, name) { func <- RDecoderByteLevel[[name]]; environment(func) <- environment(); func }
+
+#' @export
+`[[.RDecoderByteLevel` <- `$.RDecoderByteLevel`
 
 
 # nolint end

@@ -179,6 +179,12 @@ tokenizer <- R6::R6Class(
     #' Disables truncation
     no_truncation = function() {
      self$.tokenizer$no_truncation() 
+    },
+    #' @description
+    #' Gets the vocabulary size
+    #' @param with_added_tokens Wether to count added tokens
+    get_vocab_size = function(with_added_tokens = TRUE) {
+     self$.tokenizer$get_vocab_size(with_added_tokens) 
     }
   ),
   active = list(
@@ -190,6 +196,33 @@ tokenizer <- R6::R6Class(
       
       self$.tokenizer$set_pre_tokenizer(x$.pre_tokenizer)
       invisible(self$pre_tokenizer)
+    },
+    #' @field normalizer Gets the normalizer instance
+    normalizer = function(x) {
+      if (missing(x)) {
+        return(self$.tokenizer$get_normalizer())
+      } 
+      
+      self$.tokenizer$set_normalizer(x$.normalizer)
+      invisible(self$normalizer)
+    },
+    #' @field post_processor Gets the post processor used by tokenizer
+    post_processor = function(x) {
+      if (missing(x)) {
+        return(self$.tokenizer$get_post_processor())
+      } 
+      
+      self$.tokenizer$set_post_processor(x$.processor)
+      invisible(self$post_processor)
+    },
+    #' @field decoder Gets and sets the decoder
+    decoder = function(x) {
+      if (missing(x)) {
+        return(self$.tokenizer$get_decoder())
+      }
+      
+      self$.tokenizer$set_decoder(x$.decoder)
+      invisible(self$decoder)
     },
     #' @field padding Gets padding configuration
     padding = function(x) {
