@@ -1,11 +1,11 @@
 use extendr_api::*;
+mod decoders;
 mod models;
+mod normalizers;
+mod post_processors;
 mod pre_tokenizers;
 mod tokenizer;
 mod trainers;
-mod normalizers;
-mod post_processors;
-mod decoders;
 
 pub const VERSION: &str = env!("CARGO_PKG_VERSION");
 

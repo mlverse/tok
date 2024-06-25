@@ -90,7 +90,7 @@ impl RModelBPE {
         }
 
         RModelBPE {
-            model: bpe.build().unwrap(),
+            model: (bpe.build().unwrap()),
         }
     }
 }
@@ -121,7 +121,7 @@ impl RModelWordPiece {
         }
 
         RModelWordPiece {
-            model: wordpiece.build().unwrap(),
+            model: (wordpiece.build().unwrap()),
         }
     }
 }
@@ -144,7 +144,7 @@ impl RModelUnigram {
             }
         };
 
-        RModelUnigram { model: model }
+        RModelUnigram { model: (model) }
     }
 }
 

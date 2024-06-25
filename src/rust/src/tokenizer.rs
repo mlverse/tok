@@ -1,9 +1,9 @@
+use crate::decoders::RDecoder;
 use crate::models::RModel;
-use crate::pre_tokenizers::RPreTokenizer;
-use crate::trainers::RTrainer;
 use crate::normalizers::RNormalizer;
 use crate::post_processors::RPostProcessor;
-use crate::decoders::RDecoder;
+use crate::pre_tokenizers::RPreTokenizer;
+use crate::trainers::RTrainer;
 use extendr_api::prelude::*;
 use std::borrow::Cow;
 use tk::{EncodeInput, InputSequence};
@@ -158,7 +158,7 @@ impl RTokenizer {
             Null
         }
     }
-    pub fn set_decoder (&mut self, decoder: &RDecoder) {
+    pub fn set_decoder(&mut self, decoder: &RDecoder) {
         self.0.with_decoder(decoder.0.clone());
     }
     pub fn get_decoder(&self) -> Nullable<R6Decoder> {
@@ -380,7 +380,7 @@ impl<'a> FromRobj<'a> for RTruncationParams {
                     _ => return Err("Invalid truncation parameter"),
                 }
             }
-        Ok(RTruncationParams(params))
+            Ok(RTruncationParams(params))
         } else {
             return Err("Expected a named list.");
         }

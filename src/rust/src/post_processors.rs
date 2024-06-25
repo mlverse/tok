@@ -23,8 +23,7 @@ struct RPostProcessorByteLevel(tk::processors::byte_level::ByteLevel);
 impl RPostProcessorByteLevel {
     pub fn new(trim_offsets: bool) -> Self {
         RPostProcessorByteLevel(
-            tk::processors::byte_level::ByteLevel::default()
-                .trim_offsets(trim_offsets)
+            tk::processors::byte_level::ByteLevel::default().trim_offsets(trim_offsets),
         )
     }
 }

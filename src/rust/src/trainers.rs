@@ -70,12 +70,12 @@ impl RTrainerBPE {
                 special_tokens
                     .iter()
                     .map(|x| AddedToken {
-                        content: x.into(),
-                        single_word: false,
-                        lstrip: false,
-                        rstrip: false,
-                        normalized: true,
-                        special: true,
+                        content: (x.into()),
+                        single_word: (false),
+                        lstrip: (false),
+                        rstrip: (false),
+                        normalized: (true),
+                        special: (true),
                     })
                     .collect(),
             );
@@ -83,7 +83,7 @@ impl RTrainerBPE {
         if let NotNull(limit_alphabet) = limit_alphabet {
             trainer = trainer.limit_alphabet(limit_alphabet as usize);
         }
-        if let NotNull(initial_alphabet) = initial_alphabet {
+        if let NotNull(_initial_alphabet) = initial_alphabet {
             panic!("Cant'");
             //trainer = trainer.initial_alphabet(initial_alphabet);
         }
@@ -98,7 +98,7 @@ impl RTrainerBPE {
         }
 
         RTrainerBPE {
-            trainer: trainer.build(),
+            trainer: (trainer.build()),
         }
     }
 }
@@ -134,12 +134,12 @@ impl RTrainerWordPiece {
                 special_tokens
                     .iter()
                     .map(|x| AddedToken {
-                        content: x.into(),
-                        single_word: false,
-                        lstrip: false,
-                        rstrip: false,
-                        normalized: true,
-                        special: true,
+                        content: (x.into()),
+                        single_word: (false),
+                        lstrip: (false),
+                        rstrip: (false),
+                        normalized: (true),
+                        special: (true),
                     })
                     .collect(),
             );
@@ -147,7 +147,7 @@ impl RTrainerWordPiece {
         if let NotNull(limit_alphabet) = limit_alphabet {
             trainer = trainer.limit_alphabet(limit_alphabet as usize);
         }
-        if let NotNull(initial_alphabet) = initial_alphabet {
+        if let NotNull(_initial_alphabet) = initial_alphabet {
             panic!("Cant'");
             //trainer = trainer.initial_alphabet(initial_alphabet);
         }
@@ -159,7 +159,7 @@ impl RTrainerWordPiece {
         }
 
         RTrainerWordPiece {
-            trainer: trainer.build(),
+            trainer: (trainer.build()),
         }
     }
 }
@@ -193,17 +193,17 @@ impl RTrainerUnigram {
                 special_tokens
                     .iter()
                     .map(|x| AddedToken {
-                        content: x.into(),
-                        single_word: false,
-                        lstrip: false,
-                        rstrip: false,
-                        normalized: true,
-                        special: true,
+                        content: (x.into()),
+                        single_word: (false),
+                        lstrip: (false),
+                        rstrip: (false),
+                        normalized: (true),
+                        special: (true),
                     })
                     .collect(),
             );
         }
-        if let NotNull(initial_alphabet) = initial_alphabet {
+        if let NotNull(_initial_alphabet) = initial_alphabet {
             panic!("Cant'");
             //trainer = trainer.initial_alphabet(initial_alphabet);
         }
@@ -215,7 +215,7 @@ impl RTrainerUnigram {
         trainer.n_sub_iterations(n_sub_iterations as u32);
 
         RTrainerUnigram {
-            trainer: trainer.build().unwrap(),
+            trainer: (trainer.build().unwrap()),
         }
     }
 }
