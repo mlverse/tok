@@ -20,7 +20,7 @@ jobs:
         config:
           - {os: windows-latest, r: 'release', rust-version: 'stable-msvc'}
           - {os: macOS-latest,   r: 'release', rust-version: 'stable'}
-          - {os: ubuntu-latest,  r: 'release', rust-version: '1.63.0'}
+          - {os: ubuntu-latest,  r: 'release', rust-version: '1.69.0'}
           - {os: ubuntu-latest,  r: 'devel', rust-version: 'stable'}
 
     env:
