@@ -106,23 +106,14 @@ impl RTokenizer {
             .map(|x: tk::Encoding| Robj::from(R6REncoding(REncoding(x))))
             .collect()
     }
-    pub fn decode_batch(&self, ids: Robj, skip_special_tokens: bool) -> Vec<String> {
-        let u32_ids: Vec<Vec<u32>> = if let Some(x) = ids.as_list() {
-            x.into_iter()
-                .map(|(_, v)| {
-                    v.as_integer_vector()
-                        .unwrap()
-                        .into_iter()
-                        .map(|x| x as u32)
-                        .collect()
-                })
-                .collect()
-        } else {
-            panic!("Input must be a list of integer vectors")
-        };
-
+    pub fn decode_batch(&self, ids: List, skip_special_tokens: bool) -> Vec<String> {
+        // work around https://github.com/extendr/extendr/pull/782
+        let mut u32_ids: Vec<Vec<u32>> = Vec::with_capacity(ids.len());
+        for i in 0..ids.len() {
+            let value = ids[i].as_integer_slice().unwrap().iter().map(|x| *x as u32).collect::<Vec<u32>>();
+            u32_ids.push(value);
+        }
         let slices = u32_ids.iter().map(|v| &v[..]).collect::<Vec<&[u32]>>();
-
         self.0.decode_batch(&slices, skip_special_tokens).unwrap()
     }
     pub fn set_pre_tokenizer(&mut self, pre_tokenizer: &RPreTokenizer) {
