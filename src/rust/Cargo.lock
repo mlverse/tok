@@ -608,6 +608,7 @@ name = "tok"
 version = "0.3.0"
 dependencies = [
  "extendr-api",
+ "regex",
  "tokenizers",
 ]
 

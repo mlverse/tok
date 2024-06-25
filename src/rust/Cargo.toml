@@ -10,3 +10,4 @@ name = 'tok'
 [dependencies]
 extendr-api = {version = "0.6.0"}
 tokenizers = {version = '0.13.3', features = ["onig", "esaxx_fast", "progressbar"], default-features = false}
+regex = {version = "1.9.6"}
