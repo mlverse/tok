@@ -8,6 +8,7 @@ crate-type = [ 'staticlib' ]
 name = 'tok'
 
 [dependencies]
-extendr-api = {version = "0.6.0"}
+extendr-api = {git = "https://github.com/extendr/extendr"}
 tokenizers = {version = '0.13.3', features = ["onig", "esaxx_fast", "progressbar"], default-features = false}
 regex = {version = "1.9.6"}
+anyhow = "1.0"

@@ -4,6 +4,7 @@ use crate::normalizers::RNormalizer;
 use crate::post_processors::RPostProcessor;
 use crate::pre_tokenizers::RPreTokenizer;
 use crate::trainers::RTrainer;
+use anyhow::anyhow;
 use extendr_api::prelude::*;
 use std::borrow::Cow;
 use tk::{EncodeInput, InputSequence};
@@ -289,8 +290,9 @@ impl From<R6Decoder> for Robj {
 }
 
 pub struct RPaddingParams(tk::PaddingParams);
-impl<'a> FromRobj<'a> for RPaddingParams {
-    fn from_robj(robj: &'a Robj) -> std::result::Result<Self, &'static str> {
+impl TryFrom<Robj> for RPaddingParams {
+    type Error = anyhow::Error;
+    fn try_from(robj: Robj) -> anyhow::Result<Self> {
         if let Some(val) = robj.as_list() {
             let mut params = tk::PaddingParams::default();
             for (key, value) in val {
@@ -299,7 +301,7 @@ impl<'a> FromRobj<'a> for RPaddingParams {
                         params.direction = match value.as_str() {
                             Some("left") => tk::PaddingDirection::Left,
                             Some("right") => tk::PaddingDirection::Right,
-                            _ => return Err("Invalid padding direction"),
+                            _ => return Err(anyhow!("Invalid padding direction")),
                         }
                     }
                     "pad_to_multiple_of" => {
@@ -321,12 +323,12 @@ impl<'a> FromRobj<'a> for RPaddingParams {
                             params.strategy = tk::PaddingStrategy::BatchLongest;
                         }
                     }
-                    _ => return Err("Invalid padding parameter"),
+                    _ => return Err(anyhow!("Invalid padding parameter")),
                 }
             }
             Ok(RPaddingParams(params))
         } else {
-            return Err("Expected a named list.");
+            return Err(anyhow!("Expected a named list."));
         }
     }
 }
@@ -350,8 +352,9 @@ impl From<RPaddingParams> for Robj {
 
 pub struct RTruncationParams(tk::TruncationParams);
 
-impl<'a> FromRobj<'a> for RTruncationParams {
-    fn from_robj(robj: &'a Robj) -> std::result::Result<Self, &'static str> {
+impl TryFrom<Robj> for RTruncationParams {
+    type Error = anyhow::Error;
+    fn try_from(robj: Robj) -> anyhow::Result<Self> {
         if let Some(val) = robj.as_list() {
             let mut params = tk::TruncationParams::default();
             for (key, value) in val {
@@ -365,7 +368,7 @@ impl<'a> FromRobj<'a> for RTruncationParams {
                         "only_first" => tk::TruncationStrategy::OnlyFirst,
                         "only_second" => tk::TruncationStrategy::OnlySecond,
                         _ => {
-                            return Err("Unknown strategy. Use one of `longest_first`, `only_first` or `only_second`.")
+                            return Err(anyhow!("Unknown strategy. Use one of `longest_first`, `only_first` or `only_second`."))
                         }
                     };
                     }
@@ -374,15 +377,15 @@ impl<'a> FromRobj<'a> for RTruncationParams {
                         params.direction = match value {
                             "left" => tk::TruncationDirection::Left,
                             "right" => tk::TruncationDirection::Right,
-                            _ => return Err("Unknown direction"),
+                            _ => return Err(anyhow!("Unknown direction")),
                         };
                     }
-                    _ => return Err("Invalid truncation parameter"),
+                    _ => return Err(anyhow!("Invalid truncation parameter")),
                 }
             }
             Ok(RTruncationParams(params))
         } else {
-            return Err("Expected a named list.");
+            return Err(anyhow!("Expected a named list."));
         }
     }
 }
