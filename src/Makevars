@@ -5,8 +5,7 @@ STATLIB = $(LIBDIR)/libtok.a
 PKG_LIBS = -L$(LIBDIR) -ltok
 CARGOTMP = $(CURDIR)/.cargo
 
-.PHONY: patch
-all: C_clean patch
+all: C_clean
 $(SHLIB): $(STATLIB)
 
 $(STATLIB):
@@ -23,7 +22,13 @@ $(STATLIB):
 		if [ "$(NOT_CRAN)" != "true" ]; then \
  			export CARGO_HOME=$(CARGOTMP); \
 		fi && \
-		cargo build --lib --release --offline --config rust/config/cargo-config.toml --manifest-path=./rust/Cargo.toml --target-dir $(TARGET_DIR) -j 2
+		cargo build --lib --release --offline --config rust/config/cargo-config.toml --manifest-path=./rust/Cargo.toml --target-dir $(TARGET_DIR)
+
+	# we clean headers to avoid a message like
+	# Found the following sources/headers with CR or CRLF line endings:
+    # src/rust/vendor/clang-sys/tests/header.h
+	@echo "*** Cleaning headers"
+	"${R_HOME}/bin${R_ARCH_BIN}/Rscript" "../tools/patch.R"
 		
 	if [ "$(NOT_CRAN)" != "true" ]; then \
 		rm -Rf $(CARGOTMP) && \
@@ -35,8 +40,4 @@ C_clean:
 
 clean:
 	rm -Rf $(SHLIB) $(STATLIB) $(OBJECTS) rust/target
-
-patch: $(STATLIB)
-	@echo "*** Cleaning headers"
-	"${R_HOME}/bin${R_ARCH_BIN}/Rscript" "../tools/patch.R"
 	

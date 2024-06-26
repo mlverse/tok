@@ -1,5 +1,6 @@
 use extendr_api::prelude::*;
 use extendr_api::Error;
+use extendr_api::Robj;
 use tk::models::bpe::BPE;
 use tk::models::ModelWrapper;
 use tokenizers as tk;
@@ -90,7 +91,7 @@ impl RModelBPE {
         }
 
         RModelBPE {
-            model: bpe.build().unwrap(),
+            model: (bpe.build().unwrap()),
         }
     }
 }
@@ -121,7 +122,7 @@ impl RModelWordPiece {
         }
 
         RModelWordPiece {
-            model: wordpiece.build().unwrap(),
+            model: (wordpiece.build().unwrap()),
         }
     }
 }
@@ -144,18 +145,19 @@ impl RModelUnigram {
             }
         };
 
-        RModelUnigram { model: model }
+        RModelUnigram { model: (model) }
     }
 }
 
 struct RUnigramVocab(Vec<(String, f64)>);
-impl<'a> FromRobj<'a> for RUnigramVocab {
-    fn from_robj(robj: &Robj) -> std::result::Result<Self, &'static str> {
+impl TryFrom<Robj> for RUnigramVocab {
+    type Error = Error;
+    fn try_from(robj: Robj) -> std::result::Result<Self, Self::Error> {
         if let Some(val) = robj.as_list() {
             let mut vocab = Vec::new();
             for (key, value) in val {
                 let key = String::from(key);
-                let value = value.as_real().ok_or("List items must be numeric values")? as f64;
+                let value = value.as_real().ok_or(Error::Other("List items must be numeric values".to_string()))? as f64;
                 vocab.push((key, value));
             }
             Ok(RUnigramVocab(vocab))
@@ -169,53 +171,55 @@ impl<'a> FromRobj<'a> for RUnigramVocab {
             }
             Ok(RUnigramVocab(vocab))
         } else {
-            Err("Expected a named list.".into())
+            Err(Error::Other("Expected a named list.".to_string()))
         }
     }
 }
 
 struct RVocab(tk::models::bpe::Vocab);
 
-impl<'a> FromRobj<'a> for RVocab {
-    fn from_robj(robj: &'a Robj) -> std::result::Result<Self, &'static str> {
+impl TryFrom<Robj> for RVocab {
+    type Error = Error;
+    fn try_from(robj: Robj) -> std::result::Result<Self, Self::Error> {
         if let Some(val) = robj.as_list() {
             let mut vocab = tk::models::bpe::Vocab::default();
             for (key, value) in val {
                 let key = String::from(key);
                 let value = value
                     .as_integer()
-                    .ok_or("List items must be integer values")? as u32;
+                    .ok_or(Error::Other("List items must be integer values".to_string()))? as u32;
                 vocab.insert(key, value);
             }
             Ok(RVocab(vocab))
         } else {
-            return Err("Expected a named list.");
+            return Err(Error::ExpectedList(robj));
         }
     }
 }
 
 struct RMerges(tk::models::bpe::Merges);
 
-impl<'a> FromRobj<'a> for RMerges {
-    fn from_robj(robj: &'a Robj) -> std::result::Result<Self, &'static str> {
+impl TryFrom<Robj> for RMerges {
+    type Error = Error;
+    fn try_from(robj: Robj) -> std::result::Result<Self, Self::Error> {
         if let Some(val) = robj.as_list() {
             let mut merges = tk::models::bpe::Merges::default();
             for (_, value) in val {
                 // values must be a length 2 R list
                 if let Some(item) = value.as_list() {
                     if item.len() != 2 {
-                        return Err("Expected a list of length 2");
+                        return Err(Error::Other("Expected a list of length 2".to_string()));
                     }
-                    let first = item[0].as_str().ok_or("List items must be string values")?;
-                    let second = item[1].as_str().ok_or("List items must be string values")?;
+                    let first = item[0].as_str().ok_or(Error::Other("List items must be string values".to_string()))?;
+                    let second = item[1].as_str().ok_or(Error::Other("List items must be string values".to_string()))?;
                     merges.push((first.to_string(), second.to_string()));
                 } else {
-                    return Err("Expected a list");
+                    return Err(Error::Other("Expected a list".to_string()));
                 }
             }
             Ok(RMerges(merges))
         } else {
-            return Err("Expected a list.");
+            return Err(Error::Other("Expected a list.".to_string()));
         }
     }
 }
