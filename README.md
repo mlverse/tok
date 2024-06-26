@@ -7,6 +7,9 @@
 
 [![R build
 status](https://github.com/mlverse/tok/workflows/R-CMD-check/badge.svg)](https://github.com/mlverse/tok/actions)
+[![CRAN
+status](https://www.r-pkg.org/badges/version/tok)](https://CRAN.R-project.org/package=tok)
+[![](https://cranlogs.r-pkg.org/badges/tok)](https://cran.r-project.org/package=tok)
 <!-- badges: end -->
 
 tok provides bindings to the
