@@ -5,6 +5,5 @@ files <- list.files(
   full.names = TRUE, 
   include.dirs = FALSE
 )
-for (f in files) {
-  write("\n", file = f, append = TRUE)
-}
+
+file.remove(files)
