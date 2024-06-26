@@ -6,6 +6,7 @@
 - Implemented support for configuring padding and truncation. (#9)
 - Added support for decoders, post_processors and normalizers. (#10)
 - Added support for `get_vocab_size()`. (#10)
+- Updated extendr version to avoid non-API function calls. (#11)
 
 # tok 0.1.1
 
