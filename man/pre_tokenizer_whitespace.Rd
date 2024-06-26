@@ -10,8 +10,8 @@ This pre-tokenizer simply splits using the following regex: \verb{\\w+|[^\\w\\s]
 }
 \seealso{
 Other pre_tokenizer: 
-\code{\link{pre_tokenizer_byte_level}},
-\code{\link{pre_tokenizer}}
+\code{\link{pre_tokenizer}},
+\code{\link{pre_tokenizer_byte_level}}
 }
 \concept{pre_tokenizer}
 \section{Super class}{

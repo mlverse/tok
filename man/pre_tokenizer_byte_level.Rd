@@ -14,8 +14,8 @@ a corresponding representation, as well as splitting into words.
 }
 \seealso{
 Other pre_tokenizer: 
-\code{\link{pre_tokenizer_whitespace}},
-\code{\link{pre_tokenizer}}
+\code{\link{pre_tokenizer}},
+\code{\link{pre_tokenizer_whitespace}}
 }
 \concept{pre_tokenizer}
 \section{Super class}{
