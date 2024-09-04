@@ -1,6 +1,6 @@
 Package: tok
 Title: Fast Text Tokenization
-Version: 0.1.4
+Version: 0.1.4.9000
 Authors@R: c(
     person("Daniel", "Falbel", , "daniel@posit.co", c("aut", "cre")),
     person(family = "Posit", role = c("cph"))
