@@ -1,0 +1,31 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: tok 0.1.4.9000\n"
+"POT-Creation-Date: 2024-09-04 19:29+0200\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: encoding.R:29
+msgid "Expected class {.cls REncoding} but got {.cls {class(encoding)}}."
+msgstr ""
+
+#: tokenizer.R:86 tokenizer.R:97
+msgid "This is a static method. Not available for tokenizers instances."
+msgstr ""
+
+#: tokenizer.R:107
+msgid "{.arg trainer} must inherit from {.cls tok_trainer}."
+msgstr ""
+
+#: tokenizer.R:230
+msgid "Can't be set this way, use {.fn enable_padding}."
+msgstr ""
+
+#: tokenizer.R:238
+msgid "Can't be set this way, use {.fn enable_truncation}."
+msgstr ""
