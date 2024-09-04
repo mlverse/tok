@@ -1,5 +1,8 @@
 # tok (development version)
 
+- Updated libR-sys to fix mac oldrel notes. (#18)
+- Report rust version during compilation.
+
 # tok 0.1.3
 
 # tok 0.1.2
