@@ -1,3 +1,1 @@
-## R CMD check results
-
-- Fixed vendoring of Rust dependencies.
+Report the rust version before starting compilation as requested.
