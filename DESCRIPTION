@@ -3,6 +3,7 @@ Title: Fast Text Tokenization
 Version: 0.1.4.9000
 Authors@R: c(
     person("Daniel", "Falbel", , "daniel@posit.co", c("aut", "cre")),
+    person("Regouby", "christophe", , "christophe.regouby@free.fr", c("ctb")),
     person(family = "Posit", role = c("cph"))
   )
 Description:
@@ -14,7 +15,7 @@ License: MIT + file LICENSE
 SystemRequirements: Rust tool chain w/ cargo, libclang/llvm-config
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
-RoxygenNote: 7.3.1
+RoxygenNote: 7.3.2
 Depends:
     R (>= 4.2.0)
 Imports:
