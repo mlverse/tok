@@ -6,10 +6,9 @@ test_that("R-level cli_abort messages are correctly translated in FR", {
       withr::with_language(lang = "fr",
                            expect_error(
                              tok$train(temp_json, temp_json),
-                            regexp = "doit hériter de",
-                            fixed = TRUE
-                          )
-      )
+                             regexp = "doit hériter de",
+                             fixed = TRUE
+                           ))
     })
   })
   

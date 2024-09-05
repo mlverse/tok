@@ -3,7 +3,7 @@ Title: Fast Text Tokenization
 Version: 0.1.4.9000
 Authors@R: c(
     person("Daniel", "Falbel", , "daniel@posit.co", c("aut", "cre")),
-    person("Regouby", "christophe", , "christophe.regouby@free.fr", c("ctb")),
+    person("Regouby", "Christophe", , "christophe.regouby@free.fr", c("ctb")),
     person(family = "Posit", role = c("cph"))
   )
 Description:
