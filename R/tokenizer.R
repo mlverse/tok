@@ -83,7 +83,7 @@ tokenizer <- R6::R6Class(
     #' the tokenizer.
     #' @param path Path to tokenizer.json file
     from_file = function(path) {
-      cli::cli_abort("This is a static method. Not available for tokenizers instances.")
+      cli::cli_abort(gettext("This is a static method. Not available for tokenizers instances."))
     },
     
     #' @description 
@@ -94,7 +94,7 @@ tokenizer <- R6::R6Class(
     #' @param auth_token An optional auth token used to access private repositories 
     #'    on the Hugging Face Hub
     from_pretrained = function(identifier, revision = "main", auth_token = NULL) {
-      cli::cli_abort("This is a static method. Not available for tokenizers instances.")
+      cli::cli_abort(gettext("This is a static method. Not available for tokenizers instances."))
     },
     
     #' @description
@@ -104,7 +104,7 @@ tokenizer <- R6::R6Class(
     #' @param files character vector of file paths.
     train = function(files, trainer) {
       if (!inherits(trainer, "tok_trainer"))
-        cli::cli_abort("{.arg trainer} must inherit from {.cls tok_trainer}.")
+        cli::cli_abort(gettext("{.arg trainer} must inherit from {.cls tok_trainer}."))
       
       self$.tokenizer$train_from_files(trainer$.trainer, normalizePath(files))
     },
@@ -227,7 +227,7 @@ tokenizer <- R6::R6Class(
     #' @field padding Gets padding configuration
     padding = function(x) {
       if (!missing(x)) {
-        cli::cli_abort("Can't be set this way, use {.fn enable_padding}.")
+        cli::cli_abort(gettext("Can't be set this way, use {.fn enable_padding}."))
       }
       
       self$.tokenizer$get_padding()
@@ -235,7 +235,7 @@ tokenizer <- R6::R6Class(
     #' @field truncation Gets truncation configuration
     truncation = function(x) {
       if (!missing(x)) {
-        cli::cli_abort("Can't be set this way, use {.fn enable_truncation}.")
+        cli::cli_abort(gettext("Can't be set this way, use {.fn enable_truncation}."))
       }
       
       self$.tokenizer$get_truncation()

@@ -26,7 +26,7 @@ encoding <- R6::R6Class(
       if (inherits(encoding, "REncoding")) {
         self$.encoding <- encoding
       } else {
-        cli::cli_abort("Expected class {.cls REncoding} but got {.cls {class(encoding)}}.")
+        cli::cli_abort(gettext("Expected class {.cls REncoding} but got {.cls {class(encoding)}}."))
       }
     }  
   ),
