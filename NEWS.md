@@ -1,5 +1,7 @@
 # tok (development version)
 
+- add message translation in FR (#19, @cregouby)
+
 # tok 0.1.4
 
 - Updated libR-sys to fix mac oldrel notes. (#18)
