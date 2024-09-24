@@ -1,4 +1,4 @@
-# tok (development version)
+# tok 0.1.5
 
 - add message translation in FR (#19, @cregouby)
 
