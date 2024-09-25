@@ -13,8 +13,6 @@ $(STATLIB):
 	# to set it here to ensure cargo can be invoked. It is appended to PATH and
 	# therefore is only used if cargo is absent from the user's PATH.
 
-	
-	
 	if [ "$(VENDORING)" = "yes" ]; then \
 		$(TAR) --extract --xz -f ./rust/vendor.tar.xz -C ./rust && \
 	    mkdir -p ./rust/.cargo; \
@@ -25,7 +23,7 @@ $(STATLIB):
  			export CARGO_HOME=$(CARGOTMP); \
 		fi && \
 		echo "*** Rust version: $$(rustc --version)" && \
-		cargo build --lib --release --offline --config rust/config/cargo-config.toml --manifest-path=./rust/Cargo.toml --target-dir $(TARGET_DIR) --jobs 1
+		cargo build --lib --release --offline --config rust/config/cargo-config.toml --manifest-path=./rust/Cargo.toml --target-dir $(TARGET_DIR)
 
 	# we clean headers to avoid a message like
 	# Found the following sources/headers with CR or CRLF line endings:
