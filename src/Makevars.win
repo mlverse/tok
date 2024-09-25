@@ -1,4 +1,5 @@
 TARGET = $(subst 64,x86_64,$(subst 32,i686,$(WIN)))-pc-windows-gnu
+VENDORING = yes
 
 TARGET_DIR = ./rust/target
 LIBDIR = $(TARGET_DIR)/$(TARGET)/release
@@ -23,8 +24,6 @@ $(STATLIB):
 	if [ "$(VENDORING)" = "yes" ]; then \
 		$(TAR) --extract --xz -f ./rust/vendor.tar.xz -C ./rust; \
 	fi
-
-	@echo "*** Extracted vendored files ${ls rust}"
 	
 	# CARGO_LINKER is provided in Makevars.ucrt for R >= 4.2
 	export CARGO_TARGET_X86_64_PC_WINDOWS_GNU_LINKER="$(CARGO_LINKER)" && \
