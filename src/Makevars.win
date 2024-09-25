@@ -21,7 +21,7 @@ $(STATLIB):
 	touch $(TARGET_DIR)/libgcc_mock/libgcc_eh.a
 
 	if [ "$(VENDORING)" = "yes" ]; then \
-		$(TAR) --extract --xz -f ./rust/vendor.tar.xz -C ./rust \
+		$(TAR) --extract --xz -f ./rust/vendor.tar.xz -C ./rust; \
 	fi
 	
 	# CARGO_LINKER is provided in Makevars.ucrt for R >= 4.2
