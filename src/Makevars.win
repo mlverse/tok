@@ -1,4 +1,5 @@
 TARGET = $(subst 64,x86_64,$(subst 32,i686,$(WIN)))-pc-windows-gnu
+VENDORING = yes
 
 TARGET_DIR = ./rust/target
 LIBDIR = $(TARGET_DIR)/$(TARGET)/release
@@ -19,6 +20,10 @@ $(STATLIB):
 	# For more details, please refer to
 	# https://github.com/r-windows/rtools-packages/blob/2407b23f1e0925bbb20a4162c963600105236318/mingw-w64-gcc/PKGBUILD#L313-L316
 	touch $(TARGET_DIR)/libgcc_mock/libgcc_eh.a
+
+	if [ "$(VENDORING)" = "yes" ]; then \
+		$(TAR) --extract --xz -f ./rust/vendor.tar.xz -C ./rust; \
+	fi
 	
 	# CARGO_LINKER is provided in Makevars.ucrt for R >= 4.2
 	export CARGO_TARGET_X86_64_PC_WINDOWS_GNU_LINKER="$(CARGO_LINKER)" && \
@@ -26,7 +31,14 @@ $(STATLIB):
 		if [ "$(NOT_CRAN)" != "true" ]; then \
  			export CARGO_HOME=$(CARGOTMP); \
 		fi && \
-		cargo build --target=$(TARGET) --lib --release --manifest-path=./rust/Cargo.toml --target-dir $(TARGET_DIR)
+		echo "*** Rust version: $$(rustc --version)" && \
+		cargo build --target=$(TARGET) --lib --release --offline --config rust/config/cargo-config.toml --manifest-path=./rust/Cargo.toml --target-dir $(TARGET_DIR)
+	
+	# we clean headers to avoid a message like
+	# Found the following sources/headers with CR or CRLF line endings:
+    # src/rust/vendor/clang-sys/tests/header.h
+	@echo "*** Cleaning headers"
+	"${R_HOME}/bin${R_ARCH_BIN}/Rscript" "../tools/patch.R"
 		
 	if [ "$(NOT_CRAN)" != "true" ]; then \
  		rm -Rf $(CARGOTMP) && \
