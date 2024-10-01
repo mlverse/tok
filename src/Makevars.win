@@ -23,8 +23,7 @@ $(STATLIB):
 
 	if [ "$(VENDORING)" = "yes" ]; then \
 		$(TAR) --extract --xz -f ./rust/vendor.tar.xz -C ./rust; \
-	fi && \
-	ls ./rust
+	fi
 	
 	# CARGO_LINKER is provided in Makevars.ucrt for R >= 4.2
 	export CARGO_TARGET_X86_64_PC_WINDOWS_GNU_LINKER="$(CARGO_LINKER)" && \
