@@ -33,7 +33,7 @@ $(STATLIB):
  			export CARGO_HOME=$(CARGOTMP); \
 		fi && \
 		echo "*** Rust version: $$(rustc --version)" && \
-		cargo build --lib --release --offline --config rust/config/cargo-config.toml --manifest-path=./rust/Cargo.toml --target-dir $(TARGET_DIR)
+		cargo build --target=$(TARGET) --lib --release --offline --config rust/config/cargo-config.toml --manifest-path=./rust/Cargo.toml --target-dir $(TARGET_DIR)
 	
 	# we clean headers to avoid a message like
 	# Found the following sources/headers with CR or CRLF line endings:
