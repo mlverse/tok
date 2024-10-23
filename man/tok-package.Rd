@@ -21,6 +21,7 @@ Useful links:
 
 Other contributors:
 \itemize{
+  \item Regouby Christophe \email{christophe.regouby@free.fr} [contributor]
   \item  Posit [copyright holder]
 }
 
