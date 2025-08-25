@@ -46,7 +46,7 @@ pub struct RTrainerBPE {
 impl RTrainerBPE {
     pub fn new(
         vocab_size: Nullable<i32>,
-        min_frequency: Nullable<u32>,
+        min_frequency: Nullable<u64>,
         show_progress: Nullable<bool>,
         special_tokens: Nullable<Vec<String>>,
         limit_alphabet: Nullable<i32>,
@@ -111,7 +111,7 @@ pub struct RTrainerWordPiece {
 impl RTrainerWordPiece {
     pub fn new(
         vocab_size: Nullable<i32>,
-        min_frequency: Nullable<u32>,
+        min_frequency: Nullable<u64>,
         show_progress: Nullable<bool>,
         special_tokens: Nullable<Vec<String>>,
         limit_alphabet: Nullable<i32>,

@@ -9,4 +9,4 @@ name = 'tok'
 
 [dependencies]
 extendr-api = {git = "https://github.com/extendr/extendr"}
-tokenizers = {version = '0.13.3', features = ["onig", "esaxx_fast", "progressbar"], default-features = false}
+tokenizers = {version = '0.21.4', features = ["onig", "esaxx_fast", "progressbar"], default-features = false}
