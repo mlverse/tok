@@ -117,7 +117,7 @@ impl RTokenizer {
         self.0.decode_batch(&slices, skip_special_tokens).unwrap()
     }
     pub fn set_pre_tokenizer(&mut self, pre_tokenizer: &RPreTokenizer) {
-        self.0.with_pre_tokenizer(pre_tokenizer.0.clone());
+        self.0.with_pre_tokenizer(Some(pre_tokenizer.0.clone()));
     }
     pub fn get_pre_tokenizer(&self) -> Nullable<R6PreTokenizer> {
         if let Some(pre_tokenizer) = self.0.get_pre_tokenizer() {
@@ -128,7 +128,7 @@ impl RTokenizer {
         }
     }
     pub fn set_post_processor(&mut self, post_processors: &RPostProcessor) {
-        self.0.with_post_processor(post_processors.0.clone());
+        self.0.with_post_processor(Some(post_processors.0.clone()));
     }
     pub fn get_post_processor(&self) -> Nullable<R6PostProcessor> {
         if let Some(post_processor) = self.0.get_post_processor() {
@@ -139,7 +139,7 @@ impl RTokenizer {
         }
     }
     pub fn set_normalizer(&mut self, normalizer: &RNormalizer) {
-        self.0.with_normalizer(normalizer.0.clone());
+        self.0.with_normalizer(Some(normalizer.0.clone()));
     }
     pub fn get_normalizer(&self) -> Nullable<R6Normalizer> {
         if let Some(normalizer) = self.0.get_normalizer() {
@@ -150,7 +150,7 @@ impl RTokenizer {
         }
     }
     pub fn set_decoder(&mut self, decoder: &RDecoder) {
-        self.0.with_decoder(decoder.0.clone());
+        self.0.with_decoder(Some(decoder.0.clone()));
     }
     pub fn get_decoder(&self) -> Nullable<R6Decoder> {
         if let Some(decoder) = self.0.get_decoder() {
