@@ -5,6 +5,7 @@ use tk::models::bpe::BPE;
 use tk::models::ModelWrapper;
 use tokenizers as tk;
 
+#[extendr]
 pub struct RModel {
     pub model: ModelWrapper,
 }
@@ -13,32 +14,27 @@ pub struct RModel {
 impl RModel {
     pub fn new(model: Robj) -> extendr_api::Result<Self> {
         if model.inherits("RModelBPE") {
-            unsafe {
-                let ptr = model.external_ptr_addr() as *mut RModelBPE;
-                Ok(RModel {
-                    model: (*ptr).model.clone().into(),
-                })
-            }
+            let model = <&RModelBPE>::try_from(&model)?;
+            Ok(RModel {
+                model: model.model.clone().into(),
+            })
         } else if model.inherits("RModelWordPiece") {
-            unsafe {
-                let ptr = model.external_ptr_addr() as *mut RModelWordPiece;
-                Ok(RModel {
-                    model: (*ptr).model.clone().into(),
-                })
-            }
+            let model = <&RModelWordPiece>::try_from(&model)?;
+            Ok(RModel {
+                model: model.model.clone().into(),
+            })
         } else if model.inherits("RModelUnigram") {
-            unsafe {
-                let ptr = model.external_ptr_addr() as *mut RModelUnigram;
-                Ok(RModel {
-                    model: (*ptr).model.clone().into(),
-                })
-            }
+            let model = <&RModelUnigram>::try_from(&model)?;
+            Ok(RModel {
+                model: model.model.clone().into(),
+            })
         } else {
             Err(Error::EvalError("Model not supported".into()))
         }
     }
 }
 
+#[extendr]
 struct RModelBPE {
     pub model: BPE,
 }
@@ -96,6 +92,7 @@ impl RModelBPE {
     }
 }
 
+#[extendr]
 struct RModelWordPiece {
     pub model: tk::models::wordpiece::WordPiece,
 }
@@ -127,6 +124,7 @@ impl RModelWordPiece {
     }
 }
 
+#[extendr]
 struct RModelUnigram {
     pub model: tk::models::unigram::Unigram,
 }

@@ -4,6 +4,7 @@ use tk::models::TrainerWrapper;
 use tk::AddedToken;
 use tokenizers as tk;
 
+#[extendr]
 pub struct RTrainer {
     pub trainer: TrainerWrapper,
 }
@@ -12,32 +13,24 @@ pub struct RTrainer {
 impl RTrainer {
     pub fn new(trainer: Robj) -> Result<Self> {
         if trainer.inherits("RTrainerBPE") {
-            unsafe {
-                let ptr = trainer.external_ptr_addr() as *mut RTrainerBPE;
-                Ok(RTrainer {
-                    trainer: (*ptr).trainer.clone().into(),
-                })
-            }
+            Ok(RTrainer{
+                trainer: <&RTrainerBPE>::try_from(&trainer)?.trainer.clone().into()
+            })
         } else if trainer.inherits("RTrainerWordPiece") {
-            unsafe {
-                let ptr = trainer.external_ptr_addr() as *mut RTrainerWordPiece;
-                Ok(RTrainer {
-                    trainer: (*ptr).trainer.clone().into(),
-                })
-            }
+            Ok(RTrainer{
+                trainer: <&RTrainerWordPiece>::try_from(&trainer)?.trainer.clone().into()
+            })
         } else if trainer.inherits("RTrainerUnigram") {
-            unsafe {
-                let ptr = trainer.external_ptr_addr() as *mut RTrainerUnigram;
-                Ok(RTrainer {
-                    trainer: (*ptr).trainer.clone().into(),
-                })
-            }
+            Ok(RTrainer{
+                trainer: <&RTrainerUnigram>::try_from(&trainer)?.trainer.clone().into()
+            })
         } else {
             Err(Error::EvalError("Model not supported".into()))
         }
     }
 }
 
+#[extendr]
 pub struct RTrainerBPE {
     pub trainer: BpeTrainer,
 }
@@ -103,6 +96,7 @@ impl RTrainerBPE {
     }
 }
 
+#[extendr]
 pub struct RTrainerWordPiece {
     pub trainer: tk::models::wordpiece::WordPieceTrainer,
 }
@@ -164,6 +158,7 @@ impl RTrainerWordPiece {
     }
 }
 
+#[extendr]
 struct RTrainerUnigram {
     trainer: tokenizers::models::unigram::UnigramTrainer,
 }

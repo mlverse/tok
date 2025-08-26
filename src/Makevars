@@ -1,44 +1,42 @@
-VENDORING = yes
 TARGET_DIR = ./rust/target
-LIBDIR = $(TARGET_DIR)/release
+LIBDIR = $(TARGET_DIR)/debug
 STATLIB = $(LIBDIR)/libtok.a
 PKG_LIBS = -L$(LIBDIR) -ltok
-CARGOTMP = $(CURDIR)/.cargo
 
-all: C_clean
+all: $(SHLIB) rust_clean
+
+.PHONY: $(STATLIB)
+
 $(SHLIB): $(STATLIB)
 
+CARGOTMP = $(CURDIR)/.cargo
+VENDOR_DIR = $(CURDIR)/vendor
+
+
+# RUSTFLAGS appends --print=native-static-libs to ensure that 
+# the correct linkers are used. Use this for debugging if need. 
+#
+# CRAN note: Cargo and Rustc versions are reported during
+# configure via tools/msrv.R.
+#
+# vendor.tar.xz, if present, is unzipped and used for offline compilation.
 $(STATLIB):
-	# In some environments, ~/.cargo/bin might not be included in PATH, so we need
-	# to set it here to ensure cargo can be invoked. It is appended to PATH and
-	# therefore is only used if cargo is absent from the user's PATH.
 
-	if [ "$(VENDORING)" = "yes" ]; then \
-		$(TAR) --extract --xz -f ./rust/vendor.tar.xz -C ./rust && \
-	    mkdir -p ./rust/.cargo; \
+	if [ -f ./rust/vendor.tar.xz ]; then \
+		tar xf rust/vendor.tar.xz && \
+		mkdir -p $(CARGOTMP) && \
+		cp rust/vendor-config.toml $(CARGOTMP)/config.toml; \
 	fi
-	
+
+	export CARGO_HOME=$(CARGOTMP) && \
 	export PATH="$(PATH):$(HOME)/.cargo/bin" && \
-		if [ "$(NOT_CRAN)" != "true" ]; then \
- 			export CARGO_HOME=$(CARGOTMP); \
-		fi && \
-		echo "*** Rust version: $$(rustc --version)" && \
-		cargo build --lib --release --offline --config rust/config/cargo-config.toml --manifest-path=./rust/Cargo.toml --target-dir $(TARGET_DIR) --jobs 1
+	RUSTFLAGS="$(RUSTFLAGS) --print=native-static-libs" cargo build  --lib  --manifest-path=./rust/Cargo.toml --target-dir $(TARGET_DIR) 
 
-	# we clean headers to avoid a message like
-	# Found the following sources/headers with CR or CRLF line endings:
-    # src/rust/vendor/clang-sys/tests/header.h
-	@echo "*** Cleaning headers"
-	"${R_HOME}/bin${R_ARCH_BIN}/Rscript" "../tools/patch.R"
-		
-	if [ "$(NOT_CRAN)" != "true" ]; then \
-		rm -Rf $(CARGOTMP) && \
-		rm -Rf $(LIBDIR)/build; \
-	fi
-		
-C_clean:
-	rm -Rf $(SHLIB) $(STATLIB) $(OBJECTS)
+	# Always clean up CARGOTMP
+	rm -Rf $(CARGOTMP);
+
+rust_clean: $(SHLIB)
+	rm -Rf $(CARGOTMP) $(VENDOR_DIR) 
 
 clean:
-	rm -Rf $(SHLIB) $(STATLIB) $(OBJECTS) rust/target
-	
+	rm -Rf $(SHLIB) $(STATLIB) $(OBJECTS) $(TARGET_DIR) $(VENDOR_DIR)

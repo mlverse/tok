@@ -12,7 +12,7 @@ Description:
   <https://huggingface.co/docs/tokenizers/index>. It's extremely fast for both 
   training new vocabularies and tokenizing texts.
 License: MIT + file LICENSE
-SystemRequirements: Rust tool chain w/ cargo, libclang/llvm-config
+SystemRequirements: Cargo (Rust's package manager), rustc >= 1.75
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.3.2
@@ -29,4 +29,4 @@ Suggests:
 Config/testthat/edition: 3
 URL: https://github.com/mlverse/tok
 BugReports: https://github.com/mlverse/tok/issues
-Config/rextendr/version: 0.3.1
+Config/rextendr/version: 0.4.2

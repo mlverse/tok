@@ -8,7 +8,7 @@
 
 #' @usage NULL
 #' @useDynLib tok, .registration = TRUE
-"_PACKAGE"
+NULL
 
 RModel <- new.env(parent = emptyenv())
 

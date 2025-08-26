@@ -1,27 +1,26 @@
 use extendr_api::prelude::*;
 use tokenizers as tk;
-
+#[extendr]
 pub struct RNormalizer(pub tk::NormalizerWrapper);
 
 #[extendr]
 impl RNormalizer {
     pub fn new(normalizer: Robj) -> extendr_api::Result<Self> {
         if normalizer.inherits("RNormalizerNFC") {
-            unsafe {
-                let ptr = normalizer.external_ptr_addr() as *mut RNormalizerNFC;
-                Ok(RNormalizer((*ptr).0.clone().into()))
-            }
+            Ok(RNormalizer(
+                <&RNormalizerNFC>::try_from(&normalizer)?.0.clone().into()
+            ))
         } else if normalizer.inherits("RNormalizerNFKC") {
-            unsafe {
-                let ptr = normalizer.external_ptr_addr() as *mut RNormalizerNFKC;
-                Ok(RNormalizer((*ptr).0.clone().into()))
-            }
+            Ok(RNormalizer(
+                <&RNormalizerNFKC>::try_from(&normalizer)?.0.clone().into()
+            ))
         } else {
             Err(Error::EvalError("Unsupported normalizer".into()))
         }
     }
 }
 
+#[extendr]
 struct RNormalizerNFC(tk::normalizers::NFC);
 
 #[extendr]
@@ -31,6 +30,7 @@ impl RNormalizerNFC {
     }
 }
 
+#[extendr]
 struct RNormalizerNFKC(tk::normalizers::NFKC);
 
 #[extendr]
