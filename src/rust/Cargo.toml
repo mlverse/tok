@@ -3,7 +3,7 @@ name = 'tok'
 publish = false
 version = '0.1.0'
 edition = '2021'
-rust-version = '1.65'
+rust-version = '1.81.0'
 
 [lib]
 crate-type = [ 'staticlib' ]
@@ -11,7 +11,7 @@ name = 'tok'
 
 [dependencies]
 extendr-api = '0.8.1'
-tokenizers = {version = '0.21.4', features = ["onig", "esaxx_fast", "progressbar"], default-features = false}
+tokenizers = {version = '0.21.1', features = ["onig", "esaxx_fast", "progressbar"], default-features = false}
 
 [profile.release]
 lto = true
