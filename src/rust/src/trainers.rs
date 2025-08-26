@@ -13,26 +13,17 @@ pub struct RTrainer {
 impl RTrainer {
     pub fn new(trainer: Robj) -> Result<Self> {
         if trainer.inherits("RTrainerBPE") {
-            unsafe {
-                let ptr = trainer.external_ptr_addr() as *mut RTrainerBPE;
-                Ok(RTrainer {
-                    trainer: (*ptr).trainer.clone().into(),
-                })
-            }
+            Ok(RTrainer{
+                trainer: <&RTrainerBPE>::try_from(&trainer)?.trainer.clone().into()
+            })
         } else if trainer.inherits("RTrainerWordPiece") {
-            unsafe {
-                let ptr = trainer.external_ptr_addr() as *mut RTrainerWordPiece;
-                Ok(RTrainer {
-                    trainer: (*ptr).trainer.clone().into(),
-                })
-            }
+            Ok(RTrainer{
+                trainer: <&RTrainerWordPiece>::try_from(&trainer)?.trainer.clone().into()
+            })
         } else if trainer.inherits("RTrainerUnigram") {
-            unsafe {
-                let ptr = trainer.external_ptr_addr() as *mut RTrainerUnigram;
-                Ok(RTrainer {
-                    trainer: (*ptr).trainer.clone().into(),
-                })
-            }
+            Ok(RTrainer{
+                trainer: <&RTrainerUnigram>::try_from(&trainer)?.trainer.clone().into()
+            })
         } else {
             Err(Error::EvalError("Model not supported".into()))
         }

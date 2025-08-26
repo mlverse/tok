@@ -8,10 +8,7 @@ pub struct RDecoder(pub tk::DecoderWrapper);
 impl RDecoder {
     pub fn new(decoder: Robj) -> extendr_api::Result<Self> {
         if decoder.inherits("RDecoderByteLevel") {
-            unsafe {
-                let ptr = decoder.external_ptr_addr() as *mut RDecoderByteLevel;
-                Ok(RDecoder((*ptr).0.clone().into()))
-            }
+            Ok(RDecoder(<&RDecoderByteLevel>::try_from(&decoder)?.0.clone().into()))
         } else {
             Err(Error::EvalError("Unsupported decoder".into()))
         }

@@ -8,15 +8,13 @@ pub struct RPreTokenizer(pub tk::PreTokenizerWrapper);
 impl RPreTokenizer {
     pub fn new(pre_tokenizer: Robj) -> extendr_api::Result<Self> {
         if pre_tokenizer.inherits("RPreTokenizerWhitespace") {
-            unsafe {
-                let ptr = pre_tokenizer.external_ptr_addr() as *mut RPreTokenizerWhitespace;
-                Ok(RPreTokenizer((*ptr).0.clone().into()))
-            }
+            Ok(RPreTokenizer(tk::PreTokenizerWrapper::Whitespace(
+                <&RPreTokenizerWhitespace>::try_from(&pre_tokenizer)?.0.clone().into()
+            )))
         } else if pre_tokenizer.inherits("RPreTokenizerByteLevel") {
-            unsafe {
-                let ptr = pre_tokenizer.external_ptr_addr() as *mut RPreTokenizerByteLevel;
-                Ok(RPreTokenizer((*ptr).0.clone().into()))
-            }
+             Ok(RPreTokenizer(tk::PreTokenizerWrapper::ByteLevel(
+                <&RPreTokenizerByteLevel>::try_from(&pre_tokenizer)?.0.clone().into()
+            )))
         } else {
             Err(Error::EvalError("PreTokenizer not supported".into()))
         }
