@@ -11,7 +11,7 @@ name = 'tok'
 
 [dependencies]
 extendr-api = '0.8.1'
-tokenizers = {version = '0.21.1', features = ["onig", "esaxx_fast", "progressbar"], default-features = false}
+tokenizers = {version = '0.21.0', features = ["onig", "esaxx_fast", "progressbar"], default-features = false}
 
 [profile.release]
 lto = true
