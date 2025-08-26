@@ -1,6 +1,7 @@
 use extendr_api::prelude::*;
 use tokenizers as tk;
 
+#[extendr]
 pub struct RDecoder(pub tk::DecoderWrapper);
 
 #[extendr]
@@ -16,7 +17,7 @@ impl RDecoder {
         }
     }
 }
-
+#[extendr]
 struct RDecoderByteLevel(tk::decoders::byte_level::ByteLevel);
 
 #[extendr]

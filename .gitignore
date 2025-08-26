@@ -31,3 +31,6 @@ Cargo.lock
 Cargo.toml
 src/rust/vendor/*
 src/rust/.cargo
+src/rust/vendor
+src/Makevars
+src/Makevars.win

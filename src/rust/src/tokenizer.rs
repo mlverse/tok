@@ -9,7 +9,10 @@ use std::borrow::Cow;
 use tk::{EncodeInput, InputSequence};
 use tokenizers as tk;
 
+
+
 #[derive(Clone)]
+#[extendr]
 pub struct RTokenizer(tk::Tokenizer);
 
 #[extendr]
@@ -217,6 +220,7 @@ impl RTokenizer {
     }
 }
 
+#[extendr]
 pub struct REncoding(tk::Encoding);
 
 #[extendr]

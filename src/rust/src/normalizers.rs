@@ -1,6 +1,6 @@
 use extendr_api::prelude::*;
 use tokenizers as tk;
-
+#[extendr]
 pub struct RNormalizer(pub tk::NormalizerWrapper);
 
 #[extendr]
@@ -22,6 +22,7 @@ impl RNormalizer {
     }
 }
 
+#[extendr]
 struct RNormalizerNFC(tk::normalizers::NFC);
 
 #[extendr]
@@ -31,6 +32,7 @@ impl RNormalizerNFC {
     }
 }
 
+#[extendr]
 struct RNormalizerNFKC(tk::normalizers::NFKC);
 
 #[extendr]

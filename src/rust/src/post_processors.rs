@@ -1,6 +1,7 @@
 use extendr_api::prelude::*;
 use tokenizers as tk;
 
+#[extendr]
 pub struct RPostProcessor(pub tk::PostProcessorWrapper);
 
 #[extendr]
@@ -17,6 +18,7 @@ impl RPostProcessor {
     }
 }
 
+#[extendr]
 struct RPostProcessorByteLevel(tk::processors::byte_level::ByteLevel);
 
 #[extendr]

@@ -1,6 +1,7 @@
 use extendr_api::prelude::*;
 use tokenizers as tk;
 
+#[extendr]
 pub struct RPreTokenizer(pub tk::PreTokenizerWrapper);
 
 #[extendr]
@@ -22,6 +23,7 @@ impl RPreTokenizer {
     }
 }
 
+#[extendr]
 struct RPreTokenizerWhitespace(tk::pre_tokenizers::whitespace::Whitespace);
 
 #[extendr]
@@ -31,6 +33,7 @@ impl RPreTokenizerWhitespace {
     }
 }
 
+#[extendr]
 struct RPreTokenizerByteLevel(tk::pre_tokenizers::byte_level::ByteLevel);
 
 #[extendr]

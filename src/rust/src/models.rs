@@ -5,6 +5,7 @@ use tk::models::bpe::BPE;
 use tk::models::ModelWrapper;
 use tokenizers as tk;
 
+#[extendr]
 pub struct RModel {
     pub model: ModelWrapper,
 }
@@ -39,6 +40,7 @@ impl RModel {
     }
 }
 
+#[extendr]
 struct RModelBPE {
     pub model: BPE,
 }
@@ -96,6 +98,7 @@ impl RModelBPE {
     }
 }
 
+#[extendr]
 struct RModelWordPiece {
     pub model: tk::models::wordpiece::WordPiece,
 }
@@ -127,6 +130,7 @@ impl RModelWordPiece {
     }
 }
 
+#[extendr]
 struct RModelUnigram {
     pub model: tk::models::unigram::Unigram,
 }

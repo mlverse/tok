@@ -4,6 +4,7 @@ use tk::models::TrainerWrapper;
 use tk::AddedToken;
 use tokenizers as tk;
 
+#[extendr]
 pub struct RTrainer {
     pub trainer: TrainerWrapper,
 }
@@ -38,6 +39,7 @@ impl RTrainer {
     }
 }
 
+#[extendr]
 pub struct RTrainerBPE {
     pub trainer: BpeTrainer,
 }
@@ -103,6 +105,7 @@ impl RTrainerBPE {
     }
 }
 
+#[extendr]
 pub struct RTrainerWordPiece {
     pub trainer: tk::models::wordpiece::WordPieceTrainer,
 }
@@ -164,6 +167,7 @@ impl RTrainerWordPiece {
     }
 }
 
+#[extendr]
 struct RTrainerUnigram {
     trainer: tokenizers::models::unigram::UnigramTrainer,
 }
