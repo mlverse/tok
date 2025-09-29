@@ -19,18 +19,18 @@ Other pre_tokenizer:
 }
 \concept{pre_tokenizer}
 \section{Super class}{
-\code{tok::tok_pre_tokenizer} -> \code{tok_pre_tokenizer_whitespace}
+\code{tok::tok_pre_tokenizer} -> \code{tok_pre_tokenizer_byte_level}
 }
 \section{Methods}{
 \subsection{Public methods}{
 \itemize{
-\item \href{#method-tok_pre_tokenizer_whitespace-new}{\code{pre_tokenizer_byte_level$new()}}
-\item \href{#method-tok_pre_tokenizer_whitespace-clone}{\code{pre_tokenizer_byte_level$clone()}}
+\item \href{#method-tok_pre_tokenizer_byte_level-new}{\code{pre_tokenizer_byte_level$new()}}
+\item \href{#method-tok_pre_tokenizer_byte_level-clone}{\code{pre_tokenizer_byte_level$clone()}}
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-tok_pre_tokenizer_whitespace-new"></a>}}
-\if{latex}{\out{\hypertarget{method-tok_pre_tokenizer_whitespace-new}{}}}
+\if{html}{\out{<a id="method-tok_pre_tokenizer_byte_level-new"></a>}}
+\if{latex}{\out{\hypertarget{method-tok_pre_tokenizer_byte_level-new}{}}}
 \subsection{Method \code{new()}}{
 Initializes the bytelevel tokenizer
 \subsection{Usage}{
@@ -49,8 +49,8 @@ the GPT2 specific regexp for spliting on whitespace.}
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-tok_pre_tokenizer_whitespace-clone"></a>}}
-\if{latex}{\out{\hypertarget{method-tok_pre_tokenizer_whitespace-clone}{}}}
+\if{html}{\out{<a id="method-tok_pre_tokenizer_byte_level-clone"></a>}}
+\if{latex}{\out{\hypertarget{method-tok_pre_tokenizer_byte_level-clone}{}}}
 \subsection{Method \code{clone()}}{
 The objects of this class are cloneable with this method.
 \subsection{Usage}{

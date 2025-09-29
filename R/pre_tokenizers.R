@@ -41,7 +41,7 @@ pre_tokenizer_whitespace <- R6::R6Class(
 #' @export
 #' @family pre_tokenizer
 pre_tokenizer_byte_level <- R6::R6Class(
-  "tok_pre_tokenizer_whitespace",
+  "tok_pre_tokenizer_byte_level",
   inherit = pre_tokenizer,
   public = list(
     #' @description

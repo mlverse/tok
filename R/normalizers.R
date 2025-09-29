@@ -45,7 +45,7 @@ normalizer_nfkc <- R6::R6Class(
     #' @description
     #' Initializes the NFKC normalizer
     initialize = function() {
-      super$initialize(RNormalizerNFC$new())
+      super$initialize(RNormalizerNFKC$new())
     }  
   )
 )
