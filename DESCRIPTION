@@ -1,6 +1,6 @@
 Package: tok
 Title: Fast Text Tokenization
-Version: 0.2.0.9000
+Version: 0.2.1
 Authors@R: c(
     person("Daniel", "Falbel", , "daniel@posit.co", c("aut", "cre")),
     person("Regouby", "Christophe", , "christophe.regouby@free.fr", c("ctb")),
@@ -15,7 +15,7 @@ License: MIT + file LICENSE
 SystemRequirements: Cargo (Rust's package manager), rustc >= 1.75
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
-RoxygenNote: 7.3.2
+RoxygenNote: 7.3.3
 Depends:
     R (>= 4.2.0)
 Imports:
