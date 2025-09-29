@@ -39,7 +39,7 @@ normalizer_nfc <- R6::R6Class(
 #' @export
 #' @family normalizers
 normalizer_nfkc <- R6::R6Class(
-  "tok_normalizer_nfc",
+  "tok_normalizer_nfkc",
   inherit = tok_normalizer,
   public = list(
     #' @description

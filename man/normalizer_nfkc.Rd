@@ -15,18 +15,18 @@ Other normalizers:
 }
 \concept{normalizers}
 \section{Super class}{
-\code{\link[tok:tok_normalizer]{tok::tok_normalizer}} -> \code{tok_normalizer_nfc}
+\code{\link[tok:tok_normalizer]{tok::tok_normalizer}} -> \code{tok_normalizer_nfkc}
 }
 \section{Methods}{
 \subsection{Public methods}{
 \itemize{
-\item \href{#method-tok_normalizer_nfc-new}{\code{normalizer_nfkc$new()}}
-\item \href{#method-tok_normalizer_nfc-clone}{\code{normalizer_nfkc$clone()}}
+\item \href{#method-tok_normalizer_nfkc-new}{\code{normalizer_nfkc$new()}}
+\item \href{#method-tok_normalizer_nfkc-clone}{\code{normalizer_nfkc$clone()}}
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-tok_normalizer_nfc-new"></a>}}
-\if{latex}{\out{\hypertarget{method-tok_normalizer_nfc-new}{}}}
+\if{html}{\out{<a id="method-tok_normalizer_nfkc-new"></a>}}
+\if{latex}{\out{\hypertarget{method-tok_normalizer_nfkc-new}{}}}
 \subsection{Method \code{new()}}{
 Initializes the NFKC normalizer
 \subsection{Usage}{
@@ -35,8 +35,8 @@ Initializes the NFKC normalizer
 
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-tok_normalizer_nfc-clone"></a>}}
-\if{latex}{\out{\hypertarget{method-tok_normalizer_nfc-clone}{}}}
+\if{html}{\out{<a id="method-tok_normalizer_nfkc-clone"></a>}}
+\if{latex}{\out{\hypertarget{method-tok_normalizer_nfkc-clone}{}}}
 \subsection{Method \code{clone()}}{
 The objects of this class are cloneable with this method.
 \subsection{Usage}{
