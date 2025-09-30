@@ -10,7 +10,7 @@ status](https://github.com/mlverse/tok/workflows/R-CMD-check/badge.svg)](https:/
 [![CRAN
 status](https://www.r-pkg.org/badges/version/tok)](https://CRAN.R-project.org/package=tok)
 [![](https://cranlogs.r-pkg.org/badges/tok)](https://cran.r-project.org/package=tok)
-[![extendr](https://img.shields.io/badge/extendr-%5E0.8.1-276DC2)](https://extendr.github.io/extendr/extendr_api/)
+[![extendr](https://img.shields.io/badge/extendr-%5E0.8.1-276DC2)](https://extendr.rs/extendr/extendr_api/)
 <!-- badges: end -->
 
 tok provides bindings to the
