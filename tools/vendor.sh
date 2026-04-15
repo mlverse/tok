@@ -4,9 +4,13 @@ cd src/rust
 cargo vendor
 
 # c.f. https://reproducible-builds.org/docs/archives/
-tar \
+# --no-xattrs and COPYFILE_DISABLE prevent macOS extended attributes
+# (e.g. com.apple.provenance) from being stored in the archive, which
+# would cause warnings when extracted with GNU tar on Linux.
+COPYFILE_DISABLE=1 tar \
   --xz \
   --create \
+  --no-xattrs \
   --file=vendor.tar.xz \
   vendor
 
