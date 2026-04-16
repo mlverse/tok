@@ -1,4 +1,7 @@
-# tok (development version)
+# tok 0.2.2
+
+- Updated upstream tokenizers library to 0.22.2.
+- Changed maintainer to Tomasz Kalinowski.
 
 # tok 0.2.1
 
