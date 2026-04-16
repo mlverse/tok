@@ -12,7 +12,7 @@ Description:
   <https://huggingface.co/docs/tokenizers/index>. It's extremely fast for both 
   training new vocabularies and tokenizing texts.
 License: MIT + file LICENSE
-SystemRequirements: Cargo (Rust's package manager), rustc >= 1.75
+SystemRequirements: Cargo (Rust's package manager), rustc >= 1.91
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.3.3
