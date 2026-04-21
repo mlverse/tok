@@ -148,6 +148,12 @@ impl RModelUnigram {
 }
 
 struct RUnigramVocab(Vec<(String, f64)>);
+impl TryFrom<&Robj> for RUnigramVocab {
+    type Error = Error;
+    fn try_from(robj: &Robj) -> std::result::Result<Self, Self::Error> {
+        Self::try_from(robj.clone())
+    }
+}
 impl TryFrom<Robj> for RUnigramVocab {
     type Error = Error;
     fn try_from(robj: Robj) -> std::result::Result<Self, Self::Error> {
@@ -176,6 +182,13 @@ impl TryFrom<Robj> for RUnigramVocab {
 
 struct RVocab(tk::models::bpe::Vocab);
 
+impl TryFrom<&Robj> for RVocab {
+    type Error = Error;
+    fn try_from(robj: &Robj) -> std::result::Result<Self, Self::Error> {
+        Self::try_from(robj.clone())
+    }
+}
+
 impl TryFrom<Robj> for RVocab {
     type Error = Error;
     fn try_from(robj: Robj) -> std::result::Result<Self, Self::Error> {
@@ -196,6 +209,13 @@ impl TryFrom<Robj> for RVocab {
 }
 
 struct RMerges(tk::models::bpe::Merges);
+
+impl TryFrom<&Robj> for RMerges {
+    type Error = Error;
+    fn try_from(robj: &Robj) -> std::result::Result<Self, Self::Error> {
+        Self::try_from(robj.clone())
+    }
+}
 
 impl TryFrom<Robj> for RMerges {
     type Error = Error;

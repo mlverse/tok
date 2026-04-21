@@ -11,7 +11,7 @@ pub struct RTrainer {
 
 #[extendr]
 impl RTrainer {
-    pub fn new(trainer: Robj) -> Result<Self> {
+    pub fn new(trainer: Robj) -> extendr_api::Result<Self> {
         if trainer.inherits("RTrainerBPE") {
             Ok(RTrainer{
                 trainer: <&RTrainerBPE>::try_from(&trainer)?.trainer.clone().into()
