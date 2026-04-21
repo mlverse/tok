@@ -10,7 +10,7 @@ crate-type = [ 'staticlib' ]
 name = 'tok'
 
 [dependencies]
-extendr-api = '0.8.1'
+extendr-api = '0.9.0'
 tokenizers = {version = '0.22.2', features = ["onig", "esaxx_fast", "progressbar"], default-features = false}
 
 [profile.release]

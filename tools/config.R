@@ -70,6 +70,40 @@ cfg <- if (is_debug) "debug" else "release"
   ""
 )
 
+# On macOS, detect the deployment target used by R's C compiler so we can
+# forward it to cargo. Without this, the cc crate falls back to the SDK
+# version (e.g. 15.5) which may be newer than the target R compiles with
+# (e.g. 15.0), causing linker warnings.
+.macosx_deployment_target_export <- ""
+if (.Platform[["OS.type"]] != "windows" && Sys.info()[["sysname"]] == "Darwin") {
+  mdt <- Sys.getenv("MACOSX_DEPLOYMENT_TARGET", unset = "")
+  if (!nzchar(mdt)) {
+    cc <- paste(
+      system2(R.home("bin/R"), c("CMD", "config", "CC"), stdout = TRUE),
+      system2(R.home("bin/R"), c("CMD", "config", "CFLAGS"), stdout = TRUE)
+    )
+    m <- regmatches(cc, regexpr("(?<=-mmacosx-version-min=)[0-9.]+", cc, perl = TRUE))
+    if (length(m) > 0 && nzchar(m)) mdt <- m
+  }
+  if (!nzchar(mdt)) {
+    # Fallback: query clang's built-in deployment target macro
+    cc_cmd <- system2(R.home("bin/R"), c("CMD", "config", "CC"), stdout = TRUE)
+    macro <- tryCatch(
+      system(paste(cc_cmd, "-E -dM - < /dev/null 2>/dev/null | grep __ENVIRONMENT_MAC_OS_X_VERSION_MIN_REQUIRED__"), intern = TRUE),
+      error = function(e) ""
+    )
+    ver <- regmatches(macro, regexpr("[0-9]+$", macro))
+    if (length(ver) > 0 && nzchar(ver)) {
+      v <- as.integer(ver)
+      mdt <- paste0(v %/% 10000, ".", (v %% 10000) %/% 100)
+    }
+  }
+  if (nzchar(mdt)) {
+    message("Using MACOSX_DEPLOYMENT_TARGET=", mdt)
+    .macosx_deployment_target_export <- paste0('export MACOSX_DEPLOYMENT_TARGET="', mdt, '" && ')
+  }
+}
+
 # read in the Makevars.in file checking
 is_windows <- .Platform[["OS.type"]] == "windows"
 
@@ -102,7 +136,8 @@ new_txt <- gsub("@CRAN_FLAGS@", .cran_flags, mv_txt) |>
   gsub("@CLEAN_TARGET@", .clean_targets, x = _) |>
   gsub("@LIBDIR@", .libdir, x = _) |>
   gsub("@TARGET@", .target, x = _) |>
-  gsub("@PANIC_EXPORTS@", .panic_exports, x = _)
+  gsub("@PANIC_EXPORTS@", .panic_exports, x = _) |>
+  gsub("@MACOSX_DEPLOYMENT_TARGET_EXPORT@", .macosx_deployment_target_export, x = _)
 
 message("Writing `", mv_ofp, "`.")
 con <- file(mv_ofp, open = "wb")

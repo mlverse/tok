@@ -1,6 +1,7 @@
 # tok 0.2.2
 
 - Updated upstream tokenizers library to 0.22.2.
+- Update extendr-api to 0.9.0.
 - Changed maintainer to Tomasz Kalinowski.
 
 # tok 0.2.1

@@ -284,6 +284,12 @@ impl From<R6Decoder> for Robj {
 }
 
 pub struct RPaddingParams(tk::PaddingParams);
+impl TryFrom<&Robj> for RPaddingParams {
+    type Error = Error;
+    fn try_from(robj: &Robj) -> std::result::Result<Self, Self::Error> {
+        Self::try_from(robj.clone())
+    }
+}
 impl TryFrom<Robj> for RPaddingParams {
     type Error = Error;
     fn try_from(robj: Robj) -> std::result::Result<Self, Self::Error> {
@@ -345,6 +351,13 @@ impl From<RPaddingParams> for Robj {
 }
 
 pub struct RTruncationParams(tk::TruncationParams);
+
+impl TryFrom<&Robj> for RTruncationParams {
+    type Error = Error;
+    fn try_from(robj: &Robj) -> std::result::Result<Self, Self::Error> {
+        Self::try_from(robj.clone())
+    }
+}
 
 impl TryFrom<Robj> for RTruncationParams {
     type Error = Error;
