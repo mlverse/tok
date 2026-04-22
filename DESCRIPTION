@@ -1,6 +1,6 @@
 Package: tok
 Title: Fast Text Tokenization
-Version: 0.2.2
+Version: 0.2.2.9000
 Authors@R: c(
     person("Tomasz", "Kalinowski", , "tomasz@posit.co", c("ctb", "cre")),
     person("Daniel", "Falbel", , "dfalbel@gmail.com", c("aut")),
