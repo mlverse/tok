@@ -5,69 +5,69 @@
 \title{An implementation of the WordPiece algorithm}
 \description{
 An implementation of the WordPiece algorithm
-
-An implementation of the WordPiece algorithm
 }
 \seealso{
-Other model: 
+Other model:
 \code{\link{model_bpe}},
 \code{\link{model_unigram}},
 \code{\link{tok_model}}
 }
 \concept{model}
 \section{Super class}{
-\code{\link[tok:tok_model]{tok::tok_model}} -> \code{tok_model_wordpiece}
+\code{\link[tok:tok_model]{tok_model}} -> \code{tok_model_wordpiece}
 }
 \section{Methods}{
 \subsection{Public methods}{
-\itemize{
-\item \href{#method-tok_model_wordpiece-new}{\code{model_wordpiece$new()}}
-\item \href{#method-tok_model_wordpiece-clone}{\code{model_wordpiece$clone()}}
-}
+  \itemize{
+    \item \href{#method-tok_model_wordpiece-initialize}{\code{tok_model_wordpiece$new()}}
+    \item \href{#method-tok_model_wordpiece-clone}{\code{tok_model_wordpiece$clone()}}
+  }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-tok_model_wordpiece-new"></a>}}
-\if{latex}{\out{\hypertarget{method-tok_model_wordpiece-new}{}}}
-\subsection{Method \code{new()}}{
-Constructor for the wordpiece tokenizer
-\subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{model_wordpiece$new(
+\if{html}{\out{<a id="method-tok_model_wordpiece-initialize"></a>}}
+\if{latex}{\out{\hypertarget{method-tok_model_wordpiece-initialize}{}}}
+\subsection{\code{tok_model_wordpiece$new()}}{
+  Constructor for the wordpiece tokenizer
+  \subsection{Usage}{
+    \if{html}{\out{<div class="r">}}
+    \preformatted{tok_model_wordpiece$new(
   vocab = NULL,
   unk_token = NULL,
   max_input_chars_per_word = NULL
-)}\if{html}{\out{</div>}}
+)}
+    \if{html}{\out{</div>}}
+  }
+  \subsection{Arguments}{
+    \if{html}{\out{<div class="arguments">}}
+    \describe{
+      \item{\code{vocab}}{A dictionary of string keys and their corresponding ids.
+Default: \code{NULL}.}
+      \item{\code{unk_token}}{The unknown token to be used by the model.
+Default: \code{NULL}.}
+      \item{\code{max_input_chars_per_word}}{The maximum number of characters to allow in a single word.
+Default: \code{NULL}.}
+    }
+    \if{html}{\out{</div>}}
+  }
 }
 
-\subsection{Arguments}{
-\if{html}{\out{<div class="arguments">}}
-\describe{
-\item{\code{vocab}}{A dictionary of string keys and their corresponding ids.
-Default: \code{NULL}.}
-
-\item{\code{unk_token}}{The unknown token to be used by the model.
-Default: \code{NULL}.}
-
-\item{\code{max_input_chars_per_word}}{The maximum number of characters to allow in a single word.
-Default: \code{NULL}.}
-}
-\if{html}{\out{</div>}}
-}
-}
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-tok_model_wordpiece-clone"></a>}}
 \if{latex}{\out{\hypertarget{method-tok_model_wordpiece-clone}{}}}
-\subsection{Method \code{clone()}}{
-The objects of this class are cloneable with this method.
-\subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{model_wordpiece$clone(deep = FALSE)}\if{html}{\out{</div>}}
+\subsection{\code{tok_model_wordpiece$clone()}}{
+  The objects of this class are cloneable with this method.
+  \subsection{Usage}{
+    \if{html}{\out{<div class="r">}}
+    \preformatted{tok_model_wordpiece$clone(deep = FALSE)}
+    \if{html}{\out{</div>}}
+  }
+  \subsection{Arguments}{
+    \if{html}{\out{<div class="arguments">}}
+    \describe{
+      \item{\code{deep}}{Whether to make a deep clone.}
+    }
+    \if{html}{\out{</div>}}
+  }
 }
 
-\subsection{Arguments}{
-\if{html}{\out{<div class="arguments">}}
-\describe{
-\item{\code{deep}}{Whether to make a deep clone.}
-}
-\if{html}{\out{</div>}}
-}
-}
 }

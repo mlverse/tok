@@ -20,61 +20,65 @@ encoding
 })
 }
 \section{Public fields}{
-\if{html}{\out{<div class="r6-fields">}}
-\describe{
-\item{\code{.encoding}}{The underlying implementation pointer.}
-}
-\if{html}{\out{</div>}}
+  \if{html}{\out{<div class="r6-fields">}}
+  \describe{
+    \item{\code{.encoding}}{The underlying implementation pointer.}
+  }
+  \if{html}{\out{</div>}}
 }
 \section{Active bindings}{
-\if{html}{\out{<div class="r6-active-bindings">}}
-\describe{
-\item{\code{ids}}{The IDs are the main input to a Language Model. They are the
+  \if{html}{\out{<div class="r6-active-bindings">}}
+  \describe{
+    \item{\code{ids}}{The IDs are the main input to a Language Model. They are the
 token indices, the numerical representations that a LM understands.}
 
-\item{\code{attention_mask}}{The attention mask used as input for transformers models.}
-}
-\if{html}{\out{</div>}}
+    \item{\code{attention_mask}}{The attention mask used as input for transformers models.}
+  }
+  \if{html}{\out{</div>}}
 }
 \section{Methods}{
 \subsection{Public methods}{
-\itemize{
-\item \href{#method-tok_encoding-new}{\code{encoding$new()}}
-\item \href{#method-tok_encoding-clone}{\code{encoding$clone()}}
-}
+  \itemize{
+    \item \href{#method-tok_encoding-initialize}{\code{tok_encoding$new()}}
+    \item \href{#method-tok_encoding-clone}{\code{tok_encoding$clone()}}
+  }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-tok_encoding-new"></a>}}
-\if{latex}{\out{\hypertarget{method-tok_encoding-new}{}}}
-\subsection{Method \code{new()}}{
-Initializes an encoding object (Not to use directly)
-\subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{encoding$new(encoding)}\if{html}{\out{</div>}}
+\if{html}{\out{<a id="method-tok_encoding-initialize"></a>}}
+\if{latex}{\out{\hypertarget{method-tok_encoding-initialize}{}}}
+\subsection{\code{tok_encoding$new()}}{
+  Initializes an encoding object (Not to use directly)
+  \subsection{Usage}{
+    \if{html}{\out{<div class="r">}}
+    \preformatted{tok_encoding$new(encoding)}
+    \if{html}{\out{</div>}}
+  }
+  \subsection{Arguments}{
+    \if{html}{\out{<div class="arguments">}}
+    \describe{
+      \item{\code{encoding}}{an encoding implementation object}
+    }
+    \if{html}{\out{</div>}}
+  }
 }
 
-\subsection{Arguments}{
-\if{html}{\out{<div class="arguments">}}
-\describe{
-\item{\code{encoding}}{an encoding implementation object}
-}
-\if{html}{\out{</div>}}
-}
-}
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-tok_encoding-clone"></a>}}
 \if{latex}{\out{\hypertarget{method-tok_encoding-clone}{}}}
-\subsection{Method \code{clone()}}{
-The objects of this class are cloneable with this method.
-\subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{encoding$clone(deep = FALSE)}\if{html}{\out{</div>}}
+\subsection{\code{tok_encoding$clone()}}{
+  The objects of this class are cloneable with this method.
+  \subsection{Usage}{
+    \if{html}{\out{<div class="r">}}
+    \preformatted{tok_encoding$clone(deep = FALSE)}
+    \if{html}{\out{</div>}}
+  }
+  \subsection{Arguments}{
+    \if{html}{\out{<div class="arguments">}}
+    \describe{
+      \item{\code{deep}}{Whether to make a deep clone.}
+    }
+    \if{html}{\out{</div>}}
+  }
 }
 
-\subsection{Arguments}{
-\if{html}{\out{<div class="arguments">}}
-\describe{
-\item{\code{deep}}{Whether to make a deep clone.}
-}
-\if{html}{\out{</div>}}
-}
-}
 }

@@ -21,384 +21,396 @@ tok$encode("Hello world")$ids
 
 }
 \section{Public fields}{
-\if{html}{\out{<div class="r6-fields">}}
-\describe{
-\item{\code{.tokenizer}}{(unsafe usage) Lower level pointer to tokenizer}
-}
-\if{html}{\out{</div>}}
+  \if{html}{\out{<div class="r6-fields">}}
+  \describe{
+    \item{\code{.tokenizer}}{(unsafe usage) Lower level pointer to tokenizer}
+  }
+  \if{html}{\out{</div>}}
 }
 \section{Active bindings}{
-\if{html}{\out{<div class="r6-active-bindings">}}
-\describe{
-\item{\code{pre_tokenizer}}{instance of the pre-tokenizer}
+  \if{html}{\out{<div class="r6-active-bindings">}}
+  \describe{
+    \item{\code{pre_tokenizer}}{instance of the pre-tokenizer}
 
-\item{\code{normalizer}}{Gets the normalizer instance}
+    \item{\code{normalizer}}{Gets the normalizer instance}
 
-\item{\code{post_processor}}{Gets the post processor used by tokenizer}
+    \item{\code{post_processor}}{Gets the post processor used by tokenizer}
 
-\item{\code{decoder}}{Gets and sets the decoder}
+    \item{\code{decoder}}{Gets and sets the decoder}
 
-\item{\code{padding}}{Gets padding configuration}
+    \item{\code{padding}}{Gets padding configuration}
 
-\item{\code{truncation}}{Gets truncation configuration}
-}
-\if{html}{\out{</div>}}
+    \item{\code{truncation}}{Gets truncation configuration}
+  }
+  \if{html}{\out{</div>}}
 }
 \section{Methods}{
 \subsection{Public methods}{
-\itemize{
-\item \href{#method-tok_tokenizer-new}{\code{tokenizer$new()}}
-\item \href{#method-tok_tokenizer-encode}{\code{tokenizer$encode()}}
-\item \href{#method-tok_tokenizer-decode}{\code{tokenizer$decode()}}
-\item \href{#method-tok_tokenizer-encode_batch}{\code{tokenizer$encode_batch()}}
-\item \href{#method-tok_tokenizer-decode_batch}{\code{tokenizer$decode_batch()}}
-\item \href{#method-tok_tokenizer-from_file}{\code{tokenizer$from_file()}}
-\item \href{#method-tok_tokenizer-from_pretrained}{\code{tokenizer$from_pretrained()}}
-\item \href{#method-tok_tokenizer-train}{\code{tokenizer$train()}}
-\item \href{#method-tok_tokenizer-train_from_memory}{\code{tokenizer$train_from_memory()}}
-\item \href{#method-tok_tokenizer-save}{\code{tokenizer$save()}}
-\item \href{#method-tok_tokenizer-enable_padding}{\code{tokenizer$enable_padding()}}
-\item \href{#method-tok_tokenizer-no_padding}{\code{tokenizer$no_padding()}}
-\item \href{#method-tok_tokenizer-enable_truncation}{\code{tokenizer$enable_truncation()}}
-\item \href{#method-tok_tokenizer-no_truncation}{\code{tokenizer$no_truncation()}}
-\item \href{#method-tok_tokenizer-get_vocab_size}{\code{tokenizer$get_vocab_size()}}
-\item \href{#method-tok_tokenizer-clone}{\code{tokenizer$clone()}}
-}
+  \itemize{
+    \item \href{#method-tok_tokenizer-initialize}{\code{tok_tokenizer$new()}}
+    \item \href{#method-tok_tokenizer-encode}{\code{tok_tokenizer$encode()}}
+    \item \href{#method-tok_tokenizer-decode}{\code{tok_tokenizer$decode()}}
+    \item \href{#method-tok_tokenizer-encode_batch}{\code{tok_tokenizer$encode_batch()}}
+    \item \href{#method-tok_tokenizer-decode_batch}{\code{tok_tokenizer$decode_batch()}}
+    \item \href{#method-tok_tokenizer-from_file}{\code{tok_tokenizer$from_file()}}
+    \item \href{#method-tok_tokenizer-from_pretrained}{\code{tok_tokenizer$from_pretrained()}}
+    \item \href{#method-tok_tokenizer-train}{\code{tok_tokenizer$train()}}
+    \item \href{#method-tok_tokenizer-train_from_memory}{\code{tok_tokenizer$train_from_memory()}}
+    \item \href{#method-tok_tokenizer-save}{\code{tok_tokenizer$save()}}
+    \item \href{#method-tok_tokenizer-enable_padding}{\code{tok_tokenizer$enable_padding()}}
+    \item \href{#method-tok_tokenizer-no_padding}{\code{tok_tokenizer$no_padding()}}
+    \item \href{#method-tok_tokenizer-enable_truncation}{\code{tok_tokenizer$enable_truncation()}}
+    \item \href{#method-tok_tokenizer-no_truncation}{\code{tok_tokenizer$no_truncation()}}
+    \item \href{#method-tok_tokenizer-get_vocab_size}{\code{tok_tokenizer$get_vocab_size()}}
+    \item \href{#method-tok_tokenizer-clone}{\code{tok_tokenizer$clone()}}
+  }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-tok_tokenizer-new"></a>}}
-\if{latex}{\out{\hypertarget{method-tok_tokenizer-new}{}}}
-\subsection{Method \code{new()}}{
-Initializes a tokenizer
-\subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{tokenizer$new(tokenizer)}\if{html}{\out{</div>}}
+\if{html}{\out{<a id="method-tok_tokenizer-initialize"></a>}}
+\if{latex}{\out{\hypertarget{method-tok_tokenizer-initialize}{}}}
+\subsection{\code{tok_tokenizer$new()}}{
+  Initializes a tokenizer
+  \subsection{Usage}{
+    \if{html}{\out{<div class="r">}}
+    \preformatted{tok_tokenizer$new(tokenizer)}
+    \if{html}{\out{</div>}}
+  }
+  \subsection{Arguments}{
+    \if{html}{\out{<div class="arguments">}}
+    \describe{
+      \item{\code{tokenizer}}{Will be cloned to initialize a new tokenizer}
+    }
+    \if{html}{\out{</div>}}
+  }
 }
 
-\subsection{Arguments}{
-\if{html}{\out{<div class="arguments">}}
-\describe{
-\item{\code{tokenizer}}{Will be cloned to initialize a new tokenizer}
-}
-\if{html}{\out{</div>}}
-}
-}
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-tok_tokenizer-encode"></a>}}
 \if{latex}{\out{\hypertarget{method-tok_tokenizer-encode}{}}}
-\subsection{Method \code{encode()}}{
-Encode the given sequence and pair. This method can process raw text sequences
+\subsection{\code{tok_tokenizer$encode()}}{
+  Encode the given sequence and pair. This method can process raw text sequences
 as well as already pre-tokenized sequences.
-\subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{tokenizer$encode(
+  \subsection{Usage}{
+    \if{html}{\out{<div class="r">}}
+    \preformatted{tok_tokenizer$encode(
   sequence,
   pair = NULL,
   is_pretokenized = FALSE,
   add_special_tokens = TRUE
-)}\if{html}{\out{</div>}}
-}
-
-\subsection{Arguments}{
-\if{html}{\out{<div class="arguments">}}
-\describe{
-\item{\code{sequence}}{The main input sequence we want to encode. This sequence can
+)}
+    \if{html}{\out{</div>}}
+  }
+  \subsection{Arguments}{
+    \if{html}{\out{<div class="arguments">}}
+    \describe{
+      \item{\code{sequence}}{The main input sequence we want to encode. This sequence can
 be either raw text or pre-tokenized, according to the is_pretokenized argument}
-
-\item{\code{pair}}{An optional input sequence. The expected format is the same
+      \item{\code{pair}}{An optional input sequence. The expected format is the same
 that for sequence.}
+      \item{\code{is_pretokenized}}{Whether the input is already pre-tokenized}
+      \item{\code{add_special_tokens}}{Whether to add the special tokens}
+    }
+    \if{html}{\out{</div>}}
+  }
+}
 
-\item{\code{is_pretokenized}}{Whether the input is already pre-tokenized}
-
-\item{\code{add_special_tokens}}{Whether to add the special tokens}
-}
-\if{html}{\out{</div>}}
-}
-}
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-tok_tokenizer-decode"></a>}}
 \if{latex}{\out{\hypertarget{method-tok_tokenizer-decode}{}}}
-\subsection{Method \code{decode()}}{
-Decode the given list of ids back to a string
-\subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{tokenizer$decode(ids, skip_special_tokens = TRUE)}\if{html}{\out{</div>}}
+\subsection{\code{tok_tokenizer$decode()}}{
+  Decode the given list of ids back to a string
+  \subsection{Usage}{
+    \if{html}{\out{<div class="r">}}
+    \preformatted{tok_tokenizer$decode(ids, skip_special_tokens = TRUE)}
+    \if{html}{\out{</div>}}
+  }
+  \subsection{Arguments}{
+    \if{html}{\out{<div class="arguments">}}
+    \describe{
+      \item{\code{ids}}{The list of ids that we want to decode}
+      \item{\code{skip_special_tokens}}{Whether the special tokens should be removed from the decoded string}
+    }
+    \if{html}{\out{</div>}}
+  }
 }
 
-\subsection{Arguments}{
-\if{html}{\out{<div class="arguments">}}
-\describe{
-\item{\code{ids}}{The list of ids that we want to decode}
-
-\item{\code{skip_special_tokens}}{Whether the special tokens should be removed from the decoded string}
-}
-\if{html}{\out{</div>}}
-}
-}
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-tok_tokenizer-encode_batch"></a>}}
 \if{latex}{\out{\hypertarget{method-tok_tokenizer-encode_batch}{}}}
-\subsection{Method \code{encode_batch()}}{
-Encodes a batch of sequences. Returns a list of \link{encoding}s.
-\subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{tokenizer$encode_batch(
+\subsection{\code{tok_tokenizer$encode_batch()}}{
+  Encodes a batch of sequences. Returns a list of \link{encoding}s.
+  \subsection{Usage}{
+    \if{html}{\out{<div class="r">}}
+    \preformatted{tok_tokenizer$encode_batch(
   input,
   is_pretokenized = FALSE,
   add_special_tokens = TRUE
-)}\if{html}{\out{</div>}}
-}
-
-\subsection{Arguments}{
-\if{html}{\out{<div class="arguments">}}
-\describe{
-\item{\code{input}}{A list of single sequences or pair sequences to encode. Each
+)}
+    \if{html}{\out{</div>}}
+  }
+  \subsection{Arguments}{
+    \if{html}{\out{<div class="arguments">}}
+    \describe{
+      \item{\code{input}}{A list of single sequences or pair sequences to encode. Each
 sequence can be either raw text or pre-tokenized, according to the is_pretokenized
 argument.}
+      \item{\code{is_pretokenized}}{Whether the input is already pre-tokenized}
+      \item{\code{add_special_tokens}}{Whether to add the special tokens}
+    }
+    \if{html}{\out{</div>}}
+  }
+}
 
-\item{\code{is_pretokenized}}{Whether the input is already pre-tokenized}
-
-\item{\code{add_special_tokens}}{Whether to add the special tokens}
-}
-\if{html}{\out{</div>}}
-}
-}
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-tok_tokenizer-decode_batch"></a>}}
 \if{latex}{\out{\hypertarget{method-tok_tokenizer-decode_batch}{}}}
-\subsection{Method \code{decode_batch()}}{
-Decode a batch of ids back to their corresponding string
-\subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{tokenizer$decode_batch(sequences, skip_special_tokens = TRUE)}\if{html}{\out{</div>}}
+\subsection{\code{tok_tokenizer$decode_batch()}}{
+  Decode a batch of ids back to their corresponding string
+  \subsection{Usage}{
+    \if{html}{\out{<div class="r">}}
+    \preformatted{tok_tokenizer$decode_batch(sequences, skip_special_tokens = TRUE)}
+    \if{html}{\out{</div>}}
+  }
+  \subsection{Arguments}{
+    \if{html}{\out{<div class="arguments">}}
+    \describe{
+      \item{\code{sequences}}{The batch of sequences we want to decode}
+      \item{\code{skip_special_tokens}}{Whether the special tokens should be removed from the decoded strings}
+    }
+    \if{html}{\out{</div>}}
+  }
 }
 
-\subsection{Arguments}{
-\if{html}{\out{<div class="arguments">}}
-\describe{
-\item{\code{sequences}}{The batch of sequences we want to decode}
-
-\item{\code{skip_special_tokens}}{Whether the special tokens should be removed from the decoded strings}
-}
-\if{html}{\out{</div>}}
-}
-}
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-tok_tokenizer-from_file"></a>}}
 \if{latex}{\out{\hypertarget{method-tok_tokenizer-from_file}{}}}
-\subsection{Method \code{from_file()}}{
-Creates a tokenizer from the path of a serialized tokenizer.
+\subsection{\code{tok_tokenizer$from_file()}}{
+  Creates a tokenizer from the path of a serialized tokenizer.
 This is a static method and should be called instead of \verb{$new} when initializing
 the tokenizer.
-\subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{tokenizer$from_file(path)}\if{html}{\out{</div>}}
+  \subsection{Usage}{
+    \if{html}{\out{<div class="r">}}
+    \preformatted{tok_tokenizer$from_file(path)}
+    \if{html}{\out{</div>}}
+  }
+  \subsection{Arguments}{
+    \if{html}{\out{<div class="arguments">}}
+    \describe{
+      \item{\code{path}}{Path to tokenizer.json file}
+    }
+    \if{html}{\out{</div>}}
+  }
 }
 
-\subsection{Arguments}{
-\if{html}{\out{<div class="arguments">}}
-\describe{
-\item{\code{path}}{Path to tokenizer.json file}
-}
-\if{html}{\out{</div>}}
-}
-}
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-tok_tokenizer-from_pretrained"></a>}}
 \if{latex}{\out{\hypertarget{method-tok_tokenizer-from_pretrained}{}}}
-\subsection{Method \code{from_pretrained()}}{
-Instantiate a new Tokenizer from an existing file on the Hugging Face Hub.
-\subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{tokenizer$from_pretrained(identifier, revision = "main", auth_token = NULL)}\if{html}{\out{</div>}}
-}
-
-\subsection{Arguments}{
-\if{html}{\out{<div class="arguments">}}
-\describe{
-\item{\code{identifier}}{The identifier of a Model on the Hugging Face Hub, that
+\subsection{\code{tok_tokenizer$from_pretrained()}}{
+  Instantiate a new Tokenizer from an existing file on the Hugging Face Hub.
+  \subsection{Usage}{
+    \if{html}{\out{<div class="r">}}
+    \preformatted{tok_tokenizer$from_pretrained(identifier, revision = "main", auth_token = NULL)}
+    \if{html}{\out{</div>}}
+  }
+  \subsection{Arguments}{
+    \if{html}{\out{<div class="arguments">}}
+    \describe{
+      \item{\code{identifier}}{The identifier of a Model on the Hugging Face Hub, that
 contains a tokenizer.json file}
-
-\item{\code{revision}}{A branch or commit id}
-
-\item{\code{auth_token}}{An optional auth token used to access private repositories
+      \item{\code{revision}}{A branch or commit id}
+      \item{\code{auth_token}}{An optional auth token used to access private repositories
 on the Hugging Face Hub}
+    }
+    \if{html}{\out{</div>}}
+  }
 }
-\if{html}{\out{</div>}}
-}
-}
+
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-tok_tokenizer-train"></a>}}
 \if{latex}{\out{\hypertarget{method-tok_tokenizer-train}{}}}
-\subsection{Method \code{train()}}{
-Train the Tokenizer using the given files.
+\subsection{\code{tok_tokenizer$train()}}{
+  Train the Tokenizer using the given files.
 Reads the files line by line, while keeping all the whitespace, even new lines.
-\subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{tokenizer$train(files, trainer)}\if{html}{\out{</div>}}
+  \subsection{Usage}{
+    \if{html}{\out{<div class="r">}}
+    \preformatted{tok_tokenizer$train(files, trainer)}
+    \if{html}{\out{</div>}}
+  }
+  \subsection{Arguments}{
+    \if{html}{\out{<div class="arguments">}}
+    \describe{
+      \item{\code{files}}{character vector of file paths.}
+      \item{\code{trainer}}{an instance of a trainer object, specific to that tokenizer type.}
+    }
+    \if{html}{\out{</div>}}
+  }
 }
 
-\subsection{Arguments}{
-\if{html}{\out{<div class="arguments">}}
-\describe{
-\item{\code{files}}{character vector of file paths.}
-
-\item{\code{trainer}}{an instance of a trainer object, specific to that tokenizer type.}
-}
-\if{html}{\out{</div>}}
-}
-}
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-tok_tokenizer-train_from_memory"></a>}}
 \if{latex}{\out{\hypertarget{method-tok_tokenizer-train_from_memory}{}}}
-\subsection{Method \code{train_from_memory()}}{
-Train the tokenizer on a chracter vector of texts
-\subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{tokenizer$train_from_memory(texts, trainer)}\if{html}{\out{</div>}}
+\subsection{\code{tok_tokenizer$train_from_memory()}}{
+  Train the tokenizer on a chracter vector of texts
+  \subsection{Usage}{
+    \if{html}{\out{<div class="r">}}
+    \preformatted{tok_tokenizer$train_from_memory(texts, trainer)}
+    \if{html}{\out{</div>}}
+  }
+  \subsection{Arguments}{
+    \if{html}{\out{<div class="arguments">}}
+    \describe{
+      \item{\code{texts}}{a character vector of texts.}
+      \item{\code{trainer}}{an instance of a trainer object, specific to that tokenizer type.}
+    }
+    \if{html}{\out{</div>}}
+  }
 }
 
-\subsection{Arguments}{
-\if{html}{\out{<div class="arguments">}}
-\describe{
-\item{\code{texts}}{a character vector of texts.}
-
-\item{\code{trainer}}{an instance of a trainer object, specific to that tokenizer type.}
-}
-\if{html}{\out{</div>}}
-}
-}
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-tok_tokenizer-save"></a>}}
 \if{latex}{\out{\hypertarget{method-tok_tokenizer-save}{}}}
-\subsection{Method \code{save()}}{
-Saves the tokenizer to a json file
-\subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{tokenizer$save(path, pretty = TRUE)}\if{html}{\out{</div>}}
+\subsection{\code{tok_tokenizer$save()}}{
+  Saves the tokenizer to a json file
+  \subsection{Usage}{
+    \if{html}{\out{<div class="r">}}
+    \preformatted{tok_tokenizer$save(path, pretty = TRUE)}
+    \if{html}{\out{</div>}}
+  }
+  \subsection{Arguments}{
+    \if{html}{\out{<div class="arguments">}}
+    \describe{
+      \item{\code{path}}{A path to a file in which to save the serialized tokenizer.}
+      \item{\code{pretty}}{Whether the JSON file should be pretty formatted.}
+    }
+    \if{html}{\out{</div>}}
+  }
 }
 
-\subsection{Arguments}{
-\if{html}{\out{<div class="arguments">}}
-\describe{
-\item{\code{path}}{A path to a file in which to save the serialized tokenizer.}
-
-\item{\code{pretty}}{Whether the JSON file should be pretty formatted.}
-}
-\if{html}{\out{</div>}}
-}
-}
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-tok_tokenizer-enable_padding"></a>}}
 \if{latex}{\out{\hypertarget{method-tok_tokenizer-enable_padding}{}}}
-\subsection{Method \code{enable_padding()}}{
-Enables padding for the tokenizer
-\subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{tokenizer$enable_padding(
+\subsection{\code{tok_tokenizer$enable_padding()}}{
+  Enables padding for the tokenizer
+  \subsection{Usage}{
+    \if{html}{\out{<div class="r">}}
+    \preformatted{tok_tokenizer$enable_padding(
   direction = "right",
   pad_id = 0L,
   pad_type_id = 0L,
   pad_token = "[PAD]",
   length = NULL,
   pad_to_multiple_of = NULL
-)}\if{html}{\out{</div>}}
-}
-
-\subsection{Arguments}{
-\if{html}{\out{<div class="arguments">}}
-\describe{
-\item{\code{direction}}{(str, optional, defaults to right) — The direction in which
+)}
+    \if{html}{\out{</div>}}
+  }
+  \subsection{Arguments}{
+    \if{html}{\out{<div class="arguments">}}
+    \describe{
+      \item{\code{direction}}{(str, optional, defaults to right) — The direction in which
 to pad. Can be either \code{'right'} or \code{'left'}}
-
-\item{\code{pad_id}}{(int, defaults to 0) — The id to be used when padding}
-
-\item{\code{pad_type_id}}{(int, defaults to 0) — The type id to be used when padding}
-
-\item{\code{pad_token}}{(str, defaults to \code{'[PAD]'}) — The pad token to be used when padding}
-
-\item{\code{length}}{(int, optional) — If specified, the length at which to pad. If not
+      \item{\code{pad_id}}{(int, defaults to 0) — The id to be used when padding}
+      \item{\code{pad_type_id}}{(int, defaults to 0) — The type id to be used when padding}
+      \item{\code{pad_token}}{(str, defaults to \code{'[PAD]'}) — The pad token to be used when padding}
+      \item{\code{length}}{(int, optional) — If specified, the length at which to pad. If not
 specified we pad using the size of the longest sequence in a batch.}
-
-\item{\code{pad_to_multiple_of}}{(int, optional) — If specified, the padding length should
+      \item{\code{pad_to_multiple_of}}{(int, optional) — If specified, the padding length should
 always snap to the next multiple of the given value. For example if we were
 going to pad with a length of 250 but \code{pad_to_multiple_of=8} then we will
 pad to 256.}
+    }
+    \if{html}{\out{</div>}}
+  }
 }
-\if{html}{\out{</div>}}
-}
-}
+
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-tok_tokenizer-no_padding"></a>}}
 \if{latex}{\out{\hypertarget{method-tok_tokenizer-no_padding}{}}}
-\subsection{Method \code{no_padding()}}{
-Disables padding
-\subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{tokenizer$no_padding()}\if{html}{\out{</div>}}
+\subsection{\code{tok_tokenizer$no_padding()}}{
+  Disables padding
+  \subsection{Usage}{
+    \if{html}{\out{<div class="r">}}
+    \preformatted{tok_tokenizer$no_padding()}
+    \if{html}{\out{</div>}}
+  }
 }
 
-}
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-tok_tokenizer-enable_truncation"></a>}}
 \if{latex}{\out{\hypertarget{method-tok_tokenizer-enable_truncation}{}}}
-\subsection{Method \code{enable_truncation()}}{
-Enables truncation on the tokenizer
-\subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{tokenizer$enable_truncation(
+\subsection{\code{tok_tokenizer$enable_truncation()}}{
+  Enables truncation on the tokenizer
+  \subsection{Usage}{
+    \if{html}{\out{<div class="r">}}
+    \preformatted{tok_tokenizer$enable_truncation(
   max_length,
   stride = 0,
   strategy = "longest_first",
   direction = "right"
-)}\if{html}{\out{</div>}}
-}
-
-\subsection{Arguments}{
-\if{html}{\out{<div class="arguments">}}
-\describe{
-\item{\code{max_length}}{The maximum length at which to truncate.}
-
-\item{\code{stride}}{The length of the previous first sequence to be included
+)}
+    \if{html}{\out{</div>}}
+  }
+  \subsection{Arguments}{
+    \if{html}{\out{<div class="arguments">}}
+    \describe{
+      \item{\code{max_length}}{The maximum length at which to truncate.}
+      \item{\code{stride}}{The length of the previous first sequence to be included
 in the overflowing sequence. Default: \code{0}.}
-
-\item{\code{strategy}}{The strategy used for truncation. Can be one of:
+      \item{\code{strategy}}{The strategy used for truncation. Can be one of:
 "longest_first", "only_first", or "only_second". Default: "longest_first".}
+      \item{\code{direction}}{The truncation direction. Default: "right".}
+    }
+    \if{html}{\out{</div>}}
+  }
+}
 
-\item{\code{direction}}{The truncation direction. Default: "right".}
-}
-\if{html}{\out{</div>}}
-}
-}
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-tok_tokenizer-no_truncation"></a>}}
 \if{latex}{\out{\hypertarget{method-tok_tokenizer-no_truncation}{}}}
-\subsection{Method \code{no_truncation()}}{
-Disables truncation
-\subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{tokenizer$no_truncation()}\if{html}{\out{</div>}}
+\subsection{\code{tok_tokenizer$no_truncation()}}{
+  Disables truncation
+  \subsection{Usage}{
+    \if{html}{\out{<div class="r">}}
+    \preformatted{tok_tokenizer$no_truncation()}
+    \if{html}{\out{</div>}}
+  }
 }
 
-}
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-tok_tokenizer-get_vocab_size"></a>}}
 \if{latex}{\out{\hypertarget{method-tok_tokenizer-get_vocab_size}{}}}
-\subsection{Method \code{get_vocab_size()}}{
-Gets the vocabulary size
-\subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{tokenizer$get_vocab_size(with_added_tokens = TRUE)}\if{html}{\out{</div>}}
+\subsection{\code{tok_tokenizer$get_vocab_size()}}{
+  Gets the vocabulary size
+  \subsection{Usage}{
+    \if{html}{\out{<div class="r">}}
+    \preformatted{tok_tokenizer$get_vocab_size(with_added_tokens = TRUE)}
+    \if{html}{\out{</div>}}
+  }
+  \subsection{Arguments}{
+    \if{html}{\out{<div class="arguments">}}
+    \describe{
+      \item{\code{with_added_tokens}}{Wether to count added tokens}
+    }
+    \if{html}{\out{</div>}}
+  }
 }
 
-\subsection{Arguments}{
-\if{html}{\out{<div class="arguments">}}
-\describe{
-\item{\code{with_added_tokens}}{Wether to count added tokens}
-}
-\if{html}{\out{</div>}}
-}
-}
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-tok_tokenizer-clone"></a>}}
 \if{latex}{\out{\hypertarget{method-tok_tokenizer-clone}{}}}
-\subsection{Method \code{clone()}}{
-The objects of this class are cloneable with this method.
-\subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{tokenizer$clone(deep = FALSE)}\if{html}{\out{</div>}}
+\subsection{\code{tok_tokenizer$clone()}}{
+  The objects of this class are cloneable with this method.
+  \subsection{Usage}{
+    \if{html}{\out{<div class="r">}}
+    \preformatted{tok_tokenizer$clone(deep = FALSE)}
+    \if{html}{\out{</div>}}
+  }
+  \subsection{Arguments}{
+    \if{html}{\out{<div class="arguments">}}
+    \describe{
+      \item{\code{deep}}{Whether to make a deep clone.}
+    }
+    \if{html}{\out{</div>}}
+  }
 }
 
-\subsection{Arguments}{
-\if{html}{\out{<div class="arguments">}}
-\describe{
-\item{\code{deep}}{Whether to make a deep clone.}
-}
-\if{html}{\out{</div>}}
-}
-}
 }

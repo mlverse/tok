@@ -5,33 +5,32 @@
 \title{WordPiece tokenizer trainer}
 \description{
 WordPiece tokenizer trainer
-
-WordPiece tokenizer trainer
 }
 \seealso{
-Other trainer: 
+Other trainer:
 \code{\link{tok_trainer}},
 \code{\link{trainer_bpe}},
 \code{\link{trainer_unigram}}
 }
 \concept{trainer}
 \section{Super class}{
-\code{\link[tok:tok_trainer]{tok::tok_trainer}} -> \code{tok_trainer_wordpiece}
+\code{\link[tok:tok_trainer]{tok_trainer}} -> \code{tok_trainer_wordpiece}
 }
 \section{Methods}{
 \subsection{Public methods}{
-\itemize{
-\item \href{#method-tok_trainer_wordpiece-new}{\code{trainer_wordpiece$new()}}
-\item \href{#method-tok_trainer_wordpiece-clone}{\code{trainer_wordpiece$clone()}}
-}
+  \itemize{
+    \item \href{#method-tok_trainer_wordpiece-initialize}{\code{tok_trainer_wordpiece$new()}}
+    \item \href{#method-tok_trainer_wordpiece-clone}{\code{tok_trainer_wordpiece$clone()}}
+  }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-tok_trainer_wordpiece-new"></a>}}
-\if{latex}{\out{\hypertarget{method-tok_trainer_wordpiece-new}{}}}
-\subsection{Method \code{new()}}{
-Constructor for the WordPiece tokenizer trainer
-\subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{trainer_wordpiece$new(
+\if{html}{\out{<a id="method-tok_trainer_wordpiece-initialize"></a>}}
+\if{latex}{\out{\hypertarget{method-tok_trainer_wordpiece-initialize}{}}}
+\subsection{\code{tok_trainer_wordpiece$new()}}{
+  Constructor for the WordPiece tokenizer trainer
+  \subsection{Usage}{
+    \if{html}{\out{<div class="r">}}
+    \preformatted{tok_trainer_wordpiece$new(
   vocab_size = 30000,
   min_frequency = 0,
   show_progress = FALSE,
@@ -40,54 +39,50 @@ Constructor for the WordPiece tokenizer trainer
   initial_alphabet = NULL,
   continuing_subword_prefix = "##",
   end_of_word_suffix = NULL
-)}\if{html}{\out{</div>}}
-}
-
-\subsection{Arguments}{
-\if{html}{\out{<div class="arguments">}}
-\describe{
-\item{\code{vocab_size}}{The size of the final vocabulary, including all tokens and alphabet.
+)}
+    \if{html}{\out{</div>}}
+  }
+  \subsection{Arguments}{
+    \if{html}{\out{<div class="arguments">}}
+    \describe{
+      \item{\code{vocab_size}}{The size of the final vocabulary, including all tokens and alphabet.
 Default: \code{NULL}.}
-
-\item{\code{min_frequency}}{The minimum frequency a pair should have in order to be merged.
+      \item{\code{min_frequency}}{The minimum frequency a pair should have in order to be merged.
 Default: \code{NULL}.}
-
-\item{\code{show_progress}}{Whether to show progress bars while training. Default: \code{TRUE}.}
-
-\item{\code{special_tokens}}{A list of special tokens the model should be aware of.
+      \item{\code{show_progress}}{Whether to show progress bars while training. Default: \code{TRUE}.}
+      \item{\code{special_tokens}}{A list of special tokens the model should be aware of.
 Default: \code{NULL}.}
-
-\item{\code{limit_alphabet}}{The maximum number of different characters to keep in the alphabet.
+      \item{\code{limit_alphabet}}{The maximum number of different characters to keep in the alphabet.
 Default: \code{NULL}.}
-
-\item{\code{initial_alphabet}}{A list of characters to include in the initial alphabet,
+      \item{\code{initial_alphabet}}{A list of characters to include in the initial alphabet,
 even if not seen in the training dataset. If the strings contain more than
 one character, only the first one is kept. Default: \code{NULL}.}
-
-\item{\code{continuing_subword_prefix}}{A prefix to be used for every subword that is not a beginning-of-word.
+      \item{\code{continuing_subword_prefix}}{A prefix to be used for every subword that is not a beginning-of-word.
 Default: \code{NULL}.}
-
-\item{\code{end_of_word_suffix}}{A suffix to be used for every subword that is an end-of-word.
+      \item{\code{end_of_word_suffix}}{A suffix to be used for every subword that is an end-of-word.
 Default: \code{NULL}.}
+    }
+    \if{html}{\out{</div>}}
+  }
 }
-\if{html}{\out{</div>}}
-}
-}
+
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-tok_trainer_wordpiece-clone"></a>}}
 \if{latex}{\out{\hypertarget{method-tok_trainer_wordpiece-clone}{}}}
-\subsection{Method \code{clone()}}{
-The objects of this class are cloneable with this method.
-\subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{trainer_wordpiece$clone(deep = FALSE)}\if{html}{\out{</div>}}
+\subsection{\code{tok_trainer_wordpiece$clone()}}{
+  The objects of this class are cloneable with this method.
+  \subsection{Usage}{
+    \if{html}{\out{<div class="r">}}
+    \preformatted{tok_trainer_wordpiece$clone(deep = FALSE)}
+    \if{html}{\out{</div>}}
+  }
+  \subsection{Arguments}{
+    \if{html}{\out{<div class="arguments">}}
+    \describe{
+      \item{\code{deep}}{Whether to make a deep clone.}
+    }
+    \if{html}{\out{</div>}}
+  }
 }
 
-\subsection{Arguments}{
-\if{html}{\out{<div class="arguments">}}
-\describe{
-\item{\code{deep}}{Whether to make a deep clone.}
-}
-\if{html}{\out{</div>}}
-}
-}
 }

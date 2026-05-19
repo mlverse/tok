@@ -5,50 +5,52 @@
 \title{This pre-tokenizer simply splits using the following regex: \verb{\\w+|[^\\w\\s]+}}
 \description{
 This pre-tokenizer simply splits using the following regex: \verb{\\w+|[^\\w\\s]+}
-
-This pre-tokenizer simply splits using the following regex: \verb{\\w+|[^\\w\\s]+}
 }
 \seealso{
-Other pre_tokenizer: 
+Other pre_tokenizer:
 \code{\link{pre_tokenizer}},
 \code{\link{pre_tokenizer_byte_level}}
 }
 \concept{pre_tokenizer}
 \section{Super class}{
-\code{tok::tok_pre_tokenizer} -> \code{tok_pre_tokenizer_whitespace}
+\code{tok_pre_tokenizer} -> \code{tok_pre_tokenizer_whitespace}
 }
 \section{Methods}{
 \subsection{Public methods}{
-\itemize{
-\item \href{#method-tok_pre_tokenizer_whitespace-new}{\code{pre_tokenizer_whitespace$new()}}
-\item \href{#method-tok_pre_tokenizer_whitespace-clone}{\code{pre_tokenizer_whitespace$clone()}}
-}
+  \itemize{
+    \item \href{#method-tok_pre_tokenizer_whitespace-initialize}{\code{tok_pre_tokenizer_whitespace$new()}}
+    \item \href{#method-tok_pre_tokenizer_whitespace-clone}{\code{tok_pre_tokenizer_whitespace$clone()}}
+  }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-tok_pre_tokenizer_whitespace-new"></a>}}
-\if{latex}{\out{\hypertarget{method-tok_pre_tokenizer_whitespace-new}{}}}
-\subsection{Method \code{new()}}{
-Initializes the whistespace tokenizer
-\subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{pre_tokenizer_whitespace$new()}\if{html}{\out{</div>}}
+\if{html}{\out{<a id="method-tok_pre_tokenizer_whitespace-initialize"></a>}}
+\if{latex}{\out{\hypertarget{method-tok_pre_tokenizer_whitespace-initialize}{}}}
+\subsection{\code{tok_pre_tokenizer_whitespace$new()}}{
+  Initializes the whistespace tokenizer
+  \subsection{Usage}{
+    \if{html}{\out{<div class="r">}}
+    \preformatted{tok_pre_tokenizer_whitespace$new()}
+    \if{html}{\out{</div>}}
+  }
 }
 
-}
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-tok_pre_tokenizer_whitespace-clone"></a>}}
 \if{latex}{\out{\hypertarget{method-tok_pre_tokenizer_whitespace-clone}{}}}
-\subsection{Method \code{clone()}}{
-The objects of this class are cloneable with this method.
-\subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{pre_tokenizer_whitespace$clone(deep = FALSE)}\if{html}{\out{</div>}}
+\subsection{\code{tok_pre_tokenizer_whitespace$clone()}}{
+  The objects of this class are cloneable with this method.
+  \subsection{Usage}{
+    \if{html}{\out{<div class="r">}}
+    \preformatted{tok_pre_tokenizer_whitespace$clone(deep = FALSE)}
+    \if{html}{\out{</div>}}
+  }
+  \subsection{Arguments}{
+    \if{html}{\out{<div class="arguments">}}
+    \describe{
+      \item{\code{deep}}{Whether to make a deep clone.}
+    }
+    \if{html}{\out{</div>}}
+  }
 }
 
-\subsection{Arguments}{
-\if{html}{\out{<div class="arguments">}}
-\describe{
-\item{\code{deep}}{Whether to make a deep clone.}
-}
-\if{html}{\out{</div>}}
-}
-}
 }
