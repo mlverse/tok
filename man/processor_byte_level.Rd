@@ -4,63 +4,62 @@
 \alias{processor_byte_level}
 \title{Byte Level post processor}
 \description{
-Byte Level post processor
-
-Byte Level post processor
-}
-\details{
 This post-processor takes care of trimming the offsets.
 By default, the ByteLevel BPE might include whitespaces in the produced tokens.
 If you don’t want the offsets to include these whitespaces, then this
 PostProcessor must be used.
 }
 \seealso{
-Other processors: 
+Other processors:
 \code{\link{tok_processor}}
 }
 \concept{processors}
 \section{Super class}{
-\code{\link[tok:tok_processor]{tok::tok_processor}} -> \code{tok_processor_byte_level}
+\code{\link[tok:tok_processor]{tok_processor}} -> \code{tok_processor_byte_level}
 }
 \section{Methods}{
 \subsection{Public methods}{
-\itemize{
-\item \href{#method-tok_processor_byte_level-new}{\code{processor_byte_level$new()}}
-\item \href{#method-tok_processor_byte_level-clone}{\code{processor_byte_level$clone()}}
-}
+  \itemize{
+    \item \href{#method-tok_processor_byte_level-initialize}{\code{tok_processor_byte_level$new()}}
+    \item \href{#method-tok_processor_byte_level-clone}{\code{tok_processor_byte_level$clone()}}
+  }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-tok_processor_byte_level-new"></a>}}
-\if{latex}{\out{\hypertarget{method-tok_processor_byte_level-new}{}}}
-\subsection{Method \code{new()}}{
-Initializes the byte level post processor
-\subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{processor_byte_level$new(trim_offsets = TRUE)}\if{html}{\out{</div>}}
+\if{html}{\out{<a id="method-tok_processor_byte_level-initialize"></a>}}
+\if{latex}{\out{\hypertarget{method-tok_processor_byte_level-initialize}{}}}
+\subsection{\code{tok_processor_byte_level$new()}}{
+  Initializes the byte level post processor
+  \subsection{Usage}{
+    \if{html}{\out{<div class="r">}}
+    \preformatted{tok_processor_byte_level$new(trim_offsets = TRUE)}
+    \if{html}{\out{</div>}}
+  }
+  \subsection{Arguments}{
+    \if{html}{\out{<div class="arguments">}}
+    \describe{
+      \item{\code{trim_offsets}}{Whether to trim the whitespaces from the produced offsets.}
+    }
+    \if{html}{\out{</div>}}
+  }
 }
 
-\subsection{Arguments}{
-\if{html}{\out{<div class="arguments">}}
-\describe{
-\item{\code{trim_offsets}}{Whether to trim the whitespaces from the produced offsets.}
-}
-\if{html}{\out{</div>}}
-}
-}
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-tok_processor_byte_level-clone"></a>}}
 \if{latex}{\out{\hypertarget{method-tok_processor_byte_level-clone}{}}}
-\subsection{Method \code{clone()}}{
-The objects of this class are cloneable with this method.
-\subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{processor_byte_level$clone(deep = FALSE)}\if{html}{\out{</div>}}
+\subsection{\code{tok_processor_byte_level$clone()}}{
+  The objects of this class are cloneable with this method.
+  \subsection{Usage}{
+    \if{html}{\out{<div class="r">}}
+    \preformatted{tok_processor_byte_level$clone(deep = FALSE)}
+    \if{html}{\out{</div>}}
+  }
+  \subsection{Arguments}{
+    \if{html}{\out{<div class="arguments">}}
+    \describe{
+      \item{\code{deep}}{Whether to make a deep clone.}
+    }
+    \if{html}{\out{</div>}}
+  }
 }
 
-\subsection{Arguments}{
-\if{html}{\out{<div class="arguments">}}
-\describe{
-\item{\code{deep}}{Whether to make a deep clone.}
-}
-\if{html}{\out{</div>}}
-}
-}
 }

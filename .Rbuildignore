@@ -20,3 +20,6 @@
 ^src/rust/target$
 ^src/Makevars$
 ^src/Makevars\.win$
+^\.positai$
+^\.claude$
+^\.codex$

@@ -5,50 +5,52 @@
 \title{NFC normalizer}
 \description{
 NFC normalizer
-
-NFC normalizer
 }
 \seealso{
-Other normalizers: 
+Other normalizers:
 \code{\link{normalizer_nfkc}},
 \code{\link{tok_normalizer}}
 }
 \concept{normalizers}
 \section{Super class}{
-\code{\link[tok:tok_normalizer]{tok::tok_normalizer}} -> \code{tok_normalizer_nfc}
+\code{\link[tok:tok_normalizer]{tok_normalizer}} -> \code{tok_normalizer_nfc}
 }
 \section{Methods}{
 \subsection{Public methods}{
-\itemize{
-\item \href{#method-tok_normalizer_nfc-new}{\code{normalizer_nfc$new()}}
-\item \href{#method-tok_normalizer_nfc-clone}{\code{normalizer_nfc$clone()}}
-}
+  \itemize{
+    \item \href{#method-tok_normalizer_nfc-initialize}{\code{tok_normalizer_nfc$new()}}
+    \item \href{#method-tok_normalizer_nfc-clone}{\code{tok_normalizer_nfc$clone()}}
+  }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-tok_normalizer_nfc-new"></a>}}
-\if{latex}{\out{\hypertarget{method-tok_normalizer_nfc-new}{}}}
-\subsection{Method \code{new()}}{
-Initializes the NFC normalizer
-\subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{normalizer_nfc$new()}\if{html}{\out{</div>}}
+\if{html}{\out{<a id="method-tok_normalizer_nfc-initialize"></a>}}
+\if{latex}{\out{\hypertarget{method-tok_normalizer_nfc-initialize}{}}}
+\subsection{\code{tok_normalizer_nfc$new()}}{
+  Initializes the NFC normalizer
+  \subsection{Usage}{
+    \if{html}{\out{<div class="r">}}
+    \preformatted{tok_normalizer_nfc$new()}
+    \if{html}{\out{</div>}}
+  }
 }
 
-}
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-tok_normalizer_nfc-clone"></a>}}
 \if{latex}{\out{\hypertarget{method-tok_normalizer_nfc-clone}{}}}
-\subsection{Method \code{clone()}}{
-The objects of this class are cloneable with this method.
-\subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{normalizer_nfc$clone(deep = FALSE)}\if{html}{\out{</div>}}
+\subsection{\code{tok_normalizer_nfc$clone()}}{
+  The objects of this class are cloneable with this method.
+  \subsection{Usage}{
+    \if{html}{\out{<div class="r">}}
+    \preformatted{tok_normalizer_nfc$clone(deep = FALSE)}
+    \if{html}{\out{</div>}}
+  }
+  \subsection{Arguments}{
+    \if{html}{\out{<div class="arguments">}}
+    \describe{
+      \item{\code{deep}}{Whether to make a deep clone.}
+    }
+    \if{html}{\out{</div>}}
+  }
 }
 
-\subsection{Arguments}{
-\if{html}{\out{<div class="arguments">}}
-\describe{
-\item{\code{deep}}{Whether to make a deep clone.}
-}
-\if{html}{\out{</div>}}
-}
-}
 }

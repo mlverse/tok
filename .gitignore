@@ -34,3 +34,6 @@ src/rust/.cargo
 src/rust/vendor
 src/Makevars
 src/Makevars.win
+.positai
+.codex
+.claude

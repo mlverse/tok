@@ -5,64 +5,64 @@
 \title{An implementation of the Unigram algorithm}
 \description{
 An implementation of the Unigram algorithm
-
-An implementation of the Unigram algorithm
 }
 \seealso{
-Other model: 
+Other model:
 \code{\link{model_bpe}},
 \code{\link{model_wordpiece}},
 \code{\link{tok_model}}
 }
 \concept{model}
 \section{Super class}{
-\code{\link[tok:tok_model]{tok::tok_model}} -> \code{tok_model_unigram}
+\code{\link[tok:tok_model]{tok_model}} -> \code{tok_model_unigram}
 }
 \section{Methods}{
 \subsection{Public methods}{
-\itemize{
-\item \href{#method-tok_model_unigram-new}{\code{model_unigram$new()}}
-\item \href{#method-tok_model_unigram-clone}{\code{model_unigram$clone()}}
-}
+  \itemize{
+    \item \href{#method-tok_model_unigram-initialize}{\code{tok_model_unigram$new()}}
+    \item \href{#method-tok_model_unigram-clone}{\code{tok_model_unigram$clone()}}
+  }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-tok_model_unigram-new"></a>}}
-\if{latex}{\out{\hypertarget{method-tok_model_unigram-new}{}}}
-\subsection{Method \code{new()}}{
-Constructor for Unigram Model
-\subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{model_unigram$new(vocab = NULL, unk_id = NULL, byte_fallback = FALSE)}\if{html}{\out{</div>}}
-}
-
-\subsection{Arguments}{
-\if{html}{\out{<div class="arguments">}}
-\describe{
-\item{\code{vocab}}{A dictionary of string keys and their corresponding relative score.
+\if{html}{\out{<a id="method-tok_model_unigram-initialize"></a>}}
+\if{latex}{\out{\hypertarget{method-tok_model_unigram-initialize}{}}}
+\subsection{\code{tok_model_unigram$new()}}{
+  Constructor for Unigram Model
+  \subsection{Usage}{
+    \if{html}{\out{<div class="r">}}
+    \preformatted{tok_model_unigram$new(vocab = NULL, unk_id = NULL, byte_fallback = FALSE)}
+    \if{html}{\out{</div>}}
+  }
+  \subsection{Arguments}{
+    \if{html}{\out{<div class="arguments">}}
+    \describe{
+      \item{\code{vocab}}{A dictionary of string keys and their corresponding relative score.
 Default: \code{NULL}.}
-
-\item{\code{unk_id}}{The unknown token id to be used by the model.
+      \item{\code{unk_id}}{The unknown token id to be used by the model.
 Default: \code{NULL}.}
+      \item{\code{byte_fallback}}{Whether to use byte-fallback trick. Default: \code{FALSE}.}
+    }
+    \if{html}{\out{</div>}}
+  }
+}
 
-\item{\code{byte_fallback}}{Whether to use byte-fallback trick. Default: \code{FALSE}.}
-}
-\if{html}{\out{</div>}}
-}
-}
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-tok_model_unigram-clone"></a>}}
 \if{latex}{\out{\hypertarget{method-tok_model_unigram-clone}{}}}
-\subsection{Method \code{clone()}}{
-The objects of this class are cloneable with this method.
-\subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{model_unigram$clone(deep = FALSE)}\if{html}{\out{</div>}}
+\subsection{\code{tok_model_unigram$clone()}}{
+  The objects of this class are cloneable with this method.
+  \subsection{Usage}{
+    \if{html}{\out{<div class="r">}}
+    \preformatted{tok_model_unigram$clone(deep = FALSE)}
+    \if{html}{\out{</div>}}
+  }
+  \subsection{Arguments}{
+    \if{html}{\out{<div class="arguments">}}
+    \describe{
+      \item{\code{deep}}{Whether to make a deep clone.}
+    }
+    \if{html}{\out{</div>}}
+  }
 }
 
-\subsection{Arguments}{
-\if{html}{\out{<div class="arguments">}}
-\describe{
-\item{\code{deep}}{Whether to make a deep clone.}
-}
-\if{html}{\out{</div>}}
-}
-}
 }

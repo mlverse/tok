@@ -5,50 +5,52 @@
 \title{NFKC normalizer}
 \description{
 NFKC normalizer
-
-NFKC normalizer
 }
 \seealso{
-Other normalizers: 
+Other normalizers:
 \code{\link{normalizer_nfc}},
 \code{\link{tok_normalizer}}
 }
 \concept{normalizers}
 \section{Super class}{
-\code{\link[tok:tok_normalizer]{tok::tok_normalizer}} -> \code{tok_normalizer_nfkc}
+\code{\link[tok:tok_normalizer]{tok_normalizer}} -> \code{tok_normalizer_nfkc}
 }
 \section{Methods}{
 \subsection{Public methods}{
-\itemize{
-\item \href{#method-tok_normalizer_nfkc-new}{\code{normalizer_nfkc$new()}}
-\item \href{#method-tok_normalizer_nfkc-clone}{\code{normalizer_nfkc$clone()}}
-}
+  \itemize{
+    \item \href{#method-tok_normalizer_nfkc-initialize}{\code{tok_normalizer_nfkc$new()}}
+    \item \href{#method-tok_normalizer_nfkc-clone}{\code{tok_normalizer_nfkc$clone()}}
+  }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-tok_normalizer_nfkc-new"></a>}}
-\if{latex}{\out{\hypertarget{method-tok_normalizer_nfkc-new}{}}}
-\subsection{Method \code{new()}}{
-Initializes the NFKC normalizer
-\subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{normalizer_nfkc$new()}\if{html}{\out{</div>}}
+\if{html}{\out{<a id="method-tok_normalizer_nfkc-initialize"></a>}}
+\if{latex}{\out{\hypertarget{method-tok_normalizer_nfkc-initialize}{}}}
+\subsection{\code{tok_normalizer_nfkc$new()}}{
+  Initializes the NFKC normalizer
+  \subsection{Usage}{
+    \if{html}{\out{<div class="r">}}
+    \preformatted{tok_normalizer_nfkc$new()}
+    \if{html}{\out{</div>}}
+  }
 }
 
-}
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-tok_normalizer_nfkc-clone"></a>}}
 \if{latex}{\out{\hypertarget{method-tok_normalizer_nfkc-clone}{}}}
-\subsection{Method \code{clone()}}{
-The objects of this class are cloneable with this method.
-\subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{normalizer_nfkc$clone(deep = FALSE)}\if{html}{\out{</div>}}
+\subsection{\code{tok_normalizer_nfkc$clone()}}{
+  The objects of this class are cloneable with this method.
+  \subsection{Usage}{
+    \if{html}{\out{<div class="r">}}
+    \preformatted{tok_normalizer_nfkc$clone(deep = FALSE)}
+    \if{html}{\out{</div>}}
+  }
+  \subsection{Arguments}{
+    \if{html}{\out{<div class="arguments">}}
+    \describe{
+      \item{\code{deep}}{Whether to make a deep clone.}
+    }
+    \if{html}{\out{</div>}}
+  }
 }
 
-\subsection{Arguments}{
-\if{html}{\out{<div class="arguments">}}
-\describe{
-\item{\code{deep}}{Whether to make a deep clone.}
-}
-\if{html}{\out{</div>}}
-}
-}
 }

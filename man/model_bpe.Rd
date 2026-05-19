@@ -5,34 +5,33 @@
 \title{BPE model}
 \description{
 BPE model
-
-BPE model
 }
 \seealso{
-Other model: 
+Other model:
 \code{\link{model_unigram}},
 \code{\link{model_wordpiece}},
 \code{\link{tok_model}}
 }
 \concept{model}
 \section{Super class}{
-\code{\link[tok:tok_model]{tok::tok_model}} -> \code{tok_model_bpe}
+\code{\link[tok:tok_model]{tok_model}} -> \code{tok_model_bpe}
 }
 \section{Methods}{
 \subsection{Public methods}{
-\itemize{
-\item \href{#method-tok_model_bpe-new}{\code{model_bpe$new()}}
-\item \href{#method-tok_model_bpe-clone}{\code{model_bpe$clone()}}
-}
+  \itemize{
+    \item \href{#method-tok_model_bpe-initialize}{\code{tok_model_bpe$new()}}
+    \item \href{#method-tok_model_bpe-clone}{\code{tok_model_bpe$clone()}}
+  }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-tok_model_bpe-new"></a>}}
-\if{latex}{\out{\hypertarget{method-tok_model_bpe-new}{}}}
-\subsection{Method \code{new()}}{
-Initializes a BPE model
+\if{html}{\out{<a id="method-tok_model_bpe-initialize"></a>}}
+\if{latex}{\out{\hypertarget{method-tok_model_bpe-initialize}{}}}
+\subsection{\code{tok_model_bpe$new()}}{
+  Initializes a BPE model
 An implementation of the BPE (Byte-Pair Encoding) algorithm
-\subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{model_bpe$new(
+  \subsection{Usage}{
+    \if{html}{\out{<div class="r">}}
+    \preformatted{tok_model_bpe$new(
   vocab = NULL,
   merges = NULL,
   cache_capacity = NULL,
@@ -42,51 +41,46 @@ An implementation of the BPE (Byte-Pair Encoding) algorithm
   end_of_word_suffix = NULL,
   fuse_unk = NULL,
   byte_fallback = FALSE
-)}\if{html}{\out{</div>}}
-}
-
-\subsection{Arguments}{
-\if{html}{\out{<div class="arguments">}}
-\describe{
-\item{\code{vocab}}{A named integer vector of string keys and their corresponding ids. Default: \code{NULL}}
-
-\item{\code{merges}}{A list of pairs of tokens (\verb{[character, character]}). Default: \code{NULL}.}
-
-\item{\code{cache_capacity}}{The number of words that the BPE cache can contain.
+)}
+    \if{html}{\out{</div>}}
+  }
+  \subsection{Arguments}{
+    \if{html}{\out{<div class="arguments">}}
+    \describe{
+      \item{\code{vocab}}{A named integer vector of string keys and their corresponding ids. Default: \code{NULL}}
+      \item{\code{merges}}{A list of pairs of tokens (\verb{[character, character]}). Default: \code{NULL}.}
+      \item{\code{cache_capacity}}{The number of words that the BPE cache can contain.
 The cache speeds up the process by storing merge operation results. Default: \code{NULL.}}
-
-\item{\code{dropout}}{A float between 0 and 1 representing the BPE dropout to use. Default: \code{NULL}}
-
-\item{\code{unk_token}}{The unknown token to be used by the model. Default: `NULL```.}
-
-\item{\code{continuing_subword_prefix}}{The prefix to attach to subword units that don’t
+      \item{\code{dropout}}{A float between 0 and 1 representing the BPE dropout to use. Default: \code{NULL}}
+      \item{\code{unk_token}}{The unknown token to be used by the model. Default: `NULL```.}
+      \item{\code{continuing_subword_prefix}}{The prefix to attach to subword units that don’t
 represent the beginning of a word. Default: \code{NULL}}
-
-\item{\code{end_of_word_suffix}}{The suffix to attach to subword units that represent
+      \item{\code{end_of_word_suffix}}{The suffix to attach to subword units that represent
 the end of a word. Default: \code{NULL}}
+      \item{\code{fuse_unk}}{Whether to fuse any subsequent unknown tokens into a single one. Default: \code{NULL}.}
+      \item{\code{byte_fallback}}{Whether to use the spm byte-fallback trick. Default: \code{FALSE}.}
+    }
+    \if{html}{\out{</div>}}
+  }
+}
 
-\item{\code{fuse_unk}}{Whether to fuse any subsequent unknown tokens into a single one. Default: \code{NULL}.}
-
-\item{\code{byte_fallback}}{Whether to use the spm byte-fallback trick. Default: \code{FALSE}.}
-}
-\if{html}{\out{</div>}}
-}
-}
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-tok_model_bpe-clone"></a>}}
 \if{latex}{\out{\hypertarget{method-tok_model_bpe-clone}{}}}
-\subsection{Method \code{clone()}}{
-The objects of this class are cloneable with this method.
-\subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{model_bpe$clone(deep = FALSE)}\if{html}{\out{</div>}}
+\subsection{\code{tok_model_bpe$clone()}}{
+  The objects of this class are cloneable with this method.
+  \subsection{Usage}{
+    \if{html}{\out{<div class="r">}}
+    \preformatted{tok_model_bpe$clone(deep = FALSE)}
+    \if{html}{\out{</div>}}
+  }
+  \subsection{Arguments}{
+    \if{html}{\out{<div class="arguments">}}
+    \describe{
+      \item{\code{deep}}{Whether to make a deep clone.}
+    }
+    \if{html}{\out{</div>}}
+  }
 }
 
-\subsection{Arguments}{
-\if{html}{\out{<div class="arguments">}}
-\describe{
-\item{\code{deep}}{Whether to make a deep clone.}
-}
-\if{html}{\out{</div>}}
-}
-}
 }
