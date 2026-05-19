@@ -1,5 +1,8 @@
 # tok (development version)
 
+- Lowered minimum supported rust version (MSRV) from 1.91 to 1.77.2, 
+  at request of CRAN (#29).
+
 # tok 0.2.2
 
 - Updated upstream tokenizers library to 0.22.2.
