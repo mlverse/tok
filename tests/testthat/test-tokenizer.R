@@ -28,6 +28,7 @@ test_that("batch encoder/decoder", {
 
 test_that("from_pretrained", {
   skip_on_cran()
+  skip_if_offline("huggingface.co")
   tok <- tokenizer$from_pretrained("gpt2")
   input <- "hello world"
   enc <- tok$encode(input)
